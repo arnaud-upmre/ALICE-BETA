@@ -1,0 +1,56 @@
+import{t as e}from"./accueil-D8yQHV0l.js";var t=`/ALICE-BETA/icons/meteo`,n=new Map,r=``,i=``,a=!1,o=``,s=`${t}/clear-day.svg`,c=`neutre`;function l(e){return Math.round(Number(e)*1e4)/1e4}function u(e,t){return`${l(e)},${l(t)}`}function d(e){return`${Math.round(Number(e)||0)}°C`}function f(e){let t=Number(e)||0;return`${t.toFixed(t>=10?0:1)} mm`}function p(e){return f(e)}function m(e){return`${Math.round(Number(e)||0)} km/h`}function h(e){return m(e)}function g(e){return!(e instanceof Date)||Number.isNaN(e.getTime())?``:new Intl.DateTimeFormat(`fr-FR`,{hour:`2-digit`,minute:`2-digit`}).format(e)}function _(e){return String(e||``).replace(/&/g,`&amp;`).replace(/</g,`&lt;`).replace(/>/g,`&gt;`).replace(/"/g,`&quot;`).replace(/'/g,`&#39;`)}function v(e){if(!(e instanceof Element))return null;let t=e.querySelector(`[data-lng][data-lat]`);if(!(t instanceof HTMLElement))return null;let n=Number(t.dataset.lng),r=Number(t.dataset.lat);return!Number.isFinite(n)||!Number.isFinite(r)?null:{latitude:r,longitude:n}}function y(e){if(!(e instanceof Element))return null;let t=e=>/\((?:equipe|équipe)\)/i.test(String(e||``));if(e.querySelector(`.popup-badge-acces`))return null;let n=e.querySelector(`.popup-item-hors, .popup-acces-ligne-hp`),r=e.querySelector(`.popup-poste-entete-principal .popup-tag-hp, .popup-acces-titre .popup-tag-hp`);if(n||r)return null;let i=e.querySelector(`.popup-poste-entete-principal`);if(i?.textContent){let e=i.textContent.replace(/^📍\s*/,``).trim();return t(e)?null:e}let a=e.querySelector(`.popup-badge-postes + ul .popup-acces-ligne`);if(a?.textContent){let e=a.textContent.replace(/^🚗\s*/,``).trim();return t(e)?null:e}let o=e.querySelector(`.popup-acces-titre`);if(o?.textContent){let e=o.textContent.replace(/^🚗\s*/,``).trim();return t(e)?null:e}let s=e.querySelector(`.popup-acces-ligne`);if(s?.textContent){let e=s.textContent.replace(/^🚗\s*/,``).trim();return t(e)?null:e}return null}async function b(e,t){let r=u(e,t);if(n.has(r))return n.get(r);let i=new URL(`https://api.open-meteo.com/v1/meteofrance`);i.searchParams.set(`latitude`,String(e)),i.searchParams.set(`longitude`,String(t)),i.searchParams.set(`current`,`temperature_2m,precipitation,wind_speed_10m,weather_code,is_day`),i.searchParams.set(`hourly`,`temperature_2m,precipitation,wind_speed_10m,weather_code,is_day`),i.searchParams.set(`forecast_hours`,`7`),i.searchParams.set(`timezone`,`auto`);let a=fetch(i.toString(),{cache:`no-store`}).then(async e=>{if(!e.ok)throw Error(`Open-Meteo ${e.status}`);return e.json()});return n.set(r,a),a}function x(e){let t=Array.isArray(e?.hourly?.time)?e.hourly.time:[],n=Array.isArray(e?.hourly?.temperature_2m)?e.hourly.temperature_2m:[],r=Array.isArray(e?.hourly?.precipitation)?e.hourly.precipitation:[],i=Array.isArray(e?.hourly?.wind_speed_10m)?e.hourly.wind_speed_10m:[],a=Array.isArray(e?.hourly?.weather_code)?e.hourly.weather_code:[],o=Array.isArray(e?.hourly?.is_day)?e.hourly.is_day:[],s=[];for(let e=0;e<Math.min(t.length,7);e+=1)s.push({index:e,date:new Date(t[e]),temperature:n[e],precipitation:r[e],wind:i[e],weatherCode:a[e],isDay:o[e]});return s}function S(e,t,n){let r=Number(e),i=Number(t)===1,a=Number(n)||0,o=a>=.05,s=a>=.1,c=a>=4,l=r===0?`clear`:r===1||r===2?`partly`:`overcast`,u=()=>l===`clear`?i?`clear-day.svg`:`clear-night.svg`:l===`partly`?i?`partly-cloudy-day.svg`:`partly-cloudy-night.svg`:i?`overcast-day.svg`:`overcast-night.svg`,d=()=>l===`partly`?i?`partly-cloudy-day-drizzle.svg`:`partly-cloudy-night-drizzle.svg`:i?`overcast-day-drizzle.svg`:`overcast-night-drizzle.svg`,f=()=>c?i?`extreme-day-rain.svg`:`extreme-night-rain.svg`:l===`partly`?i?`partly-cloudy-day-rain.svg`:`partly-cloudy-night-rain.svg`:i?`overcast-day-rain.svg`:`overcast-night-rain.svg`;return r===95?i?`thunderstorms-day.svg`:`thunderstorms-night.svg`:[96,99].includes(r)?i?`thunderstorms-day-overcast-rain.svg`:`thunderstorms-night-overcast-rain.svg`:r===45?i?`fog-day.svg`:`fog-night.svg`:r===48?i?`overcast-day-fog.svg`:`overcast-night-fog.svg`:[71,73,75,77,85,86].includes(r)?c||r===75?i?`extreme-day-snow.svg`:`extreme-night-snow.svg`:l===`partly`?i?`partly-cloudy-day-snow.svg`:`partly-cloudy-night-snow.svg`:i?`overcast-day-snow.svg`:`overcast-night-snow.svg`:[56,57,66,67].includes(r)?o?l===`partly`?i?`partly-cloudy-day-sleet.svg`:`partly-cloudy-night-sleet.svg`:i?`overcast-day-sleet.svg`:`overcast-night-sleet.svg`:u():[51,53,55].includes(r)?o?d():u():[61,63,65,80,81,82].includes(r)?s?f():u():c||s&&l!==`clear`?f():o&&l!==`clear`?d():u()}function C(e,n,r){return`${t}/${S(e,n,r)}`}function w(e,t,n,r,i){return`<img class="${r}" src="${C(e,t,n)}" alt="${i||``}" loading="lazy" decoding="async">`}function T(e){let t=Number(e);return t===0?`soleil`:[51,53,55,56,57,61,63,65,66,67,80,81,82].includes(t)?`pluie`:[71,73,75,77,85,86].includes(t)?`neige`:[95,96,99].includes(t)?`orage`:[45,48,1,2,3].includes(t)?`nuage`:`neutre`}function E(e,t){let n=Number(e),r=Number(t)===1;return n===0?r?`Ensoleillé`:`Ciel dégagé`:n===1?`Peu nuageux`:n===2?`Partiellement couvert`:n===3?`Couvert`:n===45?`Brume`:n===48?`Brouillard`:[51,53,55].includes(n)?`Bruine`:[56,57].includes(n)?`Bruine verglaçante`:[61,63,65].includes(n)?`Pluie`:[66,67].includes(n)?`Pluie verglaçante`:[71,73,75,77].includes(n)?`Neige`:[80,81,82].includes(n)?`Averses`:[85,86].includes(n)?`Averses de neige`:n===95?`Orage`:[96,99].includes(n)?`Orage avec grêle`:r?`Temps variable`:`Ciel nocturne`}function D(e){return`
+    <div class="popup-carte">
+      <section class="popup-section popup-meteo-section">
+        <div class="popup-meteo-contenu">
+          <p class="popup-meteo-note">Chargement de la météo locale...</p>
+        </div>
+      </section>
+    </div>
+  `}function O(e,n){let r=e.querySelector(`.popup-meteo-contenu`);if(!r)return;let i=x(n),a={time:n?.current?.time,temperature:n?.current?.temperature_2m,precipitation:n?.current?.precipitation,wind:n?.current?.wind_speed_10m,weatherCode:n?.current?.weather_code,isDay:n?.current?.is_day},o=g(a.time?new Date(a.time):null),s=E(a.weatherCode,a.isDay),c=(r.dataset.libelleReference||``).trim(),l=c?`Météo locale au poste de ${c}`:``,u=l?`<p class="popup-meteo-titre">${_(l)}</p>`:``;r.innerHTML=`
+    <div class="popup-meteo-hero">
+      <div class="popup-meteo-hero-contenu">
+        <div class="popup-meteo-entete">
+          <div class="popup-meteo-hero-icone">
+            ${w(a.weatherCode,a.isDay,a.precipitation,`popup-meteo-icone-image`,s)}
+          </div>
+          ${u}
+          <p class="popup-meteo-hero-temperature">${d(a.temperature)}</p>
+          <p class="popup-meteo-hero-condition">${s}</p>
+        </div>
+        <div class="popup-meteo-hero-meta">
+          <span class="popup-meteo-hero-pill">
+            <img class="popup-meteo-pill-icone" src="${t}/rain.svg" alt="" loading="lazy" decoding="async">
+            ${f(a.precipitation)}
+          </span>
+          <span class="popup-meteo-hero-pill">
+            <img class="popup-meteo-pill-icone" src="${t}/wind.svg" alt="" loading="lazy" decoding="async">
+            ${m(a.wind)}
+          </span>
+        </div>
+        <p class="popup-meteo-horodatage">${o?`Mise à jour météo : ${o}`:``}</p>
+      </div>
+    </div>
+    <div class="popup-meteo-timeline">
+      ${i.slice(1).map((e,t)=>{let n=t+1,r=E(e.weatherCode,e.isDay);return`<div class="popup-meteo-slot">
+            <span class="popup-meteo-slot-heure">+${n}h</span>
+            <span class="popup-meteo-slot-icone">${w(e.weatherCode,e.isDay,e.precipitation,`popup-meteo-icone-image`,r)}</span>
+            <span class="popup-meteo-slot-temperature">${d(e.temperature)}</span>
+            <span class="popup-meteo-slot-detail">
+              <span>${p(e.precipitation)}</span>
+              <span>${h(e.wind)}</span>
+            </span>
+          </div>`}).join(``)}
+    </div>
+    <p class="popup-meteo-note">Aperçu heure par heure des prochaines conditions.</p>
+    <p class="popup-meteo-source">Source : <a href="https://open-meteo.com/en/docs/meteofrance-api" target="_blank" rel="noopener noreferrer">Open-Meteo Météo-France API</a>. Données affichées à titre informatif.</p>
+  `}function k(e){let t=e.querySelector(`.popup-meteo-contenu`);t&&(t.innerHTML=`<p class="popup-meteo-erreur">La météo n'a pas pu être chargée pour cette fiche.</p>`)}function A(){return document.getElementById(`modal-fiche-meteo`)}function j(){A()?.remove()}function M(){let e=document.querySelector(`.modal-fiche-carte`),t=document.getElementById(`modal-fiche-contenu`);return!(e instanceof Element)||!(t instanceof Element)?!1:a?!0:!e.closest(`.modal-fiche.est-vue-appareils-associes`)&&!!v(t)}function N(e=s){return`
+    <span class="modal-fiche-meteo-icone" aria-hidden="true">
+      <img src="${e}" alt="" loading="lazy" decoding="async">
+    </span>
+  `}function P(){return`
+    <span class="modal-fiche-meteo-icone" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <path d="M15 5 8 12l7 7" />
+      </svg>
+    </span>
+  `}function F(){let e=A();if(!e)return;let t=document.getElementById(`modal-fiche-partager`);e.classList.toggle(`est-active`,a),e.setAttribute(`aria-pressed`,a?`true`:`false`),e.setAttribute(`aria-label`,a?`Revenir à la fiche`:`Afficher la météo`),e.title=a?`Revenir à la fiche`:`Afficher la météo`,e.innerHTML=a?P():N(),e.dataset.meteoTheme=a?`retour`:c,t&&(t.hidden=a,t.style.display=a?`none`:``),e.classList.toggle(`est-compact`,a)}async function I(){if(a)return;let e=document.getElementById(`modal-fiche-contenu`),n=A();if(!(e instanceof Element)||!(n instanceof HTMLElement))return;let r=v(e);if(!r){s=`${t}/clear-day.svg`,F();return}let i=u(r.latitude,r.longitude);o=i;try{let e=await b(r.latitude,r.longitude);if(o!==i||a)return;s=C(e?.current?.weather_code,e?.current?.is_day),c=T(e?.current?.weather_code),F()}catch{if(o!==i||a)return;s=`${t}/clear-day.svg`,c=`neutre`,F()}}function L(){let e=document.querySelector(`.modal-fiche-carte`);if(!M()){j();return}if(!(e instanceof Element)||A()){F();return}let t=document.createElement(`button`);t.className=`modal-fiche-meteo`,t.id=`modal-fiche-meteo`,t.type=`button`,t.setAttribute(`aria-label`,`Afficher la météo`),t.innerHTML=N(),e.appendChild(t),t.addEventListener(`click`,()=>{if(a){R();return}z()}),F(),I()}function R(){let t=document.getElementById(`modal-fiche-contenu`);!(t instanceof Element)||!i||(a=!1,t.innerHTML=i,F(),I(),e())}async function z(){let e=document.getElementById(`modal-fiche-contenu`);if(!(e instanceof Element)||!e.children.length)return;let t=v(e);if(!t)return;let n=u(t.latitude,t.longitude),o=y(e);a||(i=e.innerHTML),r=n,a=!0,e.innerHTML=D(o);let s=e.querySelector(`.popup-meteo-contenu`);s instanceof HTMLElement&&(s.dataset.libelleReference=typeof o==`string`?o.trim():``),F();try{let i=await b(t.latitude,t.longitude);if(r!==n)return;O(e,i)}catch{if(r!==n)return;k(e)}}function B(){let e=document.getElementById(`modal-fiche-contenu`);e instanceof Element&&(new MutationObserver(()=>{let t=!!e.querySelector(`.popup-meteo-section`);t||(a=!1,i=e.innerHTML),L(),t||I()}).observe(e,{childList:!0,subtree:!0}),L())}document.readyState===`loading`?document.addEventListener(`DOMContentLoaded`,B,{once:!0}):B();

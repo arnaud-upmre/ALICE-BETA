@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1726" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>ALICE - Demande d'ajout d'appareil</title>
+  <link rel="manifest" href="/ALICE-BETA/manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png" />
+  <link rel="shortcut icon" href="/ALICE-BETA/icons/icon-32.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png" />
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@6.0.0/dist/maplibre-gl.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: var(--alice-bg-page-app-light);
+      --panel: var(--alice-panel-light);
+      --text: var(--alice-text-strong-light);
+      --muted: #5f738b;
+      --border: rgba(17, 24, 39, 0.08);
+      --border-strong: rgba(59, 130, 246, 0.24);
+      --shadow: var(--alice-shadow-app-light);
+      --blue: var(--alice-accent-blue-light);
+      --blue-soft: rgba(37, 99, 235, 0.1);
+      --danger: var(--alice-danger-light);
+      --danger-soft: rgba(220, 38, 38, 0.1);
+      --success: var(--alice-success-strong-light);
+      --success-soft: rgba(21, 128, 61, 0.1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: var(--alice-bg-page-deep-dark);
+        --panel: rgba(10, 18, 31, 0.92);
+        --text: var(--alice-text-dark);
+        --muted: var(--alice-muted-dark);
+        --border: var(--alice-line-strong-dark);
+        --border-strong: rgba(96, 165, 250, 0.35);
+        --shadow: var(--alice-shadow-app-dark);
+        --blue: #60a5fa;
+        --blue-soft: rgba(96, 165, 250, 0.14);
+        --danger: var(--alice-danger-dark);
+        --danger-soft: rgba(248, 113, 113, 0.14);
+        --success: var(--alice-success-dark);
+        --success-soft: rgba(74, 222, 128, 0.12);
+      }
+
+      .header-card {
+        background: rgba(10, 18, 31, 0.96);
+      }
+
+      .close-button {
+        background: rgba(148, 163, 184, 0.14);
+        color: var(--text);
+      }
+
+      .close-button:hover,
+      .close-button:focus-visible {
+        background: rgba(148, 163, 184, 0.22);
+      }
+
+      .progress-bar {
+        background: rgba(148, 163, 184, 0.14);
+      }
+
+      .field-input,
+      .field-textarea,
+      .search-input {
+        background: rgba(148, 163, 184, 0.08);
+      }
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: calc(20px + env(safe-area-inset-top)) 14px calc(28px + env(safe-area-inset-bottom));
+      font-family: Inter, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.08), transparent 28%),
+        radial-gradient(circle at top right, rgba(16, 185, 129, 0.06), transparent 24%),
+        var(--bg);
+    }
+
+    .page {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .header-card,
+    .step-card {
+      position: relative;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .header-card {
+      position: sticky;
+      top: calc(8px + env(safe-area-inset-top));
+      z-index: 20;
+      padding: 20px 24px;
+      margin-bottom: 18px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .close-button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 2;
+      width: 30px;
+      height: 30px;
+      border: 0;
+      border-radius: 999px;
+      background: #e5e7eb;
+      color: #111827;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .close-button:hover {
+      background: #d1d5db;
+    }
+
+    .close-button:focus-visible {
+      background: #d1d5db;
+      outline: none;
+    }
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+      padding-right: 42px;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      line-height: 1.1;
+    }
+
+    .header-logo {
+      width: auto;
+      height: 28px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    .progress-wrap {
+      margin-top: 18px;
+    }
+
+    .progress-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .progress-bar {
+      height: 8px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(148, 163, 184, 0.18);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--blue), #38bdf8);
+      transition: width 0.25s ease;
+    }
+
+    .step-card {
+      padding: 22px;
+    }
+
+    .step {
+      display: none;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    .step-kicker {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+    }
+
+    .step-title {
+      margin: 0 0 10px;
+      font-size: clamp(1.25rem, 3.6vw, 1.7rem);
+      line-height: 1.15;
+    }
+
+    .step-subtitle {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .field-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .field-input,
+    .field-textarea,
+    .search-input {
+      width: 100%;
+      border: 1px solid var(--border-strong);
+      border-radius: 18px;
+      padding: 15px 16px;
+      background: rgba(255, 255, 255, 0.35);
+      color: var(--text);
+      font: inherit;
+      outline: none;
+    }
+
+    .field-textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .field-input:focus,
+    .field-textarea:focus,
+    .search-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px var(--blue-soft);
+    }
+
+    [data-appareil-input] {
+      text-transform: uppercase;
+    }
+
+    .field-error {
+      border-color: var(--danger) !important;
+      box-shadow: 0 0 0 4px var(--danger-soft) !important;
+    }
+
+    .field-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .inline-note {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .appareil-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .appareil-row .field-input {
+      margin: 0;
+    }
+
+    .remove-btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 13px 14px;
+      background: var(--danger-soft);
+      color: var(--danger);
+      font: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .hp-toggle {
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 12px 16px;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: 0.2s ease;
+    }
+
+    .hp-toggle.active {
+      background: var(--danger-soft);
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    .choice-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .choice-btn {
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 12px 18px;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .choice-btn.active {
+      background: var(--blue-soft);
+      border-color: var(--blue);
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .meta-box,
+    .coords-box,
+    .summary-box,
+    .status-box {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px 16px;
+      background: rgba(148, 163, 184, 0.05);
+    }
+
+    .meta-box {
+      margin-top: 14px;
+      line-height: 1.55;
+    }
+
+    .coords-box {
+      margin-top: 14px;
+      color: var(--muted);
+    }
+
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-results {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: none;
+      margin: 0;
+      padding: 8px;
+      list-style: none;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      max-height: 280px;
+      overflow: auto;
+    }
+
+    .search-result-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: transparent;
+      color: var(--text);
+      text-align: left;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .search-result-btn:hover {
+      background: var(--blue-soft);
+    }
+
+    .map-box {
+      height: 320px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 8px;
+    }
+
+    .map-marker {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 3px solid #ffffff;
+      background: linear-gradient(135deg, var(--blue), #38bdf8);
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .toolbar-btn,
+    .nav-btn,
+    .submit-btn {
+      border: 0;
+      border-radius: 16px;
+      padding: 13px 16px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .toolbar-btn,
+    .nav-btn.secondary {
+      background: rgba(148, 163, 184, 0.14);
+      color: var(--text);
+    }
+
+    .nav-btn.primary,
+    .submit-btn {
+      background: linear-gradient(135deg, var(--blue), #38bdf8);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .nav-row.single {
+      justify-content: flex-end;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .summary-box span {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .summary-box strong {
+      display: block;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    .summary-actions {
+      display: inline-flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .summary-link {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(9, 17, 29, 0.72);
+      backdrop-filter: blur(6px);
+    }
+
+    .overlay.active {
+      display: flex;
+    }
+
+    .overlay-card {
+      width: min(760px, 100%);
+      max-height: min(88vh, 900px);
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .overlay-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .overlay-title {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .overlay-close {
+      border: 0;
+      border-radius: 999px;
+      width: 40px;
+      height: 40px;
+      background: rgba(148, 163, 184, 0.18);
+      color: var(--text);
+      font: inherit;
+      font-size: 1.6rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .overlay-body {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .overlay-map {
+      height: min(62vh, 520px);
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .status-box {
+      margin-top: 18px;
+      display: none;
+      line-height: 1.45;
+    }
+
+    .status-box.error {
+      display: block;
+      border-color: var(--danger);
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .status-box.success {
+      display: block;
+      border-color: var(--success);
+      background: var(--success-soft);
+      color: var(--success);
+    }
+
+    @media (max-width: 640px) {
+      .header-card,
+      .step-card {
+        border-radius: 22px;
+      }
+
+      .header-card,
+      .step-card {
+        padding: 18px;
+      }
+
+      .header-card {
+        top: calc(10px + env(safe-area-inset-top));
+        padding-top: 18px;
+      }
+
+      .header-title {
+        font-size: 20px;
+      }
+
+      .map-box {
+        height: 270px;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-row {
+        flex-direction: row;
+        align-items: stretch;
+      }
+
+      .nav-btn,
+      .submit-btn {
+        width: auto;
+        flex: 1 1 0;
+        min-width: 0;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background:
+          radial-gradient(circle at top left, rgba(96, 165, 250, 0.12), transparent 30%),
+          radial-gradient(circle at top right, rgba(45, 212, 191, 0.08), transparent 24%),
+          var(--bg);
+      }
+
+      .header-card {
+        background: rgba(10, 18, 31, 0.96);
+        border-color: rgba(148, 163, 184, 0.18);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42);
+      }
+
+      .header-title {
+        color: var(--text);
+      }
+
+      .progress-top {
+        color: #bfd0e5;
+      }
+
+      .progress-bar {
+        background: rgba(148, 163, 184, 0.12);
+      }
+
+      .close-button {
+        background: rgba(148, 163, 184, 0.14);
+        color: var(--text);
+      }
+
+      .close-button:hover,
+      .close-button:focus-visible {
+        background: rgba(148, 163, 184, 0.24);
+      }
+
+      .step-card,
+      .overlay-card,
+      .search-results {
+        border-color: rgba(148, 163, 184, 0.14);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      }
+
+      .field-input,
+      .field-textarea,
+      .search-input {
+        background: rgba(148, 163, 184, 0.08);
+        color: var(--text);
+      }
+
+      .field-input::placeholder,
+      .field-textarea::placeholder,
+      .search-input::placeholder {
+        color: rgba(191, 208, 229, 0.42);
+      }
+
+      .toolbar-btn,
+      .nav-btn.secondary {
+        background: rgba(148, 163, 184, 0.12);
+        color: var(--text);
+      }
+
+      .meta-box,
+      .coords-box,
+      .summary-box,
+      .status-box {
+        background: rgba(148, 163, 184, 0.06);
+      }
+    }
+  </style>
+  <script type="module" crossorigin src="/ALICE-BETA/assets/ajoutAppareil-BeGKRw97.js"></script>
+  <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
+  <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-Bp5amsq-.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header-card">
+      <a class="close-button" href="./index.html" aria-label="Fermer">×</a>
+      <h1 class="header-title">
+        <img class="header-logo" src="/ALICE-BETA/alice.webp" alt="ALICE" onerror="this.style.display='none';" />
+        Ajout d'appareil
+      </h1>
+      <div class="progress-wrap">
+        <div class="progress-top">
+          <span id="progress-label">Étape 1</span>
+          <span id="progress-count">0 %</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="step-card">
+      <form id="request-form" novalidate>
+        <section class="step" id="step-poste">
+          <div class="step-kicker">Poste</div>
+          <h2 class="step-title">Choisir le poste</h2>
+          <div class="search-wrap">
+            <input class="search-input" id="poste-search" type="text" placeholder="Rechercher un poste" autocomplete="off" />
+            <ul class="search-results" id="poste-results"></ul>
+          </div>
+          <div class="meta-box hidden" id="poste-selected-box"></div>
+          <div class="nav-row">
+            <button class="nav-btn secondary" type="button" data-prev>Retour</button>
+            <button class="nav-btn primary" type="button" data-next>Suivant</button>
+          </div>
+        </section>
+
+        <section class="step" id="step-appareil">
+          <div class="step-kicker">Appareil</div>
+          <h2 class="step-title">Quels appareils faut-il ajouter ?</h2>
+          <p class="inline-note">Ajoute ici tous les appareils présents sur le même support.</p>
+          <p class="inline-note">Cochez <strong>HP</strong> pour un appareil hors patrimoine UP MRE.</p>
+          <div class="field-stack" id="appareil-list">
+            <div class="appareil-row" data-appareil-row>
+              <input class="field-input" type="text" placeholder="Ex : I7112" data-appareil-input />
+              <button class="hp-toggle" type="button" data-hp-toggle aria-pressed="false">HP</button>
+            </div>
+          </div>
+          <div class="toolbar">
+            <button class="toolbar-btn" id="add-appareil-btn" type="button">Ajouter un autre appareil</button>
+          </div>
+          <div class="nav-row">
+            <button class="nav-btn secondary" type="button" data-prev>Retour</button>
+            <button class="nav-btn primary" type="button" data-next>Suivant</button>
+          </div>
+        </section>
+
+        <section class="step" id="step-device-location">
+          <div class="step-kicker">Position appareil</div>
+          <h2 class="step-title" id="device-location-title">Localiser l'appareil</h2>
+          <p class="inline-note">Cliquez sur la carte pour placer le point, puis ajustez-le si besoin.</p>
+          <p class="inline-note">La géolocalisation est facultative. Seules les coordonnées du point validé sont envoyées avec la demande.</p>
+          <div id="device-gps-panel">
+            <div class="map-box" id="device-map"></div>
+            <div class="toolbar">
+              <button class="toolbar-btn" id="device-locate" type="button">Me localiser</button>
+              <button class="toolbar-btn" id="device-layer" type="button">Basculer plan / satellite</button>
+            </div>
+            <div class="coords-box" id="device-coords">Aucun point défini.</div>
+          </div>
+          <div class="nav-row">
+            <button class="nav-btn secondary" type="button" data-prev>Retour</button>
+            <button class="nav-btn primary" type="button" data-next>Suivant</button>
+          </div>
+        </section>
+
+        <section class="step" id="step-access-choice">
+          <div class="step-kicker">Accès routier</div>
+          <h2 class="step-title" id="access-choice-title">L'appareil a-t-il un accès routier spécifique ?</h2>
+          <div class="choice-row">
+            <button class="choice-btn active" type="button" data-access-choice="non">Non</button>
+            <button class="choice-btn" type="button" data-access-choice="oui">Oui</button>
+          </div>
+          <div class="nav-row">
+            <button class="nav-btn secondary" type="button" data-prev>Retour</button>
+            <button class="nav-btn primary" type="button" data-next>Suivant</button>
+          </div>
+        </section>
+
+        <section class="step" id="step-access-location">
+          <div class="step-kicker">Accès routier</div>
+          <h2 class="step-title">Localiser l'accès routier</h2>
+          <p class="inline-note">Cliquez sur la carte pour placer le point, puis ajustez-le si besoin.</p>
+          <p class="inline-note">La géolocalisation est facultative. Seules les coordonnées du point validé sont envoyées avec la demande.</p>
+          <div id="access-gps-panel">
+            <div class="map-box" id="access-map"></div>
+            <div class="toolbar">
+              <button class="toolbar-btn" id="access-locate" type="button">Me localiser</button>
+              <button class="toolbar-btn" id="access-layer" type="button">Basculer plan / satellite</button>
+            </div>
+            <div class="coords-box" id="access-coords">Aucun point défini.</div>
+          </div>
+          <div class="nav-row">
+            <button class="nav-btn secondary" type="button" data-prev>Retour</button>
+            <button class="nav-btn primary" type="button" data-next>Suivant</button>
+          </div>
+        </section>
+
+        <section class="step" id="step-description">
+          <div class="step-kicker">Description</div>
+          <h2 class="step-title">Ajouter des précisions</h2>
+          <p class="inline-note">Les descriptions sont réservées aux informations techniques. N'y saisissez aucune information personnelle, privée ou confidentielle.</p>
+          <label class="field-label" for="description-appareil">Description appareil</label>
+          <textarea class="field-textarea" id="description-appareil" placeholder="Précision utile sur le support, l'appareil, le contexte terrain..."></textarea>
+          <div id="description-acces-wrap" class="hidden">
+            <label class="field-label" for="description-acces">Description accès routier</label>
+            <textarea class="field-textarea" id="description-acces" placeholder="Portail, chemin d'accès, repère terrain, consigne utile..."></textarea>
+          </div>
+          <div class="nav-row">
+            <button class="nav-btn secondary" type="button" data-prev>Retour</button>
+            <button class="nav-btn primary" type="button" data-next>Suivant</button>
+          </div>
+        </section>
+
+        <section class="step" id="step-summary">
+          <div class="step-kicker">Récapitulatif</div>
+          <h2 class="step-title">Vérifier la demande</h2>
+          <div class="summary-grid" id="summary-grid"></div>
+          <div class="status-box" id="status-box" role="status" aria-live="polite"></div>
+          <div class="nav-row">
+            <button class="nav-btn secondary" type="button" data-prev>Retour</button>
+            <button class="submit-btn" id="submit-btn" type="submit">Envoyer pour validation</button>
+          </div>
+        </section>
+
+        <section class="step" id="step-confirmation">
+          <div class="step-kicker">Confirmation</div>
+          <h2 class="step-title">Demande envoyée</h2>
+          <p class="step-subtitle" id="confirmation-text">La demande a bien été transmise pour validation.</p>
+          <div class="meta-box hidden" id="confirmation-counter-box"></div>
+          <div class="nav-row">
+            <a class="nav-btn secondary" id="confirmation-return-link" href="./index.html" style="text-decoration:none;text-align:center;">Retour</a>
+            <button class="nav-btn primary" id="restart-btn" type="button">Nouvelle demande</button>
+          </div>
+        </section>
+
+        <input id="poste" type="hidden" />
+        <input id="type" type="hidden" />
+        <input id="sat" type="hidden" />
+      </form>
+    </main>
+  </div>
+
+  <div class="overlay" id="alice-preview-overlay" aria-hidden="true">
+    <div class="overlay-card">
+      <div class="overlay-head">
+        <h2 class="overlay-title" id="alice-preview-title">Voir sur ALICE</h2>
+        <button class="overlay-close" id="alice-preview-close" type="button" aria-label="Fermer">×</button>
+      </div>
+      <div class="overlay-body">
+        <div class="meta-box" id="alice-preview-coords"></div>
+        <div class="overlay-map" id="alice-preview-map"></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
