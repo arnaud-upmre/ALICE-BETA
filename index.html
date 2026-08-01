@@ -19,12 +19,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png" />
-    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-B-q5X-wA.js"></script>
+    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-B-Y-DQv3.js"></script>
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/maplibre-gFZAzJIF.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/referentiel-data-CO7Ea4HJ.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/appareils-en-attente-BHvMlloR.js">
-    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-B_xAmH7h.css">
+    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-B2WX7tp1.css">
   </head>
   <body>
     <div id="map"></div>
@@ -162,6 +162,11 @@
                 </span>
               </label>
             </div>
+            <button class="bouton-options-locales" id="bouton-options-locales" type="button">
+              <span class="bouton-options-locales-icone" aria-hidden="true">⚙</span>
+              <span class="bouton-options-locales-texte"><strong>Personnaliser le réseau LOCAL</strong><small>Régions, équipements et types de voies</small></span>
+              <i aria-hidden="true">›</i>
+            </button>
             <label class="option-filtre filtre-option-pk">
               <span class="filtre-texte">
                 <strong>Afficher les points kilométriques</strong>
@@ -172,41 +177,30 @@
             </label>
           </fieldset>
 
-          <button class="bouton-filtres-legende" id="bouton-legende-filtres" type="button">
-            <span aria-hidden="true">i</span>
-            <strong>Consulter la légende</strong>
-            <small>Comprendre les couleurs et symboles</small>
-            <i aria-hidden="true">›</i>
-          </button>
           <button class="fonds-defaut filtres-defaut" id="filtres-defaut" type="button">Revenir par défaut</button>
         </div>
-
-        <div class="filtres-legende-contenu" id="filtres-legende-contenu" hidden>
-          <section class="menu-legende-section">
-            <p class="menu-legende-section-titre">Objets carte</p>
-            <ul class="menu-legende-liste">
-              <li class="menu-legende-item"><span class="menu-legende-pastille pastille-acces"></span>Accès voiture</li>
-              <li class="menu-legende-item"><span class="menu-legende-pastille pastille-poste"></span>Postes</li>
-              <li class="menu-legende-item"><span class="menu-legende-pastille pastille-poste-sat"></span>SAT</li>
-              <li class="menu-legende-item"><span class="menu-legende-pastille pastille-pn"></span>Passages à niveau</li>
-              <li class="menu-legende-item"><span class="menu-legende-pastille pastille-hp"></span>Hors patrimoine</li>
-            </ul>
-          </section>
-          <section class="menu-legende-section">
-            <p class="menu-legende-section-titre">Couleurs appareils</p>
-            <ul class="menu-legende-liste">
-              <li class="menu-legende-item"><span class="menu-legende-pastille pastille-app-du"></span>Dispositif d’urgence</li>
-              <li class="menu-legende-item"><span class="menu-legende-pastille pastille-app-si"></span>Interrupteur</li>
-              <li class="menu-legende-item"><span class="menu-legende-pastille pastille-app-tt"></span>Transformateur</li>
-              <li class="menu-legende-item"><span class="menu-legende-pastille pastille-app-t"></span>Sectionneur</li>
-              <li class="menu-legende-item"><span class="menu-legende-pastille pastille-app-alim"></span>Alimentation</li>
-              <li class="menu-legende-item"><span class="menu-legende-pastille pastille-app-autre"></span>Autres</li>
-            </ul>
-          </section>
-          <section class="menu-legende-section">
-            <p class="menu-legende-section-titre">Lignes OSM et ORM vectorielles</p>
-            <ul class="menu-legende-liste" id="liste-legende-lignes-filtres"></ul>
-          </section>
+        <div class="options-locales-contenu" id="options-lignes-locales" hidden>
+          <section><h3>Régions disponibles</h3><div class="options-locales-liste options-locales-regions">
+            <label class="option-locale"><span><strong>Hauts-de-France</strong><small>Région principale</small></span><input type="checkbox" name="local-region-hdf" checked disabled><i></i></label>
+            <label class="option-locale"><span><strong>Normandie</strong></span><input type="checkbox" name="local-region-normandie"><i></i></label>
+            <label class="option-locale"><span><strong>Grand Est</strong></span><input type="checkbox" name="local-region-grand-est"><i></i></label>
+            <label class="option-locale"><span><strong>Île-de-France</strong></span><input type="checkbox" name="local-region-idf"><i></i></label>
+          </div></section>
+          <section><h3>Sélection du réseau</h3><div class="options-locales-liste">
+            <label class="option-locale"><span><strong>Lignes avec équipement EALE</strong><small>Au moins un équipement EALE présent</small></span><input type="checkbox" name="local-lignes-equipees"><i></i></label>
+          </div></section>
+          <section><h3>Types de voies</h3><div class="options-locales-liste options-locales-categories">
+            <label class="option-locale"><b class="apercu-categorie trait-ligne-main"></b><span><strong>Lignes classiques</strong></span><input type="checkbox" name="local-categorie" value="main" checked><i></i></label>
+            <label class="option-locale"><b class="apercu-categorie trait-ligne-lgv"></b><span><strong>LGV</strong></span><input type="checkbox" name="local-categorie" value="lgv" checked><i></i></label>
+            <label class="option-locale"><b class="apercu-categorie trait-ligne-branch"></b><span><strong>Lignes secondaires</strong></span><input type="checkbox" name="local-categorie" value="branch" checked><i></i></label>
+            <label class="option-locale"><b class="apercu-categorie trait-ligne-yard"></b><span><strong>Faisceaux / triages</strong></span><input type="checkbox" name="local-categorie" value="yard" checked><i></i></label>
+            <label class="option-locale"><b class="apercu-categorie trait-ligne-siding"></b><span><strong>Voies de garage</strong></span><input type="checkbox" name="local-categorie" value="siding" checked><i></i></label>
+            <label class="option-locale"><b class="apercu-categorie trait-ligne-spur"></b><span><strong>Voies de service</strong></span><input type="checkbox" name="local-categorie" value="spur" checked><i></i></label>
+            <label class="option-locale"><b class="apercu-categorie trait-ligne-other"></b><span><strong>Industrielles</strong></span><input type="checkbox" name="local-categorie" value="industrial" checked><i></i></label>
+            <label class="option-locale"><b class="apercu-categorie trait-ligne-tourism"></b><span><strong>Touristiques</strong></span><input type="checkbox" name="local-categorie" value="tourism" checked><i></i></label>
+            <label class="option-locale"><b class="apercu-categorie trait-ligne-getlink"></b><span><strong>GetLink</strong></span><input type="checkbox" name="local-categorie" value="getlink" checked><i></i></label>
+            <label class="option-locale"><b class="apercu-categorie trait-ligne-autre"></b><span><strong>Autres</strong></span><input type="checkbox" name="local-categorie" value="unknown" checked><i></i></label>
+          </div></section>
         </div>
       </form>
     </div>
@@ -369,10 +363,6 @@
           <li class="menu-legende-item"><span class="menu-legende-pastille pastille-app-alim"></span>Alimentation</li>
           <li class="menu-legende-item"><span class="menu-legende-pastille pastille-app-autre"></span>Autres</li>
         </ul>
-      </div>
-      <div class="menu-legende-section">
-        <p class="menu-legende-section-titre">Lignes OSM et ORM vectorielles</p>
-        <ul class="menu-legende-liste" id="liste-legende-lignes-osm"></ul>
       </div>
     </div>
 
