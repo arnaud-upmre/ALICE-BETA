@@ -19,12 +19,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png" />
-    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-B-Y-DQv3.js"></script>
+    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-ZlKCWQLa.js"></script>
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/maplibre-gFZAzJIF.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
-    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/referentiel-data-CO7Ea4HJ.js">
+    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/referentiel-data-DawkU5y0.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/appareils-en-attente-BHvMlloR.js">
-    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-B2WX7tp1.css">
+    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-DYhU15Qb.css">
   </head>
   <body>
     <div id="map"></div>
@@ -105,13 +105,13 @@
 
         <div class="filtres-contenu">
           <fieldset class="filtres-groupe">
-            <legend><span>Éléments de carte</span><small>À combiner librement</small></legend>
+            <legend><span>Équipements EALE</span><small>À combiner librement</small></legend>
             <div class="filtres-liste">
               <label class="option-filtre">
                 <span class="filtre-repere filtre-repere-appareils" aria-hidden="true">
                   <i></i><i></i><i></i><i></i>
                 </span>
-                <span class="filtre-texte"><strong>Appareils</strong><small>Équipements de traction</small></span>
+                <span class="filtre-texte"><strong>Appareils</strong><small>Équipements EALE de traction</small></span>
                 <span class="filtre-compteur" id="compteur-appareils">(0)</span>
                 <input type="checkbox" name="filtre-appareils" />
                 <span class="filtre-switch" aria-hidden="true"></span>
@@ -130,11 +130,35 @@
                 <input type="checkbox" name="filtre-postes" />
                 <span class="filtre-switch" aria-hidden="true"></span>
               </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="filtres-groupe">
+            <legend><span>Éléments du réseau</span><small>Repères et infrastructure ferroviaire</small></legend>
+            <div class="filtres-liste">
               <label class="option-filtre">
                 <span class="filtre-repere filtre-repere-pn" aria-hidden="true"><i></i></span>
-                <span class="filtre-texte"><strong>Passages à niveau</strong><small>Repères issus des données OSM</small></span>
+                <span class="filtre-texte"><strong>Passages à niveau</strong><small>Hauts-de-France par défaut · autres régions au choix</small></span>
                 <span class="filtre-compteur" id="compteur-pn">(0)</span>
                 <input type="checkbox" name="filtre-pn" />
+                <span class="filtre-switch" aria-hidden="true"></span>
+              </label>
+              <div id="pn-regions" class="pn-regions" hidden>
+                <details>
+                  <summary>Ajouter ou retirer des régions</summary>
+                  <div class="pn-regions-liste">
+                    <label><input type="checkbox" name="filtre-pn-region" value="hdf" /><span>Hauts-de-France</span><small id="compteur-pn-hdf">(0)</small></label>
+                    <label><input type="checkbox" name="filtre-pn-region" value="normandie" /><span>Normandie</span><small id="compteur-pn-normandie">(0)</small></label>
+                    <label><input type="checkbox" name="filtre-pn-region" value="idf" /><span>Île-de-France</span><small id="compteur-pn-idf">(0)</small></label>
+                    <label><input type="checkbox" name="filtre-pn-region" value="grand-est" /><span>Grand Est</span><small id="compteur-pn-grand-est">(0)</small></label>
+                  </div>
+                </details>
+              </div>
+              <label class="option-filtre">
+                <span class="filtre-repere filtre-repere-pk" aria-hidden="true"><i></i></span>
+                <span class="filtre-texte"><strong>Points kilométriques</strong><small id="filtre-pk-aide">Visibles selon le niveau de zoom</small></span>
+                <span class="filtre-compteur" id="compteur-pk">(0)</span>
+                <input type="checkbox" name="filtre-pk" />
                 <span class="filtre-switch" aria-hidden="true"></span>
               </label>
             </div>
@@ -142,7 +166,6 @@
 
           <fieldset class="filtres-groupe filtres-groupe-lignes">
             <legend><span>Tracé ferroviaire</span><small>Un seul à la fois</small></legend>
-            <p class="filtres-aide">Choisissez un tracé, ou désactivez le tracé actif pour n’en afficher aucun.</p>
             <div class="filtres-lignes">
               <label class="option-filtre-ligne">
                 <input type="checkbox" name="filtre-lignes-osm" />
@@ -167,14 +190,6 @@
               <span class="bouton-options-locales-texte"><strong>Personnaliser le réseau LOCAL</strong><small>Régions, équipements et types de voies</small></span>
               <i aria-hidden="true">›</i>
             </button>
-            <label class="option-filtre filtre-option-pk">
-              <span class="filtre-texte">
-                <strong>Afficher les points kilométriques</strong>
-                <small id="filtre-pk-aide">Visibles selon le niveau de zoom</small>
-              </span>
-              <input type="checkbox" name="filtre-pk" />
-              <span class="filtre-switch" aria-hidden="true"></span>
-            </label>
           </fieldset>
 
           <button class="fonds-defaut filtres-defaut" id="filtres-defaut" type="button">Revenir par défaut</button>
@@ -336,36 +351,6 @@
     <button class="bouton-sortie-mesure" id="bouton-sortie-mesure" type="button">
       ❌ Quitter le traçage
     </button>
-    <div class="menu-legende-carte" id="menu-legende-carte" aria-hidden="true">
-      <div class="menu-legende-entete">
-        <h2 class="menu-legende-titre">Légende</h2>
-        <button class="menu-legende-fermer" id="bouton-fermer-legende" type="button" aria-label="Fermer la légende">
-          ×
-        </button>
-      </div>
-      <div class="menu-legende-section">
-        <p class="menu-legende-section-titre">Objets carte</p>
-        <ul class="menu-legende-liste">
-          <li class="menu-legende-item"><span class="menu-legende-pastille pastille-acces"></span>Accès voiture</li>
-          <li class="menu-legende-item"><span class="menu-legende-pastille pastille-poste"></span>Postes</li>
-          <li class="menu-legende-item"><span class="menu-legende-pastille pastille-poste-sat"></span>SAT</li>
-          <li class="menu-legende-item"><span class="menu-legende-pastille pastille-pn"></span>Passages à niveau</li>
-          <li class="menu-legende-item"><span class="menu-legende-pastille pastille-hp"></span>Hors patrimoine</li>
-        </ul>
-      </div>
-      <div class="menu-legende-section">
-        <p class="menu-legende-section-titre">Couleurs appareils</p>
-        <ul class="menu-legende-liste">
-          <li class="menu-legende-item"><span class="menu-legende-pastille pastille-app-du"></span>Dispositif d'urgence</li>
-          <li class="menu-legende-item"><span class="menu-legende-pastille pastille-app-si"></span>Interrupteur</li>
-          <li class="menu-legende-item"><span class="menu-legende-pastille pastille-app-tt"></span>Transformateur</li>
-          <li class="menu-legende-item"><span class="menu-legende-pastille pastille-app-t"></span>Sectionneur</li>
-          <li class="menu-legende-item"><span class="menu-legende-pastille pastille-app-alim"></span>Alimentation</li>
-          <li class="menu-legende-item"><span class="menu-legende-pastille pastille-app-autre"></span>Autres</li>
-        </ul>
-      </div>
-    </div>
-
     <div class="menu-contextuel-carte" id="menu-contextuel-carte" role="menu" aria-hidden="true">
       <button class="menu-contextuel-item menu-contextuel-coord" id="ctx-coord" type="button">📍 0.00000, 0.00000</button>
       <button class="menu-contextuel-item menu-contextuel-adresse" id="ctx-address" type="button" hidden>🏠 Recherche de l'adresse...</button>
