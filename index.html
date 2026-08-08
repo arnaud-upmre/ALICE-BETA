@@ -19,12 +19,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png" />
-    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-B3Ke45ME.js"></script>
+    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-BdZzFz5k.js"></script>
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/maplibre-gFZAzJIF.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
-    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/referentiel-data-CtHDW40C.js">
+    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/referentiel-data-vkHddNcl.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/appareils-en-attente-BHvMlloR.js">
-    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-DYhU15Qb.css">
+    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-BhzhfORA.css">
   </head>
   <body>
     <div id="map"></div>
@@ -41,9 +41,6 @@
         />
       </label>
       <ul class="recherche-resultats" id="recherche-resultats" aria-label="Resultats de recherche"></ul>
-    </div>
-    <div class="info-pk" id="info-pk" aria-live="polite" aria-hidden="true">
-      🔍 Zoomez pour afficher les PK ou cliquez sur une ligne ferroviaire.
     </div>
     <div class="info-chargement-couche" id="info-chargement-couche" aria-live="polite" aria-hidden="true"></div>
 
@@ -211,10 +208,16 @@
             <label class="option-locale"><b class="apercu-categorie trait-ligne-yard"></b><span><strong>Faisceaux / triages</strong></span><input type="checkbox" name="local-categorie" value="yard" checked><i></i></label>
             <label class="option-locale"><b class="apercu-categorie trait-ligne-siding"></b><span><strong>Voies de garage</strong></span><input type="checkbox" name="local-categorie" value="siding" checked><i></i></label>
             <label class="option-locale"><b class="apercu-categorie trait-ligne-spur"></b><span><strong>Voies de service</strong></span><input type="checkbox" name="local-categorie" value="spur" checked><i></i></label>
-            <label class="option-locale"><b class="apercu-categorie trait-ligne-other"></b><span><strong>Industrielles</strong></span><input type="checkbox" name="local-categorie" value="industrial" checked><i></i></label>
+            <label class="option-locale"><b class="apercu-categorie trait-ligne-industrial"></b><span><strong>Industrielles</strong></span><input type="checkbox" name="local-categorie" value="industrial" checked><i></i></label>
             <label class="option-locale"><b class="apercu-categorie trait-ligne-tourism"></b><span><strong>Touristiques</strong></span><input type="checkbox" name="local-categorie" value="tourism" checked><i></i></label>
             <label class="option-locale"><b class="apercu-categorie trait-ligne-getlink"></b><span><strong>GetLink</strong></span><input type="checkbox" name="local-categorie" value="getlink" checked><i></i></label>
             <label class="option-locale"><b class="apercu-categorie trait-ligne-autre"></b><span><strong>Autres</strong></span><input type="checkbox" name="local-categorie" value="unknown" checked><i></i></label>
+          </div></section>
+          <section><h3>État des voies</h3><div class="options-locales-liste options-locales-categories options-locales-etats">
+            <label class="option-locale"><b class="apercu-categorie trait-etat-present"></b><span><strong>En service</strong></span><input type="checkbox" name="local-etat" value="present" checked><i></i></label>
+            <label class="option-locale"><b class="apercu-categorie trait-etat-disused"></b><span><strong>Désaffectées</strong></span><input type="checkbox" name="local-etat" value="disused"><i></i></label>
+            <label class="option-locale"><b class="apercu-categorie trait-etat-abandoned"></b><span><strong>Abandonnées</strong></span><input type="checkbox" name="local-etat" value="abandoned"><i></i></label>
+            <label class="option-locale"><b class="apercu-categorie trait-etat-razed"></b><span><strong>Déposées / rasées</strong></span><input type="checkbox" name="local-etat" value="razed"><i></i></label>
           </div></section>
         </div>
       </form>
