@@ -462,6 +462,31 @@
       justify-content: flex-end;
     }
 
+    .confirmation-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .confirmation-actions .nav-btn {
+      display: flex;
+      width: 100%;
+      min-width: 0;
+      min-height: 52px;
+      box-sizing: border-box;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      line-height: 1.25;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    .confirmation-actions #restart-same-poste-btn {
+      grid-column: 1 / -1;
+    }
+
     .hidden {
       display: none !important;
     }
@@ -699,9 +724,9 @@
       }
     }
   </style>
-  <script type="module" crossorigin src="/ALICE-BETA/assets/ajoutAppareil-C9nL6K0M.js"></script>
+  <script type="module" crossorigin src="/ALICE-BETA/assets/ajoutAppareil-DmK2FsBN.js"></script>
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
-  <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/appareils-en-attente-BHvMlloR.js">
+  <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/appareils-en-attente-Bxr6G5-x.js">
   <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-Bp5amsq-.css">
 </head>
 <body>
@@ -842,7 +867,7 @@
           <h2 class="step-title">Demande envoyée</h2>
           <p class="step-subtitle" id="confirmation-text">La demande a bien été transmise pour validation.</p>
           <div class="meta-box hidden" id="confirmation-counter-box"></div>
-          <div class="nav-row">
+          <div class="nav-row confirmation-actions">
             <a class="nav-btn secondary" id="confirmation-return-link" href="./index.html" style="text-decoration:none;text-align:center;">Retour</a>
             <button class="nav-btn secondary" id="restart-new-poste-btn" type="button">Changer de poste</button>
             <button class="nav-btn primary" id="restart-same-poste-btn" type="button">Ajouter à ce poste</button>
