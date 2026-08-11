@@ -19,27 +19,30 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png" />
-    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-BZgTs41O.js"></script>
+    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-Bs_ndXtp.js"></script>
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/maplibre-gFZAzJIF.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-CDtQgvVo.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/appareils-en-attente-Bxr6G5-x.js">
-    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-BH7LdWYE.css">
+    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-C5PFfktV.css">
   </head>
   <body>
     <div id="map"></div>
     <div class="controle-recherche" id="controle-recherche">
-      <label class="recherche-champ-wrap" for="champ-recherche">
+      <div class="recherche-champ-wrap">
         <img src="/ALICE-BETA/alice.webp" alt="Logo ALICE" class="recherche-logo" width="118" height="50" onerror="this.style.display='none';" />
-        <input
-          id="champ-recherche"
-          class="recherche-champ"
-          type="search"
-          autocomplete="off"
-          placeholder="Rechercher, un poste, appareil, accès, PN, *adresse..."
-          aria-label="Rechercher un poste, un appareil, un accès, un PN ou une adresse avec *"
-        />
-      </label>
+        <span class="recherche-saisie-wrap">
+          <input
+            id="champ-recherche"
+            class="recherche-champ"
+            type="search"
+            autocomplete="off"
+            placeholder="Rechercher, un poste, appareil, accès, PN, *adresse..."
+            aria-label="Rechercher un poste, un appareil, un accès, un PN ou une adresse avec *"
+          />
+          <button id="recherche-ligne-pk" class="recherche-ligne-pk-aide" type="button" hidden>+ ligne</button>
+        </span>
+      </div>
       <ul class="recherche-resultats" id="recherche-resultats" aria-label="Resultats de recherche"></ul>
     </div>
     <div class="info-chargement-couche" id="info-chargement-couche" aria-live="polite" aria-hidden="true"></div>
