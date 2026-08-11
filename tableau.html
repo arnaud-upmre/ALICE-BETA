@@ -301,8 +301,7 @@ body {
   margin: -2px 0 8px;
 }
 
-.rail-code,
-.rail-pk {
+.rail-code {
   flex: 0 0 auto;
   border-radius: 999px;
   padding: 2px 6px;
@@ -313,11 +312,6 @@ body {
 .rail-code {
   background: rgba(80, 104, 245, 0.11);
   color: var(--accent);
-}
-
-.rail-pk {
-  background: rgba(176, 204, 147, 0.18);
-  color: #4f6f2a;
 }
 
 .rail-name {
@@ -339,7 +333,7 @@ body {
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
   font-size: 12px;
   line-height: 1.35;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .app-tooltip[hidden] {
@@ -348,6 +342,23 @@ body {
 
 .app-tooltip-status {
   color: var(--muted);
+}
+
+.app-tooltip-pk-button {
+  margin-top: 7px;
+  padding: 5px 9px;
+  border: 1px solid rgba(80, 104, 245, 0.35);
+  border-radius: 999px;
+  background: rgba(80, 104, 245, 0.1);
+  color: var(--accent);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.app-tooltip-pk-button:disabled {
+  opacity: 0.65;
+  cursor: wait;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -638,10 +649,10 @@ body {
 </style>
 
     
-  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-CYy009Vo.js"></script>
+  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-Ds_wcXir.js"></script>
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-CDtQgvVo.js">
-  <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-Bp5amsq-.css">
+  <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-B_hedudO.css">
 </head>
 <body>
 <div class="welcome-overlay" id="welcome-overlay" hidden>
@@ -656,7 +667,7 @@ body {
       <li>Recherchez un poste, un SAT, un appareil ou un numéro de ligne.</li>
       <li>Triez la vue selon vos besoins.</li>
       <li>Cliquez pour ouvrir la fiche directement sur la carte.</li>
-      <li>Clic droit sur PC, appui prolongé sur mobile pour voir ligne et PK.</li>
+      <li>Clic droit sur PC ou appui prolongé sur mobile, puis « Afficher le PK » si nécessaire.</li>
     </ul>
     <div class="welcome-actions">
       <button class="welcome-cta" id="welcome-cta" type="button">Commencer</button>
