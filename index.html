@@ -19,12 +19,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png" />
-    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-CLiC52QT.js"></script>
+    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-C8vjKPOt.js"></script>
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/maplibre-gFZAzJIF.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-TNMMnc5k.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/appareils-en-attente-Bxr6G5-x.js">
-    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-C5PFfktV.css">
+    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-CeF2U-3k.css">
   </head>
   <body>
     <div id="map"></div>
@@ -161,6 +161,29 @@
                 <input type="checkbox" name="filtre-pk" />
                 <span class="filtre-switch" aria-hidden="true"></span>
               </label>
+              <div class="reglage-densite-pk" id="reglage-densite-pk" hidden>
+                <div class="reglage-densite-pk-entete">
+                  <span>Moins</span>
+                  <strong id="densite-pk-valeur">Normal</strong>
+                  <span>Plus</span>
+                </div>
+                <div class="reglage-densite-pk-curseur">
+                  <span class="reglage-densite-pk-crans" aria-hidden="true">
+                    <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                  </span>
+                  <input
+                    id="densite-pk"
+                    type="range"
+                    min="-3"
+                    max="3"
+                    step="1"
+                    value="0"
+                    aria-label="Régler la densité des points kilométriques"
+                    aria-valuetext="Densité normale"
+                  />
+                </div>
+                <p class="reglage-densite-pk-aide">Réglez le nombre de PK visibles sur la carte.</p>
+              </div>
             </div>
           </fieldset>
 
@@ -185,9 +208,13 @@
                 </span>
               </label>
             </div>
-            <button class="bouton-options-locales" id="bouton-options-locales" type="button">
-              <span class="bouton-options-locales-icone" aria-hidden="true">⚙</span>
-              <span class="bouton-options-locales-texte"><strong>Personnaliser le réseau LOCAL</strong><small>Régions, équipements et types de voies</small></span>
+            <button class="bouton-options-locales" id="bouton-options-locales" type="button" hidden>
+              <span class="bouton-options-locales-icone" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M19.43 12.98c.04-.32.07-.65.07-.98s-.03-.66-.07-.98l2.11-1.65a.5.5 0 0 0 .12-.64l-2-3.46a.5.5 0 0 0-.6-.22l-2.49 1a7.2 7.2 0 0 0-1.69-.98l-.38-2.65A.5.5 0 0 0 14 2h-4a.5.5 0 0 0-.5.42l-.38 2.65c-.61.25-1.18.58-1.69.98l-2.49-1a.5.5 0 0 0-.6.22l-2 3.46a.5.5 0 0 0 .12.64l2.11 1.65a7.3 7.3 0 0 0 0 1.96l-2.11 1.65a.5.5 0 0 0-.12.64l2 3.46c.12.22.37.31.6.22l2.49-1c.51.4 1.08.73 1.69.98l.38 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.38-2.65c.61-.25 1.18-.58 1.69-.98l2.49 1c.23.09.48 0 .6-.22l2-3.46a.5.5 0 0 0-.12-.64l-2.11-1.65ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/>
+                </svg>
+              </span>
+              <span class="bouton-options-locales-texte"><strong>Réglages</strong><small>Régions, équipements et types de voies</small></span>
               <i aria-hidden="true">›</i>
             </button>
           </fieldset>
