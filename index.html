@@ -19,12 +19,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png" />
-    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-C8vjKPOt.js"></script>
+    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-oCJoWzV6.js"></script>
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/maplibre-gFZAzJIF.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-TNMMnc5k.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/appareils-en-attente-Bxr6G5-x.js">
-    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-CeF2U-3k.css">
+    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-BPe6xPmH.css">
   </head>
   <body>
     <div id="map"></div>
@@ -40,7 +40,9 @@
             placeholder="Rechercher, un poste, appareil, accès, PN, *adresse..."
             aria-label="Rechercher un poste, un appareil, un accès, un PN ou une adresse avec *"
           />
-          <button id="recherche-ligne-pk" class="recherche-ligne-pk-aide" type="button" hidden>+ ligne</button>
+          <span id="recherche-suggestion" class="recherche-suggestion" aria-hidden="true" hidden></span>
+          <button id="recherche-pk-exemple" class="recherche-pk-aide recherche-pk-exemple-aide" type="button" hidden>+500</button>
+          <button id="recherche-ligne-pk" class="recherche-pk-aide recherche-ligne-pk-aide" type="button" hidden>Ajouter une ligne</button>
         </span>
       </div>
       <ul class="recherche-resultats" id="recherche-resultats" aria-label="Resultats de recherche"></ul>
@@ -138,22 +140,11 @@
             <div class="filtres-liste">
               <label class="option-filtre">
                 <span class="filtre-repere filtre-repere-pn" aria-hidden="true"><i></i></span>
-                <span class="filtre-texte"><strong>Passages à niveau</strong><small>Hauts-de-France par défaut · autres régions au choix</small></span>
+                <span class="filtre-texte"><strong>Passages à niveau</strong><small>Selon le tracé ferroviaire actif</small></span>
                 <span class="filtre-compteur" id="compteur-pn">(0)</span>
                 <input type="checkbox" name="filtre-pn" />
                 <span class="filtre-switch" aria-hidden="true"></span>
               </label>
-              <div id="pn-regions" class="pn-regions" hidden>
-                <details>
-                  <summary>Ajouter ou retirer des régions</summary>
-                  <div class="pn-regions-liste">
-                    <label><input type="checkbox" name="filtre-pn-region" value="hdf" /><span>Hauts-de-France</span><small id="compteur-pn-hdf">(0)</small></label>
-                    <label><input type="checkbox" name="filtre-pn-region" value="normandie" /><span>Normandie</span><small id="compteur-pn-normandie">(0)</small></label>
-                    <label><input type="checkbox" name="filtre-pn-region" value="idf" /><span>Île-de-France</span><small id="compteur-pn-idf">(0)</small></label>
-                    <label><input type="checkbox" name="filtre-pn-region" value="grand-est" /><span>Grand Est</span><small id="compteur-pn-grand-est">(0)</small></label>
-                  </div>
-                </details>
-              </div>
               <label class="option-filtre">
                 <span class="filtre-repere filtre-repere-pk" aria-hidden="true"><i></i></span>
                 <span class="filtre-texte"><strong>Points kilométriques</strong><small id="filtre-pk-aide">Visibles selon le niveau de zoom</small></span>
