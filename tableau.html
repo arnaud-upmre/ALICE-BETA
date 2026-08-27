@@ -104,7 +104,14 @@
 .board-title-wrap {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
+}
+
+.board-main-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-right: 34px;
 }
 
 .board-close {
@@ -140,9 +147,15 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  flex: 0 0 auto;
   font-size: 24px;
   font-weight: 800;
   letter-spacing: 0.2px;
+}
+
+.board-row {
+  flex: 1 1 420px;
+  min-width: 180px;
 }
 
 .board-logo {
@@ -180,7 +193,7 @@ body {
 }
 
 .board-row {
-  margin-top: 18px;
+  margin-top: 0;
 }
 
 /* Liens cliquables */
@@ -390,6 +403,10 @@ body {
   width: 100%;
 }
 
+.filters > [data-tableau-filtres] { display: contents; }
+.metro-controls { display: inline-flex; align-items: center; gap: 10px; }
+.metro-controls[hidden], [data-tableau-filtres][hidden] { display: none; }
+
 
 .filters button {
   padding: 8px 16px;
@@ -413,6 +430,118 @@ body {
   color: #ffffff;
   border-color: #5068f5;
   box-shadow: 0 6px 18px rgba(80, 104, 245, 0.35);
+}
+
+.view-zone {
+  min-height: 120px;
+  opacity: 1;
+  will-change: opacity;
+}
+
+.metro-zone[hidden],
+#postesZone[hidden] {
+  display: none;
+}
+
+#metroZone {
+  --canvas: #fbfaf6 !important;
+  background: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+#metroZone * {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+#metroZone svg {
+  -webkit-user-drag: none;
+}
+
+.metro-zone .map-shell {
+  background-color: #fbfaf6;
+  background-image: none;
+  border-color: #e5e0d6;
+}
+
+#metroZone .station-label {
+  font-size: 28px;
+  font-weight: 650;
+  stroke-width: 10px;
+}
+
+#metroZone .station.is-sst .station-label {
+  font-size: 32px;
+}
+
+#metroZone .station.satellite .station-label {
+  font-size: 21px;
+}
+
+#metroZone .station-sat {
+  font-size: 18px;
+}
+
+#metroZone .hub .hub-title,
+#metroZone .hub.junction .hub-title {
+  font-size: 38px;
+}
+
+.metro-map-shell {
+  overflow: hidden;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--card-bg);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.metro-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 48px;
+  padding: 10px 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.metro-toolbar strong { color: var(--text); font-size: 15px; }
+.metro-toolbar label { display: inline-flex; align-items: center; gap: 6px; }
+.metro-toolbar span { margin-left: auto; }
+.metro-canvas-wrap { overflow: auto; max-height: min(80vh, 900px); }
+.metro-map { display: block; width: 100%; min-width: 900px; min-height: 600px; touch-action: none; cursor: grab; }
+.metro-map.is-panning { cursor: grabbing; }
+.metro-background { fill: color-mix(in srgb, var(--card-bg) 94%, var(--accent)); }
+.metro-branch { stroke-width: 8; stroke-linecap: round; opacity: .86; }
+.metro-line-title { font-size: 25px; font-weight: 800; }
+.metro-station { cursor: pointer; text-decoration: none; }
+.metro-station circle { fill: var(--card-bg); stroke-width: 5; }
+.metro-station.is-sat circle { stroke-width: 3; }
+.metro-station-label {
+  fill: var(--text); font-size: 15px; font-weight: 650; text-anchor: middle;
+  paint-order: stroke; stroke: var(--card-bg); stroke-width: 6px; stroke-linejoin: round;
+}
+.metro-station-label.below { dominant-baseline: hanging; }
+.metro-station:hover .metro-station-label,
+.metro-station:focus-visible .metro-station-label { fill: var(--accent); }
+
+.metro-zone [data-node-id].is-search-highlight {
+  animation: metroPosteBlink 0.42s ease-in-out 3;
+}
+
+@keyframes metroPosteBlink {
+  0%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0.08; }
+  50% { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .metro-toolbar { flex-wrap: wrap; gap: 8px 14px; }
+  .metro-toolbar span { width: 100%; margin-left: 0; }
 }
 
 .pill:focus-visible,
@@ -453,6 +582,16 @@ body {
 
 /* Mobile */
 @media (max-width: 480px) {
+  .board-main-row {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .board-row {
+    flex-basis: auto;
+  }
+
   .card {
     padding: 14px;
     border-radius: 14px;
@@ -501,11 +640,11 @@ body {
   }
 }
 
- 
+
 </style>
 
-    
-  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-BPxHl3Zy.js"></script>
+
+  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-SU6FpBcR.js"></script>
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-xIXCK-1B.js">
   <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-B_hedudO.css">
@@ -514,29 +653,45 @@ body {
 <div class="board-header">
   <a class="board-close" href="index.html" aria-label="Fermer le tableau blanc et revenir à la page principale" title="Fermer">×</a>
   <div class="board-title-wrap">
-    <div class="board-title">
-      <img src="/ALICE-BETA/alice.webp" alt="Logo ALICE" class="board-logo">
-      <span>Tableau blanc</span>
+    <div class="board-main-row">
+      <div class="board-title">
+        <img src="/ALICE-BETA/alice.webp" alt="Logo ALICE" class="board-logo">
+        <span id="boardViewTitle">Tableau blanc</span>
+      </div>
+      <div class="board-row">
+        <input id="search" type="text" placeholder="Rechercher..." aria-label="Rechercher un poste, SAT ou appareil" autocomplete="off">
+        <datalist id="metroPostesList"></datalist>
+      </div>
     </div>
 
-  <div class="board-meta">
+    <div class="board-meta">
       <span id="counters">Chargement…</span>
     </div>
-
- <div class="board-row">
-    <input id="search" type="text" placeholder="Rechercher..." aria-label="Rechercher un poste, SAT ou appareil" autocomplete="off">
   </div>
-</div>
 </div>
 
 <div class="filters">
-    <button data-sort="az">A → Z</button>
-    <button data-sort="za">Z → A</button>
-    <button data-sort="appmax">+ appareils</button>
-    <button data-sort="appmin">- appareils</button>
+    <button type="button" data-view="tableau" aria-pressed="true">Tableau</button>
+    <button type="button" data-view="metro" aria-pressed="false">Vue Metro</button>
+    <span data-tableau-filtres>
+      <button data-sort="az">A → Z</button>
+      <button data-sort="za">Z → A</button>
+      <button data-sort="appmax">+ appareils</button>
+      <button data-sort="appmin">- appareils</button>
+    </span>
+    <span class="metro-controls" data-metro-controles hidden>
+      <button id="resetLayout" type="button">Réinitialiser la vue</button>
+      <button id="toggleSats" type="button" aria-pressed="false">Afficher les SAT</button>
+      <button id="defaultView" type="button" hidden>Affichage par défaut</button>
+      <input id="showSats" type="checkbox" hidden>
+      <span id="summary" hidden>Chargement des postes…</span>
+    </span>
 </div>
 
-<div id="postesZone" class="post-container"></div>
+<main id="viewZone" class="view-zone">
+  <div id="postesZone" class="post-container"></div>
+  <div id="metroZone" class="metro-zone" hidden></div>
+</main>
 
 </body>
 </html>
