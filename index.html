@@ -19,12 +19,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png" />
-    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-DUwg92Zo.js"></script>
+    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-BctPatoH.js"></script>
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/maplibre-gFZAzJIF.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-xIXCK-1B.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/appareils-en-attente-Bxr6G5-x.js">
-    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-F7MWAsA1.css">
+    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-L1DnStkm.css">
   </head>
   <body>
     <div id="map"></div>
@@ -126,10 +126,29 @@
                 <span class="filtre-switch" aria-hidden="true"></span>
               </label>
               <label class="option-filtre">
-                <span class="filtre-repere filtre-repere-postes" aria-hidden="true"><i></i><i></i></span>
-                <span class="filtre-texte"><strong>Postes &amp; SAT</strong><small>Installations et sous-stations</small></span>
+                <span class="filtre-repere filtre-repere-poste" aria-hidden="true"><i></i></span>
+                <span class="filtre-texte"><strong>Postes</strong><small>Installations et sous-stations</small></span>
                 <span class="filtre-compteur" id="compteur-postes">(0)</span>
                 <input type="checkbox" name="filtre-postes" />
+                <span class="filtre-switch" aria-hidden="true"></span>
+              </label>
+              <label class="option-filtre">
+                <span class="filtre-repere filtre-repere-sat" aria-hidden="true"><i></i></span>
+                <span class="filtre-texte"><strong>Satellites</strong><small>SAT des postes et sous-stations</small></span>
+                <span class="filtre-compteur" id="compteur-sat">(0)</span>
+                <input type="checkbox" name="filtre-sat" />
+                <span class="filtre-switch" aria-hidden="true"></span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="filtres-groupe">
+            <legend><span>Installations complémentaires</span><small>Hors équipements EALE</small></legend>
+            <div class="filtres-liste">
+              <label class="option-filtre">
+                <span class="filtre-repere filtre-repere-autres" aria-hidden="true"><i></i></span>
+                <span class="filtre-texte"><strong>Autres</strong><small>Équipes, Agent E, Formation…</small></span>
+                <input type="checkbox" name="filtre-autres" checked />
                 <span class="filtre-switch" aria-hidden="true"></span>
               </label>
             </div>
