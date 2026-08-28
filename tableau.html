@@ -733,7 +733,7 @@ body {
 }
 
 body.metro-mobile-landscape {
-  --metro-mobile-options-width: clamp(156px, 22vw, 188px);
+  --metro-mobile-options-width: clamp(126px, 16.5vw, 142px);
   overflow: hidden;
   padding: 0;
   background: var(--bg);
@@ -797,13 +797,14 @@ body.metro-mobile-landscape .metro-mobile-menu {
 }
 
 .metro-mobile-menu-panel {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 6px;
   width: 100%;
   height: 100%;
   margin-left: 0;
-  padding: max(12px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) 10px;
+  padding: max(9px, env(safe-area-inset-top)) 4px max(9px, env(safe-area-inset-bottom)) 7px;
   overflow-y: auto;
   border-left: 1px solid var(--border);
   background: var(--card-bg);
@@ -815,38 +816,52 @@ body.metro-mobile-landscape .metro-mobile-menu {
 
 .metro-mobile-menu-panel strong {
   color: var(--text);
-  font-size: 17px;
+  font-size: 14px;
 }
 
 .metro-mobile-help {
-  margin: -3px 0 0;
+  margin: -2px 1px 2px 0;
   color: var(--muted);
-  font-size: 12px;
-  line-height: 1.4;
+  font-size: 10px;
+  line-height: 1.3;
 }
 
-.metro-mobile-menu-panel button,
-.metro-mobile-menu-panel a {
+.metro-mobile-menu-panel button {
+  box-sizing: border-box;
   width: 100%;
-  min-height: 42px;
+  min-height: 32px;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 8px;
   background: color-mix(in srgb, var(--card-bg) 90%, var(--accent));
   color: var(--text);
   font: inherit;
 }
 
-.metro-mobile-menu-panel button,
-.metro-mobile-menu-panel a {
+.metro-mobile-menu-panel button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 9px 12px;
-  font-size: 13px;
-  font-weight: 750;
+  padding: 5px 7px;
+  font-size: 11px;
+  font-weight: 700;
   text-align: center;
-  text-decoration: none;
   cursor: pointer;
+}
+
+.metro-mobile-menu-panel button[data-mobile-icon] {
+  display: grid;
+  grid-template-columns: 17px minmax(0, 1fr);
+  gap: 3px;
+  text-align: left;
+}
+
+.metro-mobile-menu-panel button[data-mobile-icon]::before {
+  content: attr(data-mobile-icon);
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
 }
 
 .metro-mobile-menu-panel button[aria-pressed="true"] {
@@ -854,14 +869,15 @@ body.metro-mobile-landscape .metro-mobile-menu {
   background: color-mix(in srgb, var(--accent) 22%, var(--card-bg));
 }
 
+.metro-mobile-disposition {
+  display: grid;
+  gap: 5px;
+}
+
 .metro-mobile-tri {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.metro-mobile-menu-panel a {
-  margin-top: auto;
+  gap: 5px;
 }
 
 .visually-hidden {
@@ -907,7 +923,7 @@ body.metro-mobile-landscape .metro-mobile-menu {
 </style>
 
 
-  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-BzURTzDq.js"></script>
+  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-CttKfDpk.js"></script>
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-CPj5r37E.js">
   <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-B_hedudO.css">
@@ -973,16 +989,15 @@ body.metro-mobile-landscape .metro-mobile-menu {
     <strong>Options</strong>
     <p class="metro-mobile-help">Pincez à deux doigts pour zoomer. Faites glisser la carte pour la déplacer.</p>
     <div class="metro-mobile-disposition" role="group" aria-label="Disposition de la vue Metro">
-      <button type="button" data-metro-disposition="condense" aria-pressed="true">Vue condensée</button>
-      <button type="button" data-metro-disposition="ligne" aria-pressed="false">Vue ligne</button>
+      <button type="button" data-metro-disposition="condense" data-mobile-icon="▦" aria-pressed="true">Condensée</button>
+      <button type="button" data-metro-disposition="ligne" data-mobile-icon="≋" aria-pressed="false">Par ligne</button>
     </div>
     <div class="metro-mobile-tri" role="group" aria-label="Tri des lignes" hidden>
       <button type="button" data-metro-tri-critere="numero" aria-pressed="true">N° croissant</button>
       <button type="button" data-metro-tri-critere="postes" aria-pressed="false">+ de postes</button>
     </div>
-    <button type="button" data-metro-mobile-reset>Réinitialiser la vue</button>
-    <button type="button" data-metro-mobile-sats aria-pressed="false">Afficher les SAT</button>
-    <a href="index.html">Retour à la carte ALICE</a>
+    <button type="button" data-metro-mobile-reset data-mobile-icon="↺">Réinitialiser</button>
+    <button type="button" data-metro-mobile-sats data-mobile-icon="●" aria-pressed="false">Afficher SAT</button>
   </div>
 </aside>
 
