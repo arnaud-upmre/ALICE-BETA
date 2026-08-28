@@ -407,6 +407,10 @@ body {
 .metro-controls { display: inline-flex; align-items: center; gap: 10px; }
 .metro-controls[hidden], [data-tableau-filtres][hidden] { display: none; }
 
+.metro-mobile-menu {
+  display: none;
+}
+
 
 .filters button {
   padding: 8px 16px;
@@ -613,6 +617,200 @@ body {
   }
 }
 
+/* Sur telephone, la vue Metro est pilotee automatiquement par l'orientation. */
+@media (hover: none) and (pointer: coarse) and (max-width: 700px) {
+  [data-view="metro"] {
+    display: none;
+  }
+}
+
+body.metro-mobile-landscape {
+  overflow: hidden;
+  padding: 0;
+  background: #101b2d;
+}
+
+body.metro-mobile-landscape > .board-header,
+body.metro-mobile-landscape > .filters {
+  display: none;
+}
+
+body.metro-mobile-landscape #viewZone,
+body.metro-mobile-landscape #metroZone,
+body.metro-mobile-landscape #metroZone .page,
+body.metro-mobile-landscape #metroZone .map-shell {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+body.metro-mobile-landscape #viewZone,
+body.metro-mobile-landscape #metroZone {
+  position: fixed;
+  inset: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
+body.metro-mobile-landscape #metroZone .map-shell {
+  height: 100vh;
+  height: 100dvh;
+  border: 0;
+  border-radius: 0;
+}
+
+body.metro-mobile-landscape .metro-mobile-menu {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  width: min(288px, calc(100vw - 64px));
+  transform: translateX(100%);
+  transition: transform 180ms ease;
+}
+
+body.metro-mobile-landscape .metro-mobile-menu.is-open {
+  transform: translateX(0);
+}
+
+.metro-mobile-menu-toggle {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 52px;
+  padding: 0;
+  transform: translateY(-50%);
+  border: 1px solid rgba(148, 163, 184, 0.38);
+  border-right: 0;
+  border-radius: 14px 0 0 14px;
+  background: rgba(15, 28, 47, 0.96);
+  color: #f8fbff;
+  box-shadow: -8px 6px 22px rgba(0, 0, 0, 0.28);
+  font-size: 22px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.metro-mobile-menu.is-open .metro-mobile-menu-toggle-icon {
+  transform: rotate(180deg);
+}
+
+.metro-mobile-menu-toggle-icon {
+  display: block;
+  transition: transform 180ms ease;
+}
+
+.metro-mobile-menu-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) 16px;
+  overflow-y: auto;
+  border-left: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(15, 28, 47, 0.97);
+  color: #dce8f8;
+  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.34);
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
+.metro-mobile-menu-panel strong {
+  color: #f8fbff;
+  font-size: 17px;
+}
+
+.metro-mobile-menu-panel label {
+  color: #b8c7db;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.metro-mobile-help {
+  margin: -3px 0 0;
+  color: #9fb0c3;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.metro-mobile-menu-panel input,
+.metro-mobile-menu-panel button,
+.metro-mobile-menu-panel a {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid rgba(148, 163, 184, 0.36);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8fbff;
+  font: inherit;
+}
+
+.metro-mobile-menu-panel input {
+  padding: 9px 11px;
+  font-size: 16px;
+}
+
+.metro-mobile-menu-panel button,
+.metro-mobile-menu-panel a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 750;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.metro-mobile-menu-panel button[aria-pressed="true"] {
+  border-color: #60a5fa;
+  background: rgba(96, 165, 250, 0.22);
+}
+
+.metro-mobile-zoom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.metro-mobile-zoom button {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.metro-mobile-menu-panel a {
+  margin-top: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metro-mobile-menu {
+    transition: none;
+  }
+}
+
 /* Desktop compact: densite proche de l'ancienne capture */
 @media (min-width: 1200px) {
   .post-container {
@@ -644,9 +842,9 @@ body {
 </style>
 
 
-  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-SU6FpBcR.js"></script>
+  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-CKr_Z1yw.js"></script>
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
-  <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-xIXCK-1B.js">
+  <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-CPj5r37E.js">
   <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-B_hedudO.css">
 </head>
 <body>
@@ -692,6 +890,27 @@ body {
   <div id="postesZone" class="post-container"></div>
   <div id="metroZone" class="metro-zone" hidden></div>
 </main>
+
+<aside id="metroMobileMenu" class="metro-mobile-menu" aria-label="Options de la vue Metro" hidden>
+  <button id="metroMobileMenuToggle" class="metro-mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="metroMobileMenuPanel">
+    <span class="metro-mobile-menu-toggle-icon" aria-hidden="true">‹</span>
+    <span class="visually-hidden">Ouvrir les options</span>
+  </button>
+  <div id="metroMobileMenuPanel" class="metro-mobile-menu-panel" aria-hidden="true" inert>
+    <strong>Options</strong>
+    <p class="metro-mobile-help">Pincez à deux doigts pour zoomer. Faites glisser la carte pour la déplacer.</p>
+    <label for="metroMobileSearch">Rechercher un poste</label>
+    <input id="metroMobileSearch" type="search" placeholder="Nom du poste…" list="metroPostesListMobile" autocomplete="off">
+    <datalist id="metroPostesListMobile"></datalist>
+    <div class="metro-mobile-zoom" role="group" aria-label="Zoom de la carte">
+      <button type="button" data-metro-mobile-zoom-moins aria-label="Dézoomer">−</button>
+      <button type="button" data-metro-mobile-zoom-plus aria-label="Zoomer">+</button>
+    </div>
+    <button type="button" data-metro-mobile-reset>Réinitialiser la vue</button>
+    <button type="button" data-metro-mobile-sats aria-pressed="false">Afficher les SAT</button>
+    <a href="index.html">Retour à la carte ALICE</a>
+  </div>
+</aside>
 
 </body>
 </html>
