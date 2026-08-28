@@ -726,6 +726,7 @@ body {
 
 /* Sur telephone, la vue Metro est pilotee automatiquement par l'orientation. */
 @media (hover: none) and (pointer: coarse) and (max-width: 700px) {
+  [data-view="tableau"],
   [data-view="metro"] {
     display: none;
   }
@@ -734,7 +735,7 @@ body {
 body.metro-mobile-landscape {
   overflow: hidden;
   padding: 0;
-  background: #101b2d;
+  background: var(--bg);
 }
 
 body.metro-mobile-landscape > .board-header,
@@ -776,11 +777,11 @@ body.metro-mobile-landscape #metroLoading {
   min-height: 100dvh;
   border: 0;
   border-radius: 0;
-  background: #101b2d;
+  background: var(--bg);
 }
 
 body.metro-mobile-landscape #metroLoading .metro-loading-content {
-  color: #dce8f8;
+  color: var(--muted);
 }
 
 body.metro-mobile-landscape .metro-mobile-menu {
@@ -790,8 +791,8 @@ body.metro-mobile-landscape .metro-mobile-menu {
   right: 0;
   bottom: 0;
   display: block;
-  width: min(288px, calc(100vw - 64px));
-  transform: translateX(100%);
+  width: min(336px, calc(100vw - 16px));
+  transform: translateX(calc(100% - 48px));
   transition: transform 180ms ease;
 }
 
@@ -802,7 +803,7 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
 .metro-mobile-menu-toggle {
   position: absolute;
   top: 50%;
-  right: 100%;
+  left: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -810,14 +811,15 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
   height: 52px;
   padding: 0;
   transform: translateY(-50%);
-  border: 1px solid rgba(148, 163, 184, 0.38);
+  border: 1px solid var(--border);
   border-right: 0;
   border-radius: 14px 0 0 14px;
-  background: rgba(15, 28, 47, 0.96);
-  color: #f8fbff;
+  background: var(--card-bg);
+  color: var(--text);
   box-shadow: -8px 6px 22px rgba(0, 0, 0, 0.28);
   font-size: 22px;
   cursor: pointer;
+  touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -834,31 +836,33 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: calc(100% - 48px);
   height: 100%;
+  margin-left: 48px;
   padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) 16px;
   overflow-y: auto;
-  border-left: 1px solid rgba(148, 163, 184, 0.3);
-  background: rgba(15, 28, 47, 0.97);
-  color: #dce8f8;
+  border-left: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
   box-shadow: -12px 0 32px rgba(0, 0, 0, 0.34);
   overscroll-behavior: contain;
   touch-action: pan-y;
 }
 
 .metro-mobile-menu-panel strong {
-  color: #f8fbff;
+  color: var(--text);
   font-size: 17px;
 }
 
 .metro-mobile-menu-panel label {
-  color: #b8c7db;
+  color: var(--muted);
   font-size: 12px;
   font-weight: 700;
 }
 
 .metro-mobile-help {
   margin: -3px 0 0;
-  color: #9fb0c3;
+  color: var(--muted);
   font-size: 12px;
   line-height: 1.4;
 }
@@ -868,10 +872,10 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
 .metro-mobile-menu-panel a {
   width: 100%;
   min-height: 42px;
-  border: 1px solid rgba(148, 163, 184, 0.36);
+  border: 1px solid var(--border);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #f8fbff;
+  background: color-mix(in srgb, var(--card-bg) 90%, var(--accent));
+  color: var(--text);
   font: inherit;
 }
 
@@ -894,8 +898,8 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
 }
 
 .metro-mobile-menu-panel button[aria-pressed="true"] {
-  border-color: #60a5fa;
-  background: rgba(96, 165, 250, 0.22);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 22%, var(--card-bg));
 }
 
 .metro-mobile-tri {
@@ -957,7 +961,7 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
 </style>
 
 
-  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-Cu7UI54k.js"></script>
+  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-TKjSUu3A.js"></script>
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-CPj5r37E.js">
   <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-B_hedudO.css">
