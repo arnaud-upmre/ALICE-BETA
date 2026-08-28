@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <title>ALICE - Application de Localisation des Installations de Conduite des EALE.</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0b1726">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -733,10 +733,12 @@ body {
 }
 
 body.metro-mobile-landscape {
-  --metro-mobile-options-width: clamp(126px, 16.5vw, 142px);
+  --metro-mobile-options-width: 132px;
   overflow: hidden;
   padding: 0;
   background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body.metro-mobile-landscape > .board-header,
@@ -793,48 +795,79 @@ body.metro-mobile-landscape .metro-mobile-menu {
   right: 0;
   bottom: 0;
   display: block;
-  width: var(--metro-mobile-options-width);
+  width: var(--metro-mobile-options-width) !important;
+  min-width: var(--metro-mobile-options-width);
+  max-width: var(--metro-mobile-options-width);
+  background: var(--card-bg);
+  overflow: hidden;
+  pointer-events: auto;
+  isolation: isolate;
+  contain: layout paint;
 }
 
 .metro-mobile-menu-panel {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   height: 100%;
   margin-left: 0;
-  padding: max(9px, env(safe-area-inset-top)) 4px max(9px, env(safe-area-inset-bottom)) 7px;
+  padding: max(7px, env(safe-area-inset-top)) 2px max(7px, env(safe-area-inset-bottom));
   overflow-y: auto;
   border-left: 1px solid var(--border);
   background: var(--card-bg);
   color: var(--text);
   box-shadow: -12px 0 32px rgba(0, 0, 0, 0.34);
   overscroll-behavior: contain;
-  touch-action: pan-y;
+  touch-action: manipulation;
+  pointer-events: auto;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 .metro-mobile-menu-panel strong {
+  width: calc(100% - 10px);
+  min-width: 0;
   color: var(--text);
   font-size: 14px;
+  text-align: center;
 }
 
 .metro-mobile-help {
+  width: calc(100% - 10px);
+  min-width: 0;
   margin: -2px 1px 2px 0;
   color: var(--muted);
   font-size: 10px;
   line-height: 1.3;
+  text-align: center;
 }
 
 .metro-mobile-menu-panel button {
   box-sizing: border-box;
-  width: 100%;
-  min-height: 32px;
+  position: relative;
+  z-index: 1;
+  width: calc(100% - 10px);
+  min-width: 0;
+  max-width: calc(100% - 10px);
+  min-height: 40px;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: color-mix(in srgb, var(--card-bg) 90%, var(--accent));
   color: var(--text);
   font: inherit;
+  touch-action: manipulation;
+  pointer-events: auto;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .metro-mobile-menu-panel button {
@@ -849,10 +882,10 @@ body.metro-mobile-landscape .metro-mobile-menu {
 }
 
 .metro-mobile-menu-panel button[data-mobile-icon] {
-  display: grid;
-  grid-template-columns: 17px minmax(0, 1fr);
-  gap: 3px;
-  text-align: left;
+  display: inline-flex;
+  gap: 5px;
+  justify-content: center;
+  text-align: center;
 }
 
 .metro-mobile-menu-panel button[data-mobile-icon]::before {
@@ -871,13 +904,22 @@ body.metro-mobile-landscape .metro-mobile-menu {
 
 .metro-mobile-disposition {
   display: grid;
-  gap: 5px;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  justify-items: center;
 }
 
 .metro-mobile-tri {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5px;
+  gap: 6px;
+  width: calc(100% - 10px);
+  min-width: 0;
+}
+
+.metro-mobile-tri button {
+  width: 100%;
 }
 
 .visually-hidden {
@@ -923,7 +965,7 @@ body.metro-mobile-landscape .metro-mobile-menu {
 </style>
 
 
-  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-CttKfDpk.js"></script>
+  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-BoukIaZo.js"></script>
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-CPj5r37E.js">
   <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-B_hedudO.css">
@@ -985,7 +1027,7 @@ body.metro-mobile-landscape .metro-mobile-menu {
 </main>
 
 <aside id="metroMobileMenu" class="metro-mobile-menu" aria-label="Options de la vue Metro" hidden>
-  <div id="metroMobileMenuPanel" class="metro-mobile-menu-panel" aria-hidden="true" inert>
+  <div id="metroMobileMenuPanel" class="metro-mobile-menu-panel" aria-hidden="true">
     <strong>Options</strong>
     <p class="metro-mobile-help">Pincez à deux doigts pour zoomer. Faites glisser la carte pour la déplacer.</p>
     <div class="metro-mobile-disposition" role="group" aria-label="Disposition de la vue Metro">
