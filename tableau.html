@@ -733,6 +733,7 @@ body {
 }
 
 body.metro-mobile-landscape {
+  --metro-mobile-options-width: clamp(156px, 22vw, 188px);
   overflow: hidden;
   padding: 0;
   background: var(--bg);
@@ -758,7 +759,8 @@ body.metro-mobile-landscape #viewZone,
 body.metro-mobile-landscape #metroZone,
 body.metro-mobile-landscape #metroLoading {
   position: fixed;
-  inset: 0;
+  inset: 0 var(--metro-mobile-options-width) 0 0;
+  width: auto;
   min-height: 100vh;
   min-height: 100dvh;
   overscroll-behavior: none;
@@ -791,57 +793,17 @@ body.metro-mobile-landscape .metro-mobile-menu {
   right: 0;
   bottom: 0;
   display: block;
-  width: min(336px, calc(100vw - 16px));
-  transform: translateX(calc(100% - 48px));
-  transition: transform 180ms ease;
-}
-
-body.metro-mobile-landscape .metro-mobile-menu.is-open {
-  transform: translateX(0);
-}
-
-.metro-mobile-menu-toggle {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 52px;
-  padding: 0;
-  transform: translateY(-50%);
-  border: 1px solid var(--border);
-  border-right: 0;
-  border-radius: 14px 0 0 14px;
-  background: var(--card-bg);
-  color: var(--text);
-  box-shadow: -8px 6px 22px rgba(0, 0, 0, 0.28);
-  font-size: 22px;
-  cursor: pointer;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.metro-mobile-menu.is-open .metro-mobile-menu-toggle-icon {
-  transform: rotate(180deg);
-}
-
-.metro-mobile-menu-toggle-icon {
-  display: block;
-  transition: transform 180ms ease;
+  width: var(--metro-mobile-options-width);
 }
 
 .metro-mobile-menu-panel {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  width: calc(100% - 48px);
+  gap: 9px;
+  width: 100%;
   height: 100%;
-  margin-left: 48px;
-  padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) 16px;
+  margin-left: 0;
+  padding: max(12px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) 10px;
   overflow-y: auto;
   border-left: 1px solid var(--border);
   background: var(--card-bg);
@@ -856,12 +818,6 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
   font-size: 17px;
 }
 
-.metro-mobile-menu-panel label {
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 700;
-}
-
 .metro-mobile-help {
   margin: -3px 0 0;
   color: var(--muted);
@@ -869,7 +825,6 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
   line-height: 1.4;
 }
 
-.metro-mobile-menu-panel input,
 .metro-mobile-menu-panel button,
 .metro-mobile-menu-panel a {
   width: 100%;
@@ -879,33 +834,6 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
   background: color-mix(in srgb, var(--card-bg) 90%, var(--accent));
   color: var(--text);
   font: inherit;
-}
-
-.metro-mobile-menu-panel input {
-  padding: 9px 11px;
-  font-size: 16px;
-}
-
-.metro-mobile-search-results {
-  display: grid;
-  gap: 6px;
-  max-height: min(38dvh, 240px);
-  margin: -4px 0 0;
-  padding: 0;
-  overflow-y: auto;
-  list-style: none;
-  overscroll-behavior: contain;
-}
-
-.metro-mobile-search-results[hidden] {
-  display: none;
-}
-
-.metro-mobile-search-results button {
-  min-height: 38px;
-  justify-content: flex-start;
-  text-align: left;
-  touch-action: manipulation;
 }
 
 .metro-mobile-menu-panel button,
@@ -948,12 +876,6 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
   border: 0;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .metro-mobile-menu {
-    transition: none;
-  }
-}
-
 /* Desktop compact: densite proche de l'ancienne capture */
 @media (min-width: 1200px) {
   .post-container {
@@ -985,7 +907,7 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
 </style>
 
 
-  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-nS-jvzt5.js"></script>
+  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-BzURTzDq.js"></script>
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-CPj5r37E.js">
   <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-B_hedudO.css">
@@ -1047,16 +969,9 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
 </main>
 
 <aside id="metroMobileMenu" class="metro-mobile-menu" aria-label="Options de la vue Metro" hidden>
-  <button id="metroMobileMenuToggle" class="metro-mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="metroMobileMenuPanel">
-    <span class="metro-mobile-menu-toggle-icon" aria-hidden="true">‹</span>
-    <span class="visually-hidden">Ouvrir les options</span>
-  </button>
   <div id="metroMobileMenuPanel" class="metro-mobile-menu-panel" aria-hidden="true" inert>
     <strong>Options</strong>
     <p class="metro-mobile-help">Pincez à deux doigts pour zoomer. Faites glisser la carte pour la déplacer.</p>
-    <label for="metroMobileSearch">Rechercher un poste</label>
-    <input id="metroMobileSearch" type="search" placeholder="Nom du poste…" autocomplete="off" aria-controls="metroMobileSearchResults" aria-expanded="false">
-    <ul id="metroMobileSearchResults" class="metro-mobile-search-results" aria-label="Résultats de recherche" hidden></ul>
     <div class="metro-mobile-disposition" role="group" aria-label="Disposition de la vue Metro">
       <button type="button" data-metro-disposition="condense" aria-pressed="true">Vue condensée</button>
       <button type="button" data-metro-disposition="ligne" aria-pressed="false">Vue ligne</button>
