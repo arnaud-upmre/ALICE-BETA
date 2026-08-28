@@ -395,16 +395,25 @@ body {
 
 /* Filtres */
 .filters {
+  position: sticky;
+  top: var(--board-header-sticky-offset, 0px);
+  z-index: 49;
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+  padding: 10px 8px;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(10px);
 }
 
 .filters > [data-tableau-filtres] { display: contents; }
 .metro-controls { display: inline-flex; align-items: center; gap: 10px; }
+.metro-display-controls { display: inline-flex; align-items: center; gap: 6px; }
+.metro-sort-controls { display: inline-flex; align-items: center; gap: 6px; }
+.metro-sort-controls[hidden], .metro-mobile-tri[hidden] { display: none; }
 .metro-controls[hidden], [data-tableau-filtres][hidden] { display: none; }
 
 .metro-mobile-menu {
@@ -445,6 +454,41 @@ body {
 .metro-zone[hidden],
 #postesZone[hidden] {
   display: none;
+}
+
+.metro-loading {
+  display: grid;
+  place-items: center;
+  min-height: min(80vh, 680px);
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--card-bg);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.metro-loading[hidden] { display: none; }
+
+.metro-loading-content {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.metro-loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: metroLoadingSpin .75s linear infinite;
+}
+
+@keyframes metroLoadingSpin {
+  to { transform: rotate(360deg); }
 }
 
 #metroZone {
@@ -492,6 +536,69 @@ body {
 #metroZone .hub .hub-title,
 #metroZone .hub.junction .hub-title {
   font-size: 38px;
+}
+
+#metroZone .metro-line-name {
+  font-size: 31px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+#metroZone .metro-line-card {
+  fill: color-mix(in srgb, var(--card-bg) 96%, #f4efe5);
+  stroke: #ddd7ca;
+  stroke-width: 3px;
+}
+
+#metroZone .metro-line-badge {
+  fill: var(--card-bg);
+  stroke-width: 5px;
+}
+
+#metroZone .map-shell.vue-ligne .station.is-line-endpoint .station-dot {
+  fill: var(--card-bg);
+  stroke-width: 7px;
+}
+
+#metroZone .metro-station-leader {
+  stroke: var(--node-line-color);
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.8;
+}
+
+#metroZone .linear-station-label {
+  font-size: 38px !important;
+}
+
+#metroZone .station.is-sst .linear-station-label {
+  font-size: 44px !important;
+}
+
+#metroZone .map-shell.vue-ligne .station.satellite .station-sat {
+  font-size: 27px !important;
+  font-weight: 700;
+}
+
+#metroZone .map-shell.vue-ligne .station.satellite .sat-stem {
+  stroke-width: 3px;
+}
+
+#metroZone .linear-station-label {
+  pointer-events: auto;
+  cursor: help;
+}
+
+#metroZone .map-shell.vue-ligne {
+  overflow-x: hidden;
+  overflow-y: auto;
+  cursor: default;
+}
+
+#metroZone .map-shell.vue-ligne .branch {
+  stroke-width: 11px;
 }
 
 .metro-map-shell {
@@ -647,7 +754,8 @@ body.metro-mobile-landscape #metroZone .map-shell {
 }
 
 body.metro-mobile-landscape #viewZone,
-body.metro-mobile-landscape #metroZone {
+body.metro-mobile-landscape #metroZone,
+body.metro-mobile-landscape #metroLoading {
   position: fixed;
   inset: 0;
   min-height: 100vh;
@@ -661,6 +769,18 @@ body.metro-mobile-landscape #metroZone .map-shell {
   height: 100dvh;
   border: 0;
   border-radius: 0;
+}
+
+body.metro-mobile-landscape #metroLoading {
+  z-index: 150;
+  min-height: 100dvh;
+  border: 0;
+  border-radius: 0;
+  background: #101b2d;
+}
+
+body.metro-mobile-landscape #metroLoading .metro-loading-content {
+  color: #dce8f8;
 }
 
 body.metro-mobile-landscape .metro-mobile-menu {
@@ -778,15 +898,10 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
   background: rgba(96, 165, 250, 0.22);
 }
 
-.metro-mobile-zoom {
+.metro-mobile-tri {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-}
-
-.metro-mobile-zoom button {
-  font-size: 22px;
-  line-height: 1;
 }
 
 .metro-mobile-menu-panel a {
@@ -842,7 +957,7 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
 </style>
 
 
-  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-CKr_Z1yw.js"></script>
+  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-Cu7UI54k.js"></script>
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-CPj5r37E.js">
   <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-B_hedudO.css">
@@ -872,12 +987,18 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
     <button type="button" data-view="tableau" aria-pressed="true">Tableau</button>
     <button type="button" data-view="metro" aria-pressed="false">Vue Metro</button>
     <span data-tableau-filtres>
-      <button data-sort="az">A → Z</button>
-      <button data-sort="za">Z → A</button>
-      <button data-sort="appmax">+ appareils</button>
-      <button data-sort="appmin">- appareils</button>
+      <button type="button" data-tableau-tri-critere="alphabet" aria-pressed="true">A → Z</button>
+      <button type="button" data-tableau-tri-critere="appareils" aria-pressed="false">+ appareils</button>
     </span>
     <span class="metro-controls" data-metro-controles hidden>
+      <span class="metro-display-controls" role="group" aria-label="Disposition de la vue Metro">
+        <button type="button" data-metro-disposition="condense" aria-pressed="true">Condensé</button>
+        <button type="button" data-metro-disposition="ligne" aria-pressed="false">Ligne</button>
+      </span>
+      <span class="metro-sort-controls" role="group" aria-label="Tri des lignes" hidden>
+        <button type="button" data-metro-tri-critere="numero" aria-pressed="true">N° croissant</button>
+        <button type="button" data-metro-tri-critere="postes" aria-pressed="false">+ de postes</button>
+      </span>
       <button id="resetLayout" type="button">Réinitialiser la vue</button>
       <button id="toggleSats" type="button" aria-pressed="false">Afficher les SAT</button>
       <button id="defaultView" type="button" hidden>Affichage par défaut</button>
@@ -889,6 +1010,12 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
 <main id="viewZone" class="view-zone">
   <div id="postesZone" class="post-container"></div>
   <div id="metroZone" class="metro-zone" hidden></div>
+  <div id="metroLoading" class="metro-loading" role="status" aria-live="polite" hidden>
+    <div class="metro-loading-content">
+      <span class="metro-loading-spinner" aria-hidden="true"></span>
+      <span>Chargement des lignes</span>
+    </div>
+  </div>
 </main>
 
 <aside id="metroMobileMenu" class="metro-mobile-menu" aria-label="Options de la vue Metro" hidden>
@@ -902,9 +1029,13 @@ body.metro-mobile-landscape .metro-mobile-menu.is-open {
     <label for="metroMobileSearch">Rechercher un poste</label>
     <input id="metroMobileSearch" type="search" placeholder="Nom du poste…" list="metroPostesListMobile" autocomplete="off">
     <datalist id="metroPostesListMobile"></datalist>
-    <div class="metro-mobile-zoom" role="group" aria-label="Zoom de la carte">
-      <button type="button" data-metro-mobile-zoom-moins aria-label="Dézoomer">−</button>
-      <button type="button" data-metro-mobile-zoom-plus aria-label="Zoomer">+</button>
+    <div class="metro-mobile-disposition" role="group" aria-label="Disposition de la vue Metro">
+      <button type="button" data-metro-disposition="condense" aria-pressed="true">Vue condensée</button>
+      <button type="button" data-metro-disposition="ligne" aria-pressed="false">Vue ligne</button>
+    </div>
+    <div class="metro-mobile-tri" role="group" aria-label="Tri des lignes" hidden>
+      <button type="button" data-metro-tri-critere="numero" aria-pressed="true">N° croissant</button>
+      <button type="button" data-metro-tri-critere="postes" aria-pressed="false">+ de postes</button>
     </div>
     <button type="button" data-metro-mobile-reset>Réinitialiser la vue</button>
     <button type="button" data-metro-mobile-sats aria-pressed="false">Afficher les SAT</button>
