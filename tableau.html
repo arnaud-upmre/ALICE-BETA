@@ -469,6 +469,111 @@ body {
 
 .metro-loading[hidden] { display: none; }
 
+.metro-info-dialog {
+  width: min(430px, calc(100vw - 32px));
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border));
+  border-radius: 22px;
+  padding: 0;
+  color: var(--text);
+  background: color-mix(in srgb, var(--card-bg) 96%, white);
+  box-shadow: 0 28px 90px rgba(15, 23, 42, 0.28);
+  overflow: hidden;
+}
+
+.metro-info-dialog::backdrop {
+  background: rgba(15, 23, 42, 0.48);
+  backdrop-filter: blur(7px);
+}
+
+.metro-info-card {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0;
+  padding: 34px 34px 30px;
+  text-align: center;
+}
+
+.metro-info-close {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 999px;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--card-bg) 75%, var(--border));
+  font-size: 21px;
+  line-height: 1;
+}
+
+.metro-info-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 20px;
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  border-radius: 20px;
+  color: #fff;
+  background: linear-gradient(145deg, #6f7fff, #4057e8);
+  box-shadow: 0 12px 28px rgba(80, 104, 245, 0.28);
+  font-size: 29px;
+  font-weight: 750;
+}
+
+.metro-info-card h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 21px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.metro-info-card p {
+  max-width: 340px;
+  margin: 13px 0 25px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.metro-info-confirm {
+  min-height: 44px;
+  border: 0;
+  border-radius: 12px;
+  padding: 0 22px;
+  color: #fff;
+  background: linear-gradient(135deg, #5068f5, #354dde);
+  box-shadow: 0 9px 22px rgba(80, 104, 245, 0.25);
+  font-weight: 680;
+}
+
+.metro-info-confirm:hover,
+.metro-info-confirm:focus-visible {
+  background: linear-gradient(135deg, #435bf0, #2d43ce);
+}
+
+@media (prefers-color-scheme: dark) {
+  .metro-info-dialog {
+    background: #101b2d;
+    border-color: rgba(148, 163, 184, 0.28);
+  }
+
+  .metro-info-close {
+    background: rgba(148, 163, 184, 0.14);
+  }
+}
+
+@media (max-width: 520px) {
+  .metro-info-card { padding: 30px 23px 25px; }
+  .metro-info-icon { width: 58px; height: 58px; border-radius: 18px; }
+  .metro-info-card h2 { font-size: 19px; }
+}
+
 .metro-loading-content {
   display: grid;
   justify-items: center;
@@ -574,6 +679,10 @@ body {
   cursor: default;
 }
 
+#metroZone .map-shell.vue-ligne .station-sat {
+  font-size: 34px;
+}
+
 #metroZone .map-shell.vue-ligne .branch {
   stroke-width: 11px;
 }
@@ -609,6 +718,10 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
+  #metroZone {
+    --canvas: #07111f !important;
+  }
+
   #search,
   .filters button,
   .card {
@@ -621,6 +734,32 @@ body {
 
   .filters button {
     background: rgba(148, 163, 184, 0.12);
+  }
+
+  #metroZone .node-label {
+    stroke: var(--canvas);
+    stroke-width: 3px;
+  }
+
+  #metroZone .node-meta {
+    stroke: var(--canvas);
+    stroke-width: 2px;
+  }
+
+  #metroZone .station:not(.is-sst):not(.is-sat) .node-label,
+  #metroZone .station:not(.is-sst):not(.is-sat) .linear-station-label {
+    fill: #dbe7f5 !important;
+  }
+
+  #metroZone .station:not(.is-sst):not(.is-sat) .node-meta {
+    fill: #aebdd0 !important;
+  }
+
+  #metroZone .linear-station-label,
+  #metroZone .station-sat {
+    stroke: var(--canvas);
+    stroke-width: 3px;
+    stroke-linejoin: round;
   }
 }
 
@@ -905,7 +1044,7 @@ body.metro-mobile-landscape .metro-mobile-menu {
 </style>
 
 
-  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-DwDpP9-q.js"></script>
+  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-CxNJ0PZK.js"></script>
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-CPj5r37E.js">
   <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-B_hedudO.css">
@@ -979,6 +1118,16 @@ body.metro-mobile-landscape .metro-mobile-menu {
     <button type="button" data-metro-mobile-sats data-mobile-icon="●" aria-pressed="false">Afficher SAT</button>
   </div>
 </aside>
+
+<dialog id="metroInfoDialog" class="metro-info-dialog" aria-labelledby="metroInfoTitle" aria-describedby="metroInfoText">
+  <form method="dialog" class="metro-info-card">
+    <button class="metro-info-close" type="submit" value="cancel" aria-label="Fermer">×</button>
+    <span class="metro-info-icon" aria-hidden="true">M</span>
+    <h2 id="metroInfoTitle">À propos de la vue Métro</h2>
+    <p id="metroInfoText">Cette vue propose une lecture simplifiée du réseau. Elle est actuellement en phase d’ajustement et peut présenter quelques imprécisions.</p>
+    <button class="metro-info-confirm" type="submit" value="confirm">Afficher la vue</button>
+  </form>
+</dialog>
 
 </body>
 </html>
