@@ -525,17 +525,8 @@ body {
   font-size: 32px;
 }
 
-#metroZone .station.satellite .station-label {
-  font-size: 21px;
-}
-
 #metroZone .station-sat {
   font-size: 18px;
-}
-
-#metroZone .hub .hub-title,
-#metroZone .hub.junction .hub-title {
-  font-size: 38px;
 }
 
 #metroZone .metro-line-name {
@@ -557,11 +548,6 @@ body {
   stroke-width: 5px;
 }
 
-#metroZone .map-shell.vue-ligne .station.is-line-endpoint .station-dot {
-  fill: var(--card-bg);
-  stroke-width: 7px;
-}
-
 #metroZone .metro-station-leader {
   stroke: var(--node-line-color);
   stroke-width: 3;
@@ -575,15 +561,6 @@ body {
 
 #metroZone .station.is-sst .linear-station-label {
   font-size: 44px !important;
-}
-
-#metroZone .map-shell.vue-ligne .station.satellite .station-sat {
-  font-size: 27px !important;
-  font-weight: 700;
-}
-
-#metroZone .map-shell.vue-ligne .station.satellite .sat-stem {
-  stroke-width: 3px;
 }
 
 #metroZone .linear-station-label {
@@ -601,45 +578,6 @@ body {
   stroke-width: 11px;
 }
 
-.metro-map-shell {
-  overflow: hidden;
-  width: 100%;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: var(--card-bg);
-  box-shadow: 0 4px 12px var(--shadow);
-}
-
-.metro-toolbar {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  min-height: 48px;
-  padding: 10px 14px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.metro-toolbar strong { color: var(--text); font-size: 15px; }
-.metro-toolbar label { display: inline-flex; align-items: center; gap: 6px; }
-.metro-toolbar span { margin-left: auto; }
-.metro-canvas-wrap { overflow: auto; max-height: min(80vh, 900px); }
-.metro-map { display: block; width: 100%; min-width: 900px; min-height: 600px; touch-action: none; cursor: grab; }
-.metro-map.is-panning { cursor: grabbing; }
-.metro-background { fill: color-mix(in srgb, var(--card-bg) 94%, var(--accent)); }
-.metro-branch { stroke-width: 8; stroke-linecap: round; opacity: .86; }
-.metro-line-title { font-size: 25px; font-weight: 800; }
-.metro-station { cursor: pointer; text-decoration: none; }
-.metro-station circle { fill: var(--card-bg); stroke-width: 5; }
-.metro-station.is-sat circle { stroke-width: 3; }
-.metro-station-label {
-  fill: var(--text); font-size: 15px; font-weight: 650; text-anchor: middle;
-  paint-order: stroke; stroke: var(--card-bg); stroke-width: 6px; stroke-linejoin: round;
-}
-.metro-station-label.below { dominant-baseline: hanging; }
-.metro-station:hover .metro-station-label,
-.metro-station:focus-visible .metro-station-label { fill: var(--accent); }
-
 .metro-zone [data-node-id].is-search-highlight {
   animation: metroPosteBlink 0.42s ease-in-out 3;
 }
@@ -648,11 +586,6 @@ body {
   0%, 100% { opacity: 1; }
   25%, 75% { opacity: 0.08; }
   50% { opacity: 1; }
-}
-
-@media (max-width: 600px) {
-  .metro-toolbar { flex-wrap: wrap; gap: 8px 14px; }
-  .metro-toolbar span { width: 100%; margin-left: 0; }
 }
 
 .pill:focus-visible,
@@ -917,15 +850,6 @@ body.metro-mobile-landscape .metro-mobile-menu {
   outline-offset: 2px;
 }
 
-.metro-mobile-menu-panel button[data-metro-mobile-reset] {
-  position: absolute;
-  right: 5px;
-  bottom: max(8px, env(safe-area-inset-bottom));
-  left: 5px;
-  width: auto;
-  max-width: none;
-}
-
 .metro-mobile-menu-panel button[hidden] {
   display: none;
 }
@@ -948,18 +872,6 @@ body.metro-mobile-landscape .metro-mobile-menu {
 
 .metro-mobile-tri button {
   width: 100%;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
 
 /* Desktop compact: densite proche de l'ancienne capture */
@@ -993,7 +905,7 @@ body.metro-mobile-landscape .metro-mobile-menu {
 </style>
 
 
-  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-CSjZnc21.js"></script>
+  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-DwDpP9-q.js"></script>
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-CPj5r37E.js">
   <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-B_hedudO.css">
@@ -1037,9 +949,7 @@ body.metro-mobile-landscape .metro-mobile-menu {
       </span>
       <button id="resetLayout" type="button">Réinitialiser la vue</button>
       <button id="toggleSats" type="button" aria-pressed="false">Afficher les SAT</button>
-      <button id="defaultView" type="button" hidden>Affichage par défaut</button>
       <input id="showSats" type="checkbox" hidden>
-      <span id="summary" hidden>Chargement des postes…</span>
     </span>
 </div>
 
@@ -1063,10 +973,9 @@ body.metro-mobile-landscape .metro-mobile-menu {
       <button type="button" data-metro-disposition="ligne" data-mobile-icon="≋" aria-pressed="false">Par ligne</button>
     </div>
     <div class="metro-mobile-tri" role="group" aria-label="Tri des lignes" hidden>
-      <button type="button" data-metro-tri-critere="numero" aria-pressed="true">N° croissant</button>
+      <button type="button" data-metro-tri-critere="numero" aria-label="Numéro croissant" aria-pressed="true">0–9</button>
       <button type="button" data-metro-tri-critere="postes" aria-pressed="false">+ de postes</button>
     </div>
-    <button type="button" data-metro-mobile-reset data-mobile-icon="↺" hidden>Réinitialiser</button>
     <button type="button" data-metro-mobile-sats data-mobile-icon="●" aria-pressed="false">Afficher SAT</button>
   </div>
 </aside>
