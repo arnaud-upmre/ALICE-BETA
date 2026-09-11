@@ -754,6 +754,13 @@
           "default": "#60a5fa"
         },
         {
+          "id": "colors.map.missingData",
+          "label": "Carte — contour d’un poste ou SAT avec des données à compléter",
+          "type": "color",
+          "value": "#d66a00",
+          "default": "#d66a00"
+        },
+        {
           "id": "colors.map.levelCrossing",
           "label": "Couleur intérieure du point",
           "type": "color",

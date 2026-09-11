@@ -19,11 +19,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png" />
-    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-L9fGmRiM.js"></script>
+    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-BlvySAbd.js"></script>
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-DJrdM6n_.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/preload-helper-C5ajgpwC.js">
-    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-BGrhWvWu.css">
+    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-z1b4omoi.css">
   </head>
   <body>
     <div id="map"></div>
@@ -47,6 +47,11 @@
       <ul class="recherche-resultats" id="recherche-resultats" aria-label="Resultats de recherche"></ul>
     </div>
     <div class="info-chargement-couche" id="info-chargement-couche" aria-live="polite" aria-hidden="true"></div>
+    <div class="bandeau-donnees-a-completer" id="bandeau-donnees-a-completer" role="status" hidden>
+      <span class="bandeau-donnees-a-completer-repere" aria-hidden="true"></span>
+      <strong id="bandeau-donnees-a-completer-texte">Données à compléter</strong>
+      <button id="bandeau-donnees-a-completer-quitter" type="button">Quitter</button>
+    </div>
 
     <div class="controle-filtres" id="controle-filtres">
       <button
@@ -136,6 +141,13 @@
                 <span class="filtre-texte"><strong>Satellites</strong><small>SAT des postes et sous-stations</small></span>
                 <span class="filtre-compteur" id="compteur-sat">(0)</span>
                 <input type="checkbox" name="filtre-sat" />
+                <span class="filtre-switch" aria-hidden="true"></span>
+              </label>
+              <label class="option-filtre option-filtre-a-completer" id="option-donnees-a-completer">
+                <span class="filtre-repere filtre-repere-a-completer" aria-hidden="true"><i></i></span>
+                <span class="filtre-texte"><strong>Données à compléter</strong><small>Postes et satellites sans appareil renseigné</small></span>
+                <span class="filtre-compteur" id="compteur-donnees-a-completer">(…)</span>
+                <input type="checkbox" name="filtre-donnees-a-completer" />
                 <span class="filtre-switch" aria-hidden="true"></span>
               </label>
             </div>
