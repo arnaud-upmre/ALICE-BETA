@@ -288,7 +288,7 @@
           "label": "Carte — opacité d’une pastille regroupant plusieurs appareils",
           "type": "number",
           "unit": "%",
-          "value": 75,
+          "value": 25,
           "default": 25,
           "min": 5,
           "max": 100,

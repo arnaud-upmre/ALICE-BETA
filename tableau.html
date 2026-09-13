@@ -58,16 +58,16 @@
     --text: var(--alice-text-dark);
     --muted: var(--alice-muted-dark);
 
-    --pill-bg: rgba(96, 165, 250, 0.14);
-    --pill-text: var(--tableau-pill-text-dark, #8fc2ff);
+    --pill-bg: color-mix(in srgb, #97c7ec 14%, transparent);
+    --pill-text: var(--tableau-pill-text-dark, #97c7ec);
 
-    --sat-bg: rgba(251, 191, 36, 0.14);
-    --sat-text: var(--tableau-sat-text-dark, #ffd38a);
+    --sat-bg: color-mix(in srgb, #f1d18a 14%, transparent);
+    --sat-text: var(--tableau-sat-text-dark, #f1d18a);
 
-    --hp-bg: rgba(248, 113, 113, 0.14);
-    --hp-text: var(--tableau-hp-text-dark, #fca5a5);
+    --hp-bg: color-mix(in srgb, #f08992 14%, transparent);
+    --hp-text: var(--tableau-hp-text-dark, #f08992);
 
-    --accent: var(--tableau-accent-dark, #60a5fa);
+    --accent: var(--tableau-accent-dark, #97c7ec);
     --border: var(--alice-line-strong-dark);
     --shadow: rgba(0, 0, 0, 0.35);
   }
@@ -283,8 +283,8 @@ body {
 }
 
 .card.hp-poste{
-  background: linear-gradient(135deg, #fff1f1, #ffe4e4);
-  border: 1px solid #ef9a9a;
+  background: linear-gradient(135deg, color-mix(in srgb, #f08992 12%, #ffffff), color-mix(in srgb, #f08992 22%, #ffffff));
+  border: 1px solid #f08992;
   box-shadow: 0 6px 16px rgba(200, 14, 14, 0.18);
 }
 
@@ -430,7 +430,7 @@ body {
 }
 
 .filters button.activeFilter {
-  background: linear-gradient(135deg, #5b6eff, #5068f5);
+  background: linear-gradient(135deg, #5068f5, #264fc4);
   color: #ffffff;
   border-color: #5068f5;
   box-shadow: 0 6px 18px rgba(80, 104, 245, 0.35);
@@ -536,11 +536,11 @@ body {
 
 </style>
 
-  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-xGLI2l6U.js"></script>
+  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-CPbEE2Hr.js"></script>
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-DJrdM6n_.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-4CJlUipw.js">
-  <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-B_hedudO.css">
+  <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-1K9g0Kfa.css">
 </head>
 <body>
 <div class="board-header">
