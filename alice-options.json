@@ -689,6 +689,13 @@
           "type": "color",
           "value": "#c80e0e",
           "default": "#c80e0e"
+        },
+        {
+          "id": "colors.apparatus.mixedSupport",
+          "label": "Fiches d’appareils — en-tête d’un support portant plusieurs couleurs d’appareils",
+          "type": "color",
+          "value": "#ef7c1f",
+          "default": "#ef7c1f"
         }
       ]
     },

@@ -1,1 +1,0 @@
-import{a as e,n as t,o as n}from"./appareils-BdqPfuCn.js";export{t as PALETTE_APPAREILS,e as determinerCouleurAppareil,n as determinerCouleurCarteAppareil};
