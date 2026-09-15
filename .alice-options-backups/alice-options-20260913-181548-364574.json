@@ -641,7 +641,7 @@
           "id": "colors.apparatus.switch",
           "label": "Pastilles des appareils SI, I et D (interrupteurs)",
           "type": "color",
-          "value": "#e05606",
+          "value": "#de511d",
           "default": "#de511d"
         },
         {
