@@ -318,11 +318,11 @@
         },
         {
           "id": "display.maximumOpenSheets",
-          "label": "Fiches — nombre pouvant rester ouvertes en même temps",
+          "label": "Fiches — nombre pouvant rester ouvertes en même temps (PC)",
           "type": "number",
           "unit": "fiches",
-          "value": 2,
-          "default": 2,
+          "value": 3,
+          "default": 3,
           "min": 1,
           "max": 10,
           "step": 1
