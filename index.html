@@ -16,12 +16,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png" />
-    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-BULpbEsK.js"></script>
+    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-DSryLnB4.js"></script>
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-C1iKwAH6.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/preload-helper-C5ajgpwC.js">
-    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-DBx5zuec.css">
-    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/main-BbiTTRSE.js">
+    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-M-4csd3J.css">
+    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/main-CncA8nO1.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/maplibre-gFZAzJIF.js">
   </head>
   <body>
@@ -506,87 +506,110 @@
         <div class="modal-fiche-contenu maplibregl-popup-content" id="modal-fiche-contenu"></div>
       </div>
     </div>
-    <div class="modal-apropos" id="modal-apropos" role="dialog" aria-modal="true" aria-label="À propos" aria-hidden="true">
-      <div class="modal-apropos-carte">
-        <div class="modal-apropos-entete">
-          <img src="/ALICE-BETA/alice.webp" alt="Logo ALICE" class="modal-apropos-logo" width="118" height="50" onerror="this.style.display='none';" />
-          <h2 class="modal-apropos-titre">À propos d'ALICE</h2>
-          <a
-            id="apropos-version-pill"
-            class="modal-apropos-version-pill"
-            href="./versions.html"
-            title="Voir l'historique des versions"
-          ></a>
-          <button class="modal-apropos-fermer" id="modal-apropos-fermer" type="button" aria-label="Fermer la fenêtre À propos">×</button>
-        </div>
-        <p class="modal-apropos-texte">
-          ALICE est une <strong>A</strong>pplication interne de <strong>L</strong>ocalisation des <strong>I</strong>nstallations de <strong>C</strong>onduite <strong>E</strong>ALE, conçue pour faciliter le repérage, l’analyse et l’accès aux informations d’exploitation pour les équipes de maintenance, travaux, groupe technique, régulation et encadrement.
-        </p>
-        <p class="modal-apropos-texte">
-          Application développée par <a href="mailto:arnaud.debaecker+ALICE@gmail.com">A. Debaecker</a>.
-        </p>
-        <p class="modal-apropos-note">
-          ALICE est un projet expérimental en cours d'évaluation.
-        </p>
-        <h3 class="modal-apropos-sous-titre">Sources de données</h3>
-        <ul class="modal-apropos-liste">
-          <li>PN et lignes ferroviaires OSM locales: données OpenStreetMap contributors, licence ODbL 1.0.</li>
-          <li>Couche ferroviaire ORM vectorielle : données © OpenStreetMap contributors, licence ODbL 1.0 ; rendu et service OpenRailwayMap-vector.</li>
-          <li>PK complémentaires: SNCF Open Data / extras-opendata-sncf-reseau selon couches actives, licence ODbL-1.0.</li>
-          <li>Fond cartographique: CARTO, IGN, OpenStreetMap (selon fond/couches).</li>
-        </ul>
-        <h3 class="modal-apropos-sous-titre">Réutilisation</h3>
-        <p class="modal-apropos-texte">© ALICE – Données internes : réutilisation interdite sans autorisation.</p>
-        <p class="modal-apropos-note">
-          Les données Open Data tierces restent soumises à leurs licences respectives.
-        </p>
-<details class="modal-apropos-confidentialite">
-  <summary>Confidentialité et protection des données</summary>
-  <div class="modal-apropos-confidentialite-contenu">
+    <!-- À propos : le contenu vit ici hors flux et n'est déplacé dans le panneau
+         de fiche qu'à l'ouverture. Les éléments (pastille de version, bouton
+         d'installation PWA) gardent ainsi leurs écouteurs posés au chargement. -->
+    <div class="reserve-apropos" id="reserve-apropos" hidden>
+      <div class="popup-carte popup-carte-poste-acces popup-carte-origine-apropos" id="apropos-contenu">
+        <section class="popup-section popup-fiche-entete popup-fiche-entete-apropos">
+          <div class="popup-fiche-identite">
+            <img src="/ALICE-BETA/alice.webp" alt="" class="popup-fiche-logo-apropos" width="118" height="50" onerror="this.style.display='none';" />
+            <p class="popup-poste-entete-principal">À propos d'ALICE</p>
+          </div>
+          <div class="popup-poste-ligne-titre">
+            <span>Application de Localisation des Installations de Conduite EALE</span>
+            <a id="apropos-version-pill" class="fiche-apropos-version-pill" href="./versions.html" title="Voir l'historique des versions"></a>
+          </div>
+        </section>
 
-    <p class="modal-apropos-texte">ALICE est un outil expérimental développé à titre personnel par A. Debaecker et partagé avec un nombre limité d'utilisateurs. Il ne s'agit pas d'une application officielle.</p>
+        <section class="popup-section popup-fiche-carte popup-fiche-presentation">
+          <div class="popup-section-titre popup-section-titre-gauche">
+            <span class="popup-fiche-section-icone"><svg class="popup-icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+            <span class="popup-fiche-section-libelle"><strong>Présentation</strong></span>
+          </div>
+          <p class="fiche-apropos-texte">
+            ALICE est une <strong>A</strong>pplication interne de <strong>L</strong>ocalisation des <strong>I</strong>nstallations de <strong>C</strong>onduite <strong>E</strong>ALE, conçue pour faciliter le repérage, l'analyse et l'accès aux informations d'exploitation pour les équipes de maintenance, travaux, groupe technique, régulation et encadrement.
+          </p>
+          <p class="fiche-apropos-texte">
+            Application développée par <a href="mailto:arnaud.debaecker+ALICE@gmail.com">A. Debaecker</a>.
+          </p>
+        </section>
 
-    <h3 class="modal-apropos-sous-titre">Responsable du traitement</h3>
-    <p class="modal-apropos-texte">A. Debaecker, en tant que personne physique et auteur d'ALICE, agit comme responsable du traitement des données décrites ci-dessous.</p>
+        <section class="popup-section popup-fiche-carte popup-fiche-avertissement">
+          <div class="popup-section-titre popup-section-titre-gauche">
+            <span class="popup-fiche-section-icone"><svg class="popup-icone" viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4M12 17h.01"/></svg></span>
+            <span class="popup-fiche-section-libelle"><strong>Avertissement</strong><span>Usage à titre indicatif</span></span>
+          </div>
+          <p class="fiche-apropos-texte">ALICE est un outil personnel et expérimental, sans caractère officiel. Il n'est ni validé, ni approuvé, ni maintenu par une entité quelconque.</p>
+          <p class="fiche-apropos-texte">Les informations proviennent de sources ouvertes et de relevés de terrain non vérifiés. Elles peuvent être incomplètes, obsolètes ou erronées, y compris les positions affichées sur la carte.</p>
+          <p class="fiche-apropos-texte">ALICE est une aide au repérage et ne se substitue en aucun cas aux documents, procédures et référentiels officiels, qui restent seuls opposables. Toute vérification relève de l'utilisateur, qui l'utilise sous sa seule responsabilité. L'auteur ne saurait être tenu responsable des conséquences d'une utilisation de ces informations.</p>
+          <p class="fiche-apropos-note">ALICE ne doit pas être utilisé en situation de sécurité ou d'urgence.</p>
+        </section>
 
-    <h3 class="modal-apropos-sous-titre">Base légale</h3>
-    <p class="modal-apropos-texte">Les traitements décrits reposent sur le consentement de l'utilisateur, exprimé par l'envoi volontaire du formulaire de demande d'ajout d'un appareil ou par l'activation volontaire de la géolocalisation. L'utilisateur peut retirer son consentement à tout moment. Il peut désactiver la géolocalisation dans les paramètres de son navigateur ou demander la suppression d'une demande déjà transmise en contactant l'auteur d'ALICE. Le retrait du consentement n'affecte pas la licéité du traitement effectué avant ce retrait.</p>
+        <section class="popup-section popup-fiche-carte popup-fiche-sources">
+          <div class="popup-section-titre popup-section-titre-gauche">
+            <span class="popup-fiche-section-icone"><svg class="popup-icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15M9 3.236v15"/></svg></span>
+            <span class="popup-fiche-section-libelle"><strong>Sources de données</strong></span>
+          </div>
+          <ul class="fiche-apropos-liste">
+            <li>PN et lignes ferroviaires OSM locales : données OpenStreetMap contributors, licence ODbL 1.0.</li>
+            <li>Couche ferroviaire ORM vectorielle : données © OpenStreetMap contributors, licence ODbL 1.0 ; rendu et service OpenRailwayMap-vector.</li>
+            <li>PK complémentaires : d'après SNCF Open Data / extras-opendata-sncf-reseau, licence ODbL 1.0 — <strong>données modifiées</strong> : de nombreuses coordonnées ont été ajustées manuellement par l'auteur. Les PK affichés ne constituent pas une reprise fidèle de la source d'origine et n'ont aucune valeur de référence.</li>
+            <li>Fond cartographique : CARTO, IGN, OpenStreetMap (selon fond/couches).</li>
+          </ul>
+          <h3 class="fiche-apropos-sous-titre">Réutilisation</h3>
+          <p class="fiche-apropos-texte">© ALICE – Données internes : réutilisation interdite sans autorisation.</p>
+          <p class="fiche-apropos-note">Les données Open Data tierces restent soumises à leurs licences respectives.</p>
+        </section>
 
-    <h3 class="modal-apropos-sous-titre">Données transmises</h3>
-    <p class="modal-apropos-texte">Le formulaire de demande d'ajout d'un appareil transmet uniquement les informations nécessaires au traitement de la demande : installation concernée, coordonnées GPS du ou des points sélectionnés et description.</p>
-    <p class="modal-apropos-texte">Aucune donnée d'identification directe (nom, adresse électronique, numéro de téléphone) n'est demandée. Les coordonnées GPS peuvent néanmoins constituer des données personnelles indirectement identifiantes. Merci de ne saisir aucune information personnelle ou confidentielle dans les descriptions.</p>
+        <section class="popup-section popup-fiche-carte popup-fiche-confidentialite">
+          <div class="popup-section-titre popup-section-titre-gauche">
+            <span class="popup-fiche-section-icone"><svg class="popup-icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="16" r="1"/><rect x="3" y="10" width="18" height="12" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg></span>
+            <span class="popup-fiche-section-libelle"><strong>Confidentialité</strong><span>Protection des données (RGPD)</span></span>
+          </div>
 
-    <h3 class="modal-apropos-sous-titre">Géolocalisation</h3>
-    <p class="modal-apropos-texte">La géolocalisation est facultative et s'active uniquement à la demande de l'utilisateur et après autorisation du navigateur.</p>
-    <p class="modal-apropos-texte">Sur la carte principale, votre position sert uniquement à afficher les installations proches. Elle n'est ni enregistrée par ALICE ni transmise à l'auteur. Aucun historique de déplacement n'est constitué.</p>
-    <p class="modal-apropos-texte">Lors de l'envoi d'une demande d'ajout d'un appareil, seules les coordonnées GPS du ou des points que vous avez sélectionnés et confirmés sont transmises avec la demande. Ce ou ces points ne correspondent pas nécessairement à la position réelle de l'utilisateur.</p>
+          <h3 class="fiche-apropos-sous-titre">Responsable du traitement</h3>
+          <p class="fiche-apropos-texte">A. Debaecker, en tant que personne physique et auteur d'ALICE, agit comme responsable du traitement des données décrites ci-dessous.</p>
 
-    <h3 class="modal-apropos-sous-titre">Prestataires techniques</h3>
-    <p class="modal-apropos-texte">ALICE utilise GitHub Pages (Microsoft) pour l'hébergement, et Google Apps Script, relié à une feuille Google Sheets, pour la réception des demandes. Ces prestataires peuvent collecter automatiquement quelques données techniques de connexion standard, nécessaires à la sécurité de leurs services. L'auteur d'ALICE n'y a pas accès et ne les utilise pas.</p>
+          <h3 class="fiche-apropos-sous-titre">Base légale</h3>
+          <p class="fiche-apropos-texte">Les traitements décrits reposent sur le consentement de l'utilisateur, exprimé par l'envoi volontaire du formulaire de demande d'ajout d'un appareil ou par l'activation volontaire de la géolocalisation. L'utilisateur peut retirer son consentement à tout moment. Il peut désactiver la géolocalisation dans les paramètres de son navigateur ou demander la suppression d'une demande déjà transmise en contactant l'auteur d'ALICE. Le retrait du consentement n'affecte pas la licéité du traitement effectué avant ce retrait.</p>
 
-    <h3 class="modal-apropos-sous-titre">Traitement et conservation</h3>
-    <p class="modal-apropos-texte">Les demandes non retenues sont supprimées à la fin de leur étude, dans un délai maximum de 3 mois.</p>
-    <p class="modal-apropos-texte">Les informations techniques validées sont intégrées à ALICE et conservées pour la durée d'exploitation d'ALICE, avec une revue périodique visant à retirer les informations obsolètes.</p>
-    <p class="modal-apropos-texte">Toute information personnelle transmise accidentellement est supprimée dès sa détection ou après signalement.</p>
+          <h3 class="fiche-apropos-sous-titre">Données transmises</h3>
+          <p class="fiche-apropos-texte">Le formulaire de demande d'ajout d'un appareil transmet uniquement les informations nécessaires au traitement de la demande : installation concernée, coordonnées GPS du ou des points sélectionnés et description.</p>
+          <p class="fiche-apropos-texte">Aucune donnée d'identification directe (nom, adresse électronique, numéro de téléphone) n'est demandée. Les coordonnées GPS peuvent néanmoins constituer des données personnelles indirectement identifiantes. Merci de ne saisir aucune information personnelle ou confidentielle dans les descriptions.</p>
 
-    <h3 class="modal-apropos-sous-titre">Traceurs</h3>
-    <p class="modal-apropos-texte">Aucun outil de mesure d'audience ni traceur publicitaire. Seules des données strictement fonctionnelles (recherches récentes, notifications lues, préférences d'affichage) sont enregistrées localement dans le navigateur de l'utilisateur. Ces données restent sur l'appareil de l'utilisateur ; l'auteur d'ALICE n'y a pas accès.</p>
+          <h3 class="fiche-apropos-sous-titre">Géolocalisation</h3>
+          <p class="fiche-apropos-texte">La géolocalisation est facultative et s'active uniquement à la demande de l'utilisateur et après autorisation du navigateur.</p>
+          <p class="fiche-apropos-texte">Sur la carte principale, votre position sert uniquement à afficher les installations proches. Elle n'est ni enregistrée par ALICE ni transmise à l'auteur. Aucun historique de déplacement n'est constitué.</p>
+          <p class="fiche-apropos-texte">Lors de l'envoi d'une demande d'ajout d'un appareil, seules les coordonnées GPS du ou des points que vous avez sélectionnés et confirmés sont transmises avec la demande. Ce ou ces points ne correspondent pas nécessairement à la position réelle de l'utilisateur.</p>
 
-    <h3 class="modal-apropos-sous-titre">Vos droits</h3>
-    <p class="modal-apropos-texte">Conformément au RGPD, vous pouvez demander l'accès aux données vous concernant, leur rectification, leur effacement ou la limitation de leur traitement, et, lorsque les conditions sont réunies, la portabilité. Vous pouvez également retirer votre consentement à tout moment, dans les conditions décrites à la section « Base légale ».</p>
-    <p class="modal-apropos-texte">ALICE ne conservant aucune identité ni moyen de contact, une demande doit être accompagnée d'éléments permettant de retrouver l'entrée concernée : date d'envoi approximative, installation visée et contenu de la description transmise.</p>
+          <h3 class="fiche-apropos-sous-titre">Prestataires techniques et traceurs</h3>
+          <p class="fiche-apropos-texte">ALICE utilise GitHub Pages (Microsoft) pour l'hébergement, et Google Apps Script, relié à une feuille Google Sheets, pour la réception des demandes. Ces prestataires peuvent collecter automatiquement quelques données techniques de connexion standard, nécessaires à la sécurité de leurs services. L'auteur d'ALICE n'y a pas accès et ne les utilise pas.</p>
+          <p class="fiche-apropos-texte">Aucun outil de mesure d'audience ni traceur publicitaire. Seules des données strictement fonctionnelles (recherches récentes, notifications lues, préférences d'affichage) sont enregistrées localement dans le navigateur de l'utilisateur. Ces données restent sur l'appareil de l'utilisateur ; l'auteur d'ALICE n'y a pas accès.</p>
 
-    <h3 class="modal-apropos-sous-titre">Contact</h3>
-    <p class="modal-apropos-texte">Pour toute question ou pour exercer vos droits, contactez l'auteur d'ALICE. En cas de difficulté non résolue, vous pouvez saisir la CNIL sur <a href="https://www.cnil.fr/">cnil.fr</a>.</p>
+          <h3 class="fiche-apropos-sous-titre">Traitement et conservation</h3>
+          <p class="fiche-apropos-texte">Les demandes non retenues sont supprimées à la fin de leur étude, dans un délai maximum de 3 mois.</p>
+          <p class="fiche-apropos-texte">Les informations techniques validées sont intégrées à ALICE et conservées pour la durée d'exploitation d'ALICE, avec une revue périodique visant à retirer les informations obsolètes.</p>
+          <p class="fiche-apropos-texte">Toute information personnelle transmise accidentellement est supprimée dès sa détection ou après signalement.</p>
 
-  </div>
-</details>
-        <div class="modal-apropos-actions">
-          <button class="modal-apropos-bouton-install" id="bouton-installer-pwa" type="button">
-            Installer ALICE
-          </button>
-          <p class="modal-apropos-install-note" id="message-installer-pwa" aria-live="polite"></p>
-        </div>
+          <h3 class="fiche-apropos-sous-titre">Vos droits</h3>
+          <p class="fiche-apropos-texte">Conformément au RGPD, vous pouvez demander l'accès aux données vous concernant, leur rectification, leur effacement ou la limitation de leur traitement, et, lorsque les conditions sont réunies, la portabilité. Vous pouvez également retirer votre consentement à tout moment, dans les conditions décrites à la section « Base légale ».</p>
+          <p class="fiche-apropos-texte">ALICE ne conservant aucune identité ni moyen de contact, une demande doit être accompagnée d'éléments permettant de retrouver l'entrée concernée : date d'envoi approximative, installation visée et contenu de la description transmise.</p>
+
+          <h3 class="fiche-apropos-sous-titre">Contact</h3>
+          <p class="fiche-apropos-texte">Pour toute question ou pour exercer vos droits, contactez l'auteur d'ALICE. En cas de difficulté non résolue, vous pouvez saisir la CNIL sur <a href="https://www.cnil.fr/" target="_blank" rel="noopener noreferrer">cnil.fr</a>.</p>
+        </section>
+
+        <section class="popup-section popup-fiche-carte popup-fiche-installation">
+          <div class="popup-section-titre popup-section-titre-gauche">
+            <span class="popup-fiche-section-icone"><svg class="popup-icone" viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M9 14h6M12 17v-6"/></svg></span>
+            <span class="popup-fiche-section-libelle"><strong>Installation</strong></span>
+          </div>
+          <div class="fiche-apropos-actions">
+            <button class="fiche-apropos-bouton-install" id="bouton-installer-pwa" type="button">Installer ALICE</button>
+            <p class="fiche-apropos-install-note" id="message-installer-pwa" aria-live="polite"></p>
+          </div>
+        </section>
       </div>
     </div>
     <div
