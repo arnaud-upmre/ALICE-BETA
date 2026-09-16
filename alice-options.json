@@ -1021,6 +1021,121 @@
           "default": "#ffffff"
         }
       ]
+    },
+    {
+      "id": "metroBoard",
+      "label": "Tableau blanc : vue Métro",
+      "description": "Règle la taille des noms d’arrêts, l’écartement du rail et la mise en évidence de la recherche, dans la vue Métro du tableau blanc.",
+      "options": [
+        {
+          "id": "css.--metro-tableau-taille-nom",
+          "label": "Vue Métro du tableau blanc — taille du nom des arrêts",
+          "type": "number",
+          "unit": "px",
+          "value": 12,
+          "default": 12,
+          "min": 8,
+          "max": 20,
+          "step": 0.5
+        },
+        {
+          "id": "css.--metro-tableau-taille-type",
+          "label": "Vue Métro du tableau blanc — taille du type et du poste parent",
+          "type": "number",
+          "unit": "px",
+          "value": 11,
+          "default": 11,
+          "min": 7,
+          "max": 18,
+          "step": 0.5
+        },
+        {
+          "id": "tableau.metro.minStopGapPx",
+          "label": "Vue Métro du tableau blanc — écart minimal entre deux arrêts",
+          "type": "number",
+          "unit": "px",
+          "value": 36,
+          "default": 36,
+          "min": 24,
+          "max": 120,
+          "step": 1
+        },
+        {
+          "id": "tableau.metro.maxStopGapPx",
+          "label": "Vue Métro du tableau blanc — écart maximal entre deux arrêts",
+          "type": "number",
+          "unit": "px",
+          "value": 200,
+          "default": 200,
+          "min": 60,
+          "max": 600,
+          "step": 10
+        },
+        {
+          "id": "css.--metro-tableau-recherche-clair",
+          "label": "Vue Métro du tableau blanc — couleur de l’arrêt trouvé, en mode clair",
+          "type": "color",
+          "value": "#5068f5",
+          "default": "#5068f5"
+        },
+        {
+          "id": "css.--metro-tableau-recherche-sombre",
+          "label": "Vue Métro du tableau blanc — couleur de l’arrêt trouvé, en mode sombre",
+          "type": "color",
+          "value": "#97c7ec",
+          "default": "#97c7ec"
+        },
+        {
+          "id": "tableau.metro.searchBlinkMs",
+          "label": "Vue Métro du tableau blanc — durée du clignotement des arrêts trouvés",
+          "type": "number",
+          "unit": "ms",
+          "value": 4000,
+          "default": 4000,
+          "min": 0,
+          "max": 20000,
+          "step": 500
+        }
+      ]
+    },
+    {
+      "id": "metroSheet",
+      "label": "Carte : vue Métro d’une ligne (volet de fiche)",
+      "description": "Règle la taille des noms d’arrêts et le rapprochement de la carte dans la vue Métro qui s’ouvre depuis la recherche d’une ligne. Sans rapport avec la vue Métro du tableau blanc, qui a sa propre rubrique.",
+      "options": [
+        {
+          "id": "css.--metro-fiche-taille-nom",
+          "label": "Vue Métro d’une fiche — taille du nom des arrêts",
+          "type": "number",
+          "unit": "px",
+          "value": 14,
+          "default": 14,
+          "min": 9,
+          "max": 22,
+          "step": 0.5
+        },
+        {
+          "id": "css.--metro-fiche-taille-type",
+          "label": "Vue Métro d’une fiche — taille du type et du poste parent",
+          "type": "number",
+          "unit": "px",
+          "value": 12,
+          "default": 12,
+          "min": 7,
+          "max": 18,
+          "step": 0.5
+        },
+        {
+          "id": "vueMetro.stopZoom",
+          "label": "Vue Métro d’une fiche — rapprochement de la carte au clic sur un arrêt",
+          "type": "number",
+          "value": 14.2,
+          "default": 14.2,
+          "min": 8,
+          "max": 19,
+          "step": 0.1
+        }
+      ]
     }
   ]
 }
