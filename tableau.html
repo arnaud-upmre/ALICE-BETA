@@ -534,9 +534,276 @@ body {
   }
 }
 
+
+/* =========================Vue Metro=========================
+   Une ligne par rangee : le rail est horizontal (l'inverse de la vue
+   Metro du volet de fiche, verticale) et les noms montent a 45° au-dessus
+   du rail, comme sur un plan de metro papier.
+
+   C'est la rotation qui permet des arrets etroits : a l'horizontale il
+   fallait 104 px par arret et presque toutes les lignes defilaient ; a 45°
+   il en faut 36, et le nom se deploie dans la hauteur.
+   ============================================================ */
+
+.post-container.mode-metro {
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.ligne-card {
+  /* Reserves recalculees carte par carte en JS
+     (`ajusterHauteursLibellesMetro`) : ces valeurs ne servent qu'au
+     premier rendu, avant la mesure. */
+  --metro-largeur-arret: 36px;
+  --metro-largeur-libelle: 152px;
+  --metro-hauteur-libelles: 124px;
+  --metro-reserve-libelle: 120px;
+
+  position: relative;
+  min-width: 0;
+  padding: 12px 14px;
+}
+
+.ligne-entete {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+  /* Place du bouton de sens, qui est hors du flux. */
+  padding-right: 40px;
+}
+
+.ligne-code {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(80, 104, 245, 0.11);
+  color: var(--accent);
+}
+
+.ligne-nom {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.ligne-compteur {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Bascule de sens, une par ligne : le sens de lecture depend du bout de
+   la ligne d'ou part l'agent. Memorise (voir CLE_SENS_METRO_TABLEAU). */
+.ligne-inverser {
+  position: absolute;
+  top: 11px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  min-height: 26px;
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ligne-inverser:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.ligne-inverser[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: rgba(80, 104, 245, 0.12);
+  color: var(--accent);
+}
+
+.ligne-inverser:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Le defilement est porte par un conteneur separe : un rail absolu dans
+   l'element qui defile lui-meme resterait colle au bord visible au lieu
+   de suivre les arrets. */
+.metro-defilement {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 2px;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--accent) 35%, transparent) transparent;
+}
+
+.metro-defilement::-webkit-scrollbar {
+  height: 6px;
+}
+
+.metro-defilement::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.metro-defilement::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+/* Les marqueurs sont en bas, les libelles montent dans le retrait haut.
+   Le retrait droit accueille le dernier libelle, qui part vers la droite :
+   sans lui il serait coupe par le bord du conteneur de defilement. */
+.metro-rail {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: max-content;
+  margin: 0;
+  padding: var(--metro-hauteur-libelles) var(--metro-reserve-libelle) 4px 0;
+  list-style: none;
+}
+
+/* Le rail court derriere les arrets, du premier marqueur au dernier. */
+.metro-rail::before {
+  content: "";
+  position: absolute;
+  bottom: 12px;
+  left: calc(var(--metro-largeur-arret) / 2);
+  right: calc(var(--metro-reserve-libelle) + var(--metro-largeur-arret) / 2);
+  height: 3px;
+  margin-bottom: -1.5px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.35;
+}
+
+.metro-stop {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  width: var(--metro-largeur-arret);
+}
+
+/* Attache du marqueur vers son libelle, 13 px a 45°. */
+.metro-stop::before {
+  content: "";
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  width: 13px;
+  height: 1px;
+  background: var(--muted);
+  opacity: 0.5;
+  transform-origin: 0 50%;
+  transform: rotate(-45deg);
+}
+
+/* Boite de taille fixe : les marqueurs de tailles differentes
+   (poste, SAT) restent centres sur le meme rail. */
+.metro-stop-marqueur {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.metro-stop-marqueur::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  border: 2.5px solid var(--accent);
+  border-radius: 50%;
+  background: var(--card-bg);
+}
+
+/* Le libelle pivote autour de son coin bas-gauche, pose au bout de
+   l'attache. Absolu : il ne doit pas elargir l'arret. */
+.metro-stop-texte {
+  position: absolute;
+  bottom: 21px;
+  left: calc(50% + 9px);
+  max-width: var(--metro-largeur-libelle);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transform-origin: 0 100%;
+  transform: rotate(-45deg);
+  font-size: 11px;
+  line-height: 1.15;
+  /* Les libelles voisins se chevauchent : sans ca, ils intercepteraient
+     le survol destine au marqueur (qui porte l'infobulle du nom complet). */
+  pointer-events: none;
+}
+
+.metro-stop-nom {
+  font-weight: 650;
+}
+
+.metro-stop-type,
+.metro-stop-parent {
+  margin-left: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
+
+/* SAT : meme rail, marqueur plus petit */
+.metro-stop.est-sat .metro-stop-marqueur::before {
+  width: 7px;
+  height: 7px;
+  border-width: 2px;
+  border-color: var(--sat-text);
+}
+
+.metro-stop.est-sat .metro-stop-nom {
+  color: var(--sat-text);
+}
+
+/* Hors patrimoine */
+.metro-stop.est-hp .metro-stop-marqueur::before {
+  border-color: var(--hp-text);
+}
+
+.metro-stop.est-hp .metro-stop-nom {
+  color: var(--hp-text);
+}
+
+/* Installations hors EALE (Atelier, Agent E...) */
+.metro-stop.est-autre .metro-stop-marqueur::before {
+  border-color: var(--muted);
+}
+
+.metro-vide {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+@media (max-width: 480px) {
+  .ligne-card {
+    --metro-largeur-arret: 32px;
+    --metro-largeur-libelle: 118px;
+  }
+}
+
 </style>
 
-  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-DvFex1o8.js"></script>
+  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-C04igAI2.js"></script>
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-C1iKwAH6.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-4CJlUipw.js">
@@ -565,6 +832,7 @@ body {
 <div class="filters">
       <button type="button" data-tableau-tri-critere="alphabet" aria-pressed="true">A → Z</button>
       <button type="button" data-tableau-tri-critere="appareils" aria-pressed="false">+ appareils</button>
+      <button type="button" data-tableau-vue="metro" aria-pressed="false" title="Afficher les lignes en vue Métro">MÉTRO</button>
 </div>
 
 <div id="postesZone" class="post-container"></div>
