@@ -16,12 +16,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png" />
-    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-BlRXgsAS.js"></script>
+    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-B0h-B_bs.js"></script>
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-C1iKwAH6.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/preload-helper-C5ajgpwC.js">
-    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-DKvfHyO4.css">
-    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/main-Bnueklgt.js">
+    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-BBDD2OpY.css">
+    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/main-B7Hmx_uy.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/maplibre-gFZAzJIF.js">
   </head>
   <body>
@@ -139,64 +139,6 @@
       <div class="menu-contextuel-separateur"></div>
       <button class="menu-contextuel-item" id="ctx-add-appareil" type="button">📍 Ajouter un appareil ici</button>
     </div>
-    <div
-      class="modal-itineraire"
-      id="modal-itineraire"
-      role="dialog"
-      aria-modal="false"
-      aria-label="Calculer un trajet"
-      aria-hidden="true"
-    >
-      <div class="modal-itineraire-carte">
-        <div class="modal-itineraire-entete">
-          <button class="modal-itineraire-fermer" id="modal-itineraire-fermer" type="button" aria-label="Fermer le calcul trajet">×</button>
-          <h2 class="modal-itineraire-titre">Calculer un trajet</h2>
-          <p class="modal-itineraire-sous-titre">Ajoutez, supprimez et réorganisez les étapes</p>
-        </div>
-
-        <div class="modal-itineraire-champs" id="itineraire-etapes" aria-label="Étapes du trajet">
-        </div>
-        <div class="modal-itineraire-commandes-bas">
-          <button class="modal-itineraire-ajouter" id="itineraire-ajouter-etape" type="button">Ajouter une destination</button>
-          <button class="modal-itineraire-optimiser" id="itineraire-optimiser-etapes" type="button" hidden>Optimiser les étapes</button>
-        </div>
-
-        <div class="modal-itineraire-etat" id="itineraire-etat">Choisissez un départ et une arrivée.</div>
-
-        <section class="modal-itineraire-resume" id="itineraire-resume" aria-live="polite">
-          <div class="modal-itineraire-resume-tete">
-            <strong>Résumé du trajet</strong>
-            <span>Temps et distance estimés</span>
-          </div>
-          <div class="modal-itineraire-cartes">
-            <div class="modal-itineraire-carte-kpi">
-              <strong id="itineraire-distance">-</strong>
-              <span>Distance</span>
-            </div>
-            <div class="modal-itineraire-carte-kpi">
-              <strong id="itineraire-duree">-</strong>
-              <span>Temps estimé</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="modal-itineraire-variantes" id="itineraire-variantes" hidden aria-label="Itinéraires proposés">
-          <div class="modal-itineraire-variantes-entete">
-            <strong>Itinéraires possibles</strong>
-            <span id="itineraire-variantes-compteur"></span>
-          </div>
-          <div class="modal-itineraire-variantes-liste" id="itineraire-variantes-liste"></div>
-          <small class="modal-itineraire-variantes-note">Péages indiqués selon les données routières disponibles.</small>
-        </section>
-
-        <div class="modal-itineraire-actions">
-          <a class="popup-bouton-itineraire" id="itineraire-google" href="#" target="_blank" rel="noopener noreferrer">🗺️ Google Maps</a>
-          <a class="popup-bouton-itineraire" id="itineraire-apple" href="#" target="_blank" rel="noopener noreferrer">🍎 Plans</a>
-          <a class="popup-bouton-itineraire" id="itineraire-waze" href="#" target="_blank" rel="noopener noreferrer">🚗 Waze</a>
-        </div>
-
-      </div>
-    </div>
     <div class="modal-fiche" id="modal-fiche" role="dialog" aria-modal="true" aria-label="Fiche" aria-hidden="true">
       <div class="modal-fiche-carte">
         <button class="modal-fiche-redimensionner" type="button" aria-label="Redimensionner la fiche" title="Faire glisser pour redimensionner"></button>
@@ -228,6 +170,68 @@
     <!-- Contenus du volet unique : deplaces dans #modal-fiche-contenu a
          l'ouverture, ranges ici a la fermeture. Voir ouvrirVoletContenu()
          dans src/app/modules/fiche-panneau.js. -->
+    <div class="reserve-volet" id="reserve-itineraire" hidden>
+        <div class="modal-itineraire-carte" id="volet-itineraire-contenu">
+          <div class="modal-itineraire-entete">
+            <h2 class="modal-itineraire-titre">Calculer un trajet</h2>
+            <p class="modal-itineraire-sous-titre">Ajoutez, supprimez et réorganisez les étapes</p>
+          </div>
+
+          <div class="modal-itineraire-champs" id="itineraire-etapes" aria-label="Étapes du trajet">
+          </div>
+          <div class="modal-itineraire-commandes-bas">
+            <button class="modal-itineraire-ajouter" id="itineraire-ajouter-etape" type="button">Ajouter une destination</button>
+            <button class="modal-itineraire-optimiser" id="itineraire-optimiser-etapes" type="button" hidden>Optimiser les étapes</button>
+          </div>
+
+          <div class="modal-itineraire-etat" id="itineraire-etat">Choisissez un départ et une arrivée.</div>
+
+          <section class="modal-itineraire-resume" id="itineraire-resume" aria-live="polite">
+            <div class="modal-itineraire-resume-tete">
+              <strong>Résumé du trajet</strong>
+              <span>Temps et distance estimés</span>
+            </div>
+            <div class="modal-itineraire-cartes">
+              <div class="modal-itineraire-carte-kpi">
+                <strong id="itineraire-distance">-</strong>
+                <span>Distance</span>
+              </div>
+              <div class="modal-itineraire-carte-kpi">
+                <strong id="itineraire-duree">-</strong>
+                <span>Temps estimé</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="modal-itineraire-variantes" id="itineraire-variantes" hidden aria-label="Itinéraires proposés">
+            <div class="modal-itineraire-variantes-entete">
+              <strong>Itinéraires possibles</strong>
+              <span id="itineraire-variantes-compteur"></span>
+            </div>
+            <div class="modal-itineraire-variantes-liste" id="itineraire-variantes-liste"></div>
+            <small class="modal-itineraire-variantes-note">Péages indiqués selon les données routières disponibles.</small>
+          </section>
+
+          <div class="modal-itineraire-actions">
+            <a class="popup-bouton-itineraire" id="itineraire-google" href="#" target="_blank" rel="noopener noreferrer">🗺️ Google Maps</a>
+            <a class="popup-bouton-itineraire" id="itineraire-apple" href="#" target="_blank" rel="noopener noreferrer">🍎 Plans</a>
+            <a class="popup-bouton-itineraire" id="itineraire-waze" href="#" target="_blank" rel="noopener noreferrer">🚗 Waze</a>
+          </div>
+
+        </div>
+    </div>
+
+    <div class="reserve-volet" id="reserve-localisation" hidden>
+        <div class="modal-localisation-carte" id="volet-localisation-contenu">
+          <div class="modal-localisation-entete">
+            <h2 class="modal-localisation-titre">Autour de vous</h2>
+            <p class="modal-localisation-sous-titre">Résultats proches de votre position actuelle</p>
+            <div class="modal-localisation-etat" id="localisation-etat" aria-live="polite">Appuyez sur "Me localiser".</div>
+          </div>
+          <ul class="modal-localisation-resultats" id="localisation-resultats" aria-label="Résultats autour de vous"></ul>
+        </div>
+    </div>
+
     <div class="reserve-volet" id="reserve-filtres" hidden>
         <form class="menu-filtres" id="volet-filtres-contenu" role="dialog" aria-modal="false" aria-labelledby="filtres-titre">
           <header class="filtres-entete">
@@ -615,24 +619,6 @@
             <p class="fiche-apropos-install-note" id="message-installer-pwa" aria-live="polite"></p>
           </div>
         </section>
-      </div>
-    </div>
-    <div
-      class="modal-localisation"
-      id="modal-localisation"
-      role="dialog"
-      aria-modal="false"
-      aria-label="Résultats autour de vous"
-      aria-hidden="true"
-    >
-      <div class="modal-localisation-carte">
-        <div class="modal-localisation-entete">
-          <button class="modal-localisation-fermer" id="modal-localisation-fermer" type="button" aria-label="Fermer la localisation">×</button>
-          <h2 class="modal-localisation-titre">Autour de vous</h2>
-          <p class="modal-localisation-sous-titre">Résultats proches de votre position actuelle</p>
-          <div class="modal-localisation-etat" id="localisation-etat" aria-live="polite">Appuyez sur "Me localiser".</div>
-        </div>
-        <ul class="modal-localisation-resultats" id="localisation-resultats" aria-label="Résultats autour de vous"></ul>
       </div>
     </div>
 
