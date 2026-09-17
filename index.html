@@ -16,12 +16,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png" />
-    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-4AP6iUxs.js"></script>
+    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-BlRXgsAS.js"></script>
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-C1iKwAH6.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/preload-helper-C5ajgpwC.js">
-    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-C_bN99Fx.css">
-    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/main-BvcU8Aao.js">
+    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-DKvfHyO4.css">
+    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/main-Bnueklgt.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/maplibre-gFZAzJIF.js">
   </head>
   <body>
@@ -97,180 +97,6 @@
         </svg>
       </button>
 
-      <div class="filtres-scrim" id="filtres-scrim" aria-hidden="true"></div>
-      <form class="menu-filtres" role="dialog" aria-modal="false" aria-labelledby="filtres-titre">
-        <header class="filtres-entete">
-          <button class="filtres-retour" id="filtres-retour" type="button" aria-label="Retour à l’affichage de la carte" hidden>‹</button>
-          <div>
-            <h2 class="filtres-titre" id="filtres-titre">Affichage de la carte</h2>
-            <p class="filtres-resume" id="filtres-resume" aria-live="polite">0 couche active</p>
-          </div>
-          <button class="filtres-fermer" id="filtres-fermer" type="button" aria-label="Fermer les options d’affichage">×</button>
-        </header>
-
-        <div class="filtres-contenu">
-          <fieldset class="filtres-groupe">
-            <legend><span>Équipements EALE</span><small>À combiner librement</small></legend>
-            <div class="filtres-liste">
-              <label class="option-filtre">
-                <span class="filtre-repere filtre-repere-appareils" aria-hidden="true">
-                  <i></i><i></i><i></i><i></i>
-                </span>
-                <span class="filtre-texte"><strong>Appareils</strong><small>Équipements EALE de traction</small></span>
-                <span class="filtre-compteur" id="compteur-appareils">(0)</span>
-                <input type="checkbox" name="filtre-appareils" />
-                <span class="filtre-switch" aria-hidden="true"></span>
-              </label>
-              <label class="option-filtre">
-                <span class="filtre-repere filtre-repere-acces" aria-hidden="true"><i></i></span>
-                <span class="filtre-texte"><strong>Accès voiture</strong><small>Points d’accès routiers</small></span>
-                <span class="filtre-compteur" id="compteur-acces">(0)</span>
-                <input type="checkbox" name="filtre-acces" />
-                <span class="filtre-switch" aria-hidden="true"></span>
-              </label>
-              <label class="option-filtre">
-                <span class="filtre-repere filtre-repere-poste" aria-hidden="true"><i></i></span>
-                <span class="filtre-texte"><strong>Postes</strong><small>Installations et sous-stations</small></span>
-                <span class="filtre-compteur" id="compteur-postes">(0)</span>
-                <input type="checkbox" name="filtre-postes" />
-                <span class="filtre-switch" aria-hidden="true"></span>
-              </label>
-              <label class="option-filtre">
-                <span class="filtre-repere filtre-repere-sat" aria-hidden="true"><i></i></span>
-                <span class="filtre-texte"><strong>Satellites</strong><small>SAT des postes et sous-stations</small></span>
-                <span class="filtre-compteur" id="compteur-sat">(0)</span>
-                <input type="checkbox" name="filtre-sat" />
-                <span class="filtre-switch" aria-hidden="true"></span>
-              </label>
-              <label class="option-filtre option-filtre-a-completer">
-                <span class="filtre-repere filtre-repere-a-completer" aria-hidden="true"><i></i></span>
-                <span class="filtre-texte"><strong>Données à compléter</strong><small>Postes et satellites sans appareil renseigné</small></span>
-                <span class="filtre-compteur" id="compteur-donnees-a-completer">(…)</span>
-                <input type="checkbox" name="filtre-donnees-a-completer" />
-                <span class="filtre-switch" aria-hidden="true"></span>
-              </label>
-            </div>
-          </fieldset>
-
-          <fieldset class="filtres-groupe">
-            <legend><span>Installations complémentaires</span><small>Hors équipements EALE</small></legend>
-            <div class="filtres-liste">
-              <label class="option-filtre">
-                <span class="filtre-repere filtre-repere-autres" aria-hidden="true"><i></i></span>
-                <span class="filtre-texte"><strong>Autres</strong><small>Équipes, Agent E, Formation…</small></span>
-                <input type="checkbox" name="filtre-autres" checked />
-                <span class="filtre-switch" aria-hidden="true"></span>
-              </label>
-            </div>
-          </fieldset>
-
-          <fieldset class="filtres-groupe">
-            <legend><span>Éléments du réseau</span><small>Repères et infrastructure ferroviaire</small></legend>
-            <div class="filtres-liste">
-              <label class="option-filtre">
-                <span class="filtre-repere filtre-repere-pn" aria-hidden="true"><i></i></span>
-                <span class="filtre-texte"><strong>Passages à niveau</strong><small>Selon le tracé ferroviaire actif</small></span>
-                <span class="filtre-compteur" id="compteur-pn">(0)</span>
-                <input type="checkbox" name="filtre-pn" />
-                <span class="filtre-switch" aria-hidden="true"></span>
-              </label>
-              <label class="option-filtre">
-                <span class="filtre-repere filtre-repere-pk" aria-hidden="true"><i></i></span>
-                <span class="filtre-texte"><strong>Points kilométriques</strong><small id="filtre-pk-aide">Visibles selon le niveau de zoom</small></span>
-                <span class="filtre-compteur" id="compteur-pk">(0)</span>
-                <input type="checkbox" name="filtre-pk" />
-                <span class="filtre-switch" aria-hidden="true"></span>
-              </label>
-              <div class="reglage-densite-pk" id="reglage-densite-pk" hidden>
-                <div class="reglage-densite-pk-entete">
-                  <span>Moins</span>
-                  <strong id="densite-pk-valeur">Normal</strong>
-                  <span>Plus</span>
-                </div>
-                <div class="reglage-densite-pk-curseur">
-                  <span class="reglage-densite-pk-crans" aria-hidden="true">
-                    <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-                  </span>
-                  <input
-                    id="densite-pk"
-                    type="range"
-                    min="-3"
-                    max="3"
-                    step="1"
-                    value="0"
-                    aria-label="Régler la densité des points kilométriques"
-                    aria-valuetext="Densité normale"
-                  />
-                </div>
-                <p class="reglage-densite-pk-aide">Réglez le nombre de PK visibles sur la carte.</p>
-              </div>
-            </div>
-          </fieldset>
-
-          <fieldset class="filtres-groupe filtres-groupe-lignes">
-            <legend><span>Tracé ferroviaire</span><small>Un seul à la fois</small></legend>
-            <div class="filtres-lignes">
-              <label class="option-filtre-ligne">
-                <input type="checkbox" name="filtre-lignes-osm" />
-                <span class="filtre-ligne-apercu filtre-ligne-osm" aria-hidden="true"><b>ACTIF</b></span>
-                <span class="filtre-ligne-texte">
-                  <strong>LOCAL</strong>
-                  <small><em>Rapide, fiable · Conseillé</em></small>
-                  <span class="filtre-ligne-source">OpenStreetMap</span>
-                </span>
-              </label>
-              <label class="option-filtre-ligne">
-                <input type="checkbox" name="filtre-lignes-orm-vectorielles" />
-                <span class="filtre-ligne-apercu filtre-ligne-vectorielle" aria-hidden="true"><b>ACTIF</b></span>
-                <span class="filtre-ligne-texte">
-                  <strong>ORM</strong>
-                  <small><em>Alternative OpenRailwayMap</em></small>
-                </span>
-              </label>
-            </div>
-            <button class="bouton-options-locales" id="bouton-options-locales" type="button" hidden>
-              <span class="bouton-options-locales-icone" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M19.43 12.98c.04-.32.07-.65.07-.98s-.03-.66-.07-.98l2.11-1.65a.5.5 0 0 0 .12-.64l-2-3.46a.5.5 0 0 0-.6-.22l-2.49 1a7.2 7.2 0 0 0-1.69-.98l-.38-2.65A.5.5 0 0 0 14 2h-4a.5.5 0 0 0-.5.42l-.38 2.65c-.61.25-1.18.58-1.69.98l-2.49-1a.5.5 0 0 0-.6.22l-2 3.46a.5.5 0 0 0 .12.64l2.11 1.65a7.3 7.3 0 0 0 0 1.96l-2.11 1.65a.5.5 0 0 0-.12.64l2 3.46c.12.22.37.31.6.22l2.49-1c.51.4 1.08.73 1.69.98l.38 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.38-2.65c.61-.25 1.18-.58 1.69-.98l2.49 1c.23.09.48 0 .6-.22l2-3.46a.5.5 0 0 0-.12-.64l-2.11-1.65ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/>
-                </svg>
-              </span>
-              <span class="bouton-options-locales-texte"><strong>Réglages</strong><small>Régions, équipements et types de voies</small></span>
-              <i aria-hidden="true">›</i>
-            </button>
-          </fieldset>
-
-          <button class="fonds-defaut filtres-defaut" id="filtres-defaut" type="button">Revenir par défaut</button>
-        </div>
-        <div class="options-locales-contenu" id="options-lignes-locales" hidden>
-          <section><h3>Régions disponibles</h3><div class="options-locales-liste options-locales-regions">
-            <label class="option-locale"><span><strong>Hauts-de-France</strong><small>Région principale</small></span><input type="checkbox" name="local-region-hdf" checked disabled><i></i></label>
-            <label class="option-locale"><span><strong>Normandie</strong></span><input type="checkbox" name="local-region-normandie"><i></i></label>
-            <label class="option-locale"><span><strong>Grand Est</strong></span><input type="checkbox" name="local-region-grand-est"><i></i></label>
-            <label class="option-locale"><span><strong>Île-de-France</strong></span><input type="checkbox" name="local-region-idf"><i></i></label>
-          </div></section>
-          <section><h3>Sélection du réseau</h3><div class="options-locales-liste">
-            <label class="option-locale"><span><strong>Lignes avec équipement EALE</strong><small>Au moins un équipement EALE présent</small></span><input type="checkbox" name="local-lignes-equipees"><i></i></label>
-          </div></section>
-          <section><h3>Types de voies</h3><div class="options-locales-liste options-locales-categories">
-            <label class="option-locale"><b class="apercu-categorie trait-ligne-main"></b><span><strong>Lignes classiques</strong></span><input type="checkbox" name="local-categorie" value="main" checked><i></i></label>
-            <label class="option-locale"><b class="apercu-categorie trait-ligne-lgv"></b><span><strong>LGV</strong></span><input type="checkbox" name="local-categorie" value="lgv" checked><i></i></label>
-            <label class="option-locale"><b class="apercu-categorie trait-ligne-branch"></b><span><strong>Lignes secondaires</strong></span><input type="checkbox" name="local-categorie" value="branch" checked><i></i></label>
-            <label class="option-locale"><b class="apercu-categorie trait-ligne-yard"></b><span><strong>Faisceaux / triages</strong></span><input type="checkbox" name="local-categorie" value="yard" checked><i></i></label>
-            <label class="option-locale"><b class="apercu-categorie trait-ligne-siding"></b><span><strong>Voies de garage</strong></span><input type="checkbox" name="local-categorie" value="siding" checked><i></i></label>
-            <label class="option-locale"><b class="apercu-categorie trait-ligne-spur"></b><span><strong>Voies de service</strong></span><input type="checkbox" name="local-categorie" value="spur" checked><i></i></label>
-            <label class="option-locale"><b class="apercu-categorie trait-ligne-industrial"></b><span><strong>Industrielles</strong></span><input type="checkbox" name="local-categorie" value="industrial" checked><i></i></label>
-            <label class="option-locale"><b class="apercu-categorie trait-ligne-tourism"></b><span><strong>Touristiques</strong></span><input type="checkbox" name="local-categorie" value="tourism" checked><i></i></label>
-            <label class="option-locale"><b class="apercu-categorie trait-ligne-getlink"></b><span><strong>GetLink</strong></span><input type="checkbox" name="local-categorie" value="getlink" checked><i></i></label>
-            <label class="option-locale"><b class="apercu-categorie trait-ligne-autre"></b><span><strong>Autres</strong></span><input type="checkbox" name="local-categorie" value="unknown" checked><i></i></label>
-          </div></section>
-          <section><h3>État des voies</h3><div class="options-locales-liste options-locales-categories options-locales-etats">
-            <label class="option-locale"><b class="apercu-categorie trait-etat-present"></b><span><strong>En service</strong></span><input type="checkbox" name="local-etat" value="present" checked><i></i></label>
-            <label class="option-locale"><b class="apercu-categorie trait-etat-disused"></b><span><strong>Désaffectées</strong></span><input type="checkbox" name="local-etat" value="disused"><i></i></label>
-            <label class="option-locale"><b class="apercu-categorie trait-etat-abandoned"></b><span><strong>Abandonnées</strong></span><input type="checkbox" name="local-etat" value="abandoned"><i></i></label>
-            <label class="option-locale"><b class="apercu-categorie trait-etat-razed"></b><span><strong>Déposées / rasées</strong></span><input type="checkbox" name="local-etat" value="razed"><i></i></label>
-          </div></section>
-        </div>
-      </form>
     </div>
 
     <div class="controle-fonds" id="controle-fonds">
@@ -286,116 +112,6 @@
         </svg>
       </button>
 
-      <div class="fonds-scrim" id="fonds-scrim" aria-hidden="true"></div>
-      <section class="menu-fonds" role="dialog" aria-modal="false" aria-label="Choisir le fond de carte">
-        <header class="fonds-entete">
-          <h2 class="fonds-titre">Fond de carte</h2>
-          <button class="fonds-fermer" id="fonds-fermer" type="button" aria-label="Fermer le choix du fond">×</button>
-        </header>
-
-        <div class="fonds-contenu">
-          <label class="fonds-auto">
-            <span>
-              <strong>Mode automatique</strong>
-              <small>Plan en vue générale, satellite en vue rapprochée.</small>
-            </span>
-            <input type="checkbox" id="mode-fond-auto" checked />
-            <span class="fonds-switch" aria-hidden="true"></span>
-          </label>
-
-          <div class="fonds-auto-reglages" id="fonds-auto-reglages">
-            <fieldset class="fonds-groupe">
-              <legend>Mon plan classique <span>Vue éloignée</span></legend>
-              <div class="fonds-grille">
-                <button class="fonds-carte apercu-systeme" type="button" data-fond-auto-base="systeme">
-                  <span><strong>Selon l’appareil</strong><small>Voyager clair · Dark Matter nuit</small></span><i>✓</i>
-                </button>
-                <button class="fonds-carte apercu-positron" type="button" data-fond-auto-base="positron">
-                  <span><strong>Positron</strong><small>Très épuré</small></span><i>✓</i>
-                </button>
-                <button class="fonds-carte apercu-voyager" type="button" data-fond-auto-base="voyager">
-                  <span><strong>Voyager</strong><small>Clair et détaillé</small></span><i>✓</i>
-                </button>
-                <button class="fonds-carte apercu-sombre" type="button" data-fond-auto-base="darkMatter">
-                  <span><strong>Dark Matter</strong><small>Confort de nuit</small></span><i>✓</i>
-                </button>
-                <button class="fonds-carte apercu-plan-ign" type="button" data-fond-auto-base="planIgn">
-                  <span><strong>Plan IGN</strong><small>Référence française</small></span><i>✓</i>
-                </button>
-                <button class="fonds-carte apercu-osm" type="button" data-fond-auto-base="osm">
-                  <span><strong>OSM Standard</strong><small>Carte ouverte</small></span><i>✓</i>
-                </button>
-              </div>
-            </fieldset>
-
-            <fieldset class="fonds-groupe">
-              <legend>Mon satellite <span>Vue rapprochée</span></legend>
-              <div class="fonds-grille">
-                <button class="fonds-carte apercu-satellite-ign" type="button" data-fond-auto-satellite="ignAuto">
-                  <span><strong>Satellite IGN</strong><small>France · précision</small></span><i>✓</i>
-                </button>
-                <button class="fonds-carte apercu-satellite-esri" type="button" data-fond-auto-satellite="esriAuto">
-                  <span><strong>Satellite ESRI</strong><small>Couverture mondiale</small></span><i>✓</i>
-                </button>
-              </div>
-              <label class="fonds-option-villes">
-                <span><strong>Cadastre</strong><small>Parcelles sur la vue rapprochée.</small></span>
-                <input class="cadastre-auto" type="checkbox" />
-                <span class="fonds-switch" aria-hidden="true"></span>
-              </label>
-              <label class="fonds-option-villes">
-                <span><strong>Noms des villes</strong><small>Uniquement sur la vue satellite.</small></span>
-                <input class="labels-villes" type="checkbox" />
-                <span class="fonds-switch" aria-hidden="true"></span>
-              </label>
-            </fieldset>
-          </div>
-
-          <div class="fonds-manuel" id="fonds-manuel" hidden>
-            <div class="fonds-onglets" role="tablist" aria-label="Famille de fonds">
-              <button class="est-selectionne" type="button" role="tab" aria-selected="true" data-fonds-onglet="plans">Plans</button>
-              <button type="button" role="tab" aria-selected="false" data-fonds-onglet="satellites">Satellites</button>
-              <button type="button" role="tab" aria-selected="false" data-fonds-onglet="cadastre">Cadastre</button>
-            </div>
-
-            <div class="fonds-groupe fonds-liste-manuelle" data-fonds-panneau="plans">
-              <div class="fonds-grille">
-                <button class="fonds-carte apercu-positron" type="button" data-fond="positron"><span><strong>Positron</strong><small>Très épuré</small></span><i>✓</i></button>
-                <button class="fonds-carte apercu-voyager" type="button" data-fond="voyager"><span><strong>Voyager</strong><small>Clair et détaillé</small></span><i>✓</i></button>
-                <button class="fonds-carte apercu-sombre" type="button" data-fond="darkMatter"><span><strong>Dark Matter</strong><small>Confort de nuit</small></span><i>✓</i></button>
-                <button class="fonds-carte apercu-plan-ign" type="button" data-fond="planIgn"><span><strong>Plan IGN</strong><small>Référence française</small></span><i>✓</i></button>
-                <button class="fonds-carte apercu-osm" type="button" data-fond="osm"><span><strong>OSM Standard</strong><small>Carte ouverte</small></span><i>✓</i></button>
-              </div>
-            </div>
-
-            <div class="fonds-groupe fonds-liste-manuelle" data-fonds-panneau="satellites" hidden>
-              <div class="fonds-grille">
-                <button class="fonds-carte apercu-satellite-ign" type="button" data-fond="satelliteIgn"><span><strong>Satellite IGN</strong><small>France · précision</small></span><i>✓</i></button>
-                <button class="fonds-carte apercu-satellite-esri" type="button" data-fond="satelliteEsri"><span><strong>Satellite ESRI</strong><small>Couverture mondiale</small></span><i>✓</i></button>
-              </div>
-              <label class="fonds-option-villes">
-                <span><strong>Noms des villes</strong><small>Uniquement sur les fonds satellite.</small></span>
-                <input class="labels-villes" type="checkbox" />
-                <span class="fonds-switch" aria-hidden="true"></span>
-              </label>
-            </div>
-
-            <div class="fonds-groupe fonds-liste-manuelle" data-fonds-panneau="cadastre" hidden>
-              <div class="fonds-grille">
-                <button class="fonds-carte apercu-cadastre-plan" type="button" data-fond="cadastreIgn"><span><strong>Plan IGN + cadastre</strong><small>Parcelles sur le plan</small></span><i>✓</i></button>
-                <button class="fonds-carte apercu-cadastre-satellite" type="button" data-fond="satelliteCadastreIgn"><span><strong>Satellite IGN + cadastre</strong><small>Parcelles sur la photo</small></span><i>✓</i></button>
-              </div>
-              <label class="fonds-option-villes">
-                <span><strong>Noms des villes</strong><small>Pour « Satellite IGN + cadastre » uniquement.</small></span>
-                <input class="labels-villes" type="checkbox" />
-                <span class="fonds-switch" aria-hidden="true"></span>
-              </label>
-            </div>
-          </div>
-
-          <button class="fonds-defaut" id="fonds-defaut" type="button">Revenir par défaut</button>
-        </div>
-      </section>
     </div>
 
     <div class="panneau-mesure" id="panneau-mesure" aria-live="polite">
@@ -509,6 +225,295 @@
     <!-- À propos : le contenu vit ici hors flux et n'est déplacé dans le panneau
          de fiche qu'à l'ouverture. Les éléments (pastille de version, bouton
          d'installation PWA) gardent ainsi leurs écouteurs posés au chargement. -->
+    <!-- Contenus du volet unique : deplaces dans #modal-fiche-contenu a
+         l'ouverture, ranges ici a la fermeture. Voir ouvrirVoletContenu()
+         dans src/app/modules/fiche-panneau.js. -->
+    <div class="reserve-volet" id="reserve-filtres" hidden>
+        <form class="menu-filtres" id="volet-filtres-contenu" role="dialog" aria-modal="false" aria-labelledby="filtres-titre">
+          <header class="filtres-entete">
+            <button class="filtres-retour" id="filtres-retour" type="button" aria-label="Retour à l’affichage de la carte" hidden>‹</button>
+            <div>
+              <h2 class="filtres-titre" id="filtres-titre">Affichage de la carte</h2>
+              <p class="filtres-resume" id="filtres-resume" aria-live="polite">0 couche active</p>
+            </div>
+          </header>
+
+          <div class="filtres-contenu">
+            <fieldset class="filtres-groupe">
+              <legend><span>Équipements EALE</span><small>À combiner librement</small></legend>
+              <div class="filtres-liste">
+                <label class="option-filtre">
+                  <span class="filtre-repere filtre-repere-appareils" aria-hidden="true">
+                    <i></i><i></i><i></i><i></i>
+                  </span>
+                  <span class="filtre-texte"><strong>Appareils</strong><small>Équipements EALE de traction</small></span>
+                  <span class="filtre-compteur" id="compteur-appareils">(0)</span>
+                  <input type="checkbox" name="filtre-appareils" />
+                  <span class="filtre-switch" aria-hidden="true"></span>
+                </label>
+                <label class="option-filtre">
+                  <span class="filtre-repere filtre-repere-acces" aria-hidden="true"><i></i></span>
+                  <span class="filtre-texte"><strong>Accès voiture</strong><small>Points d’accès routiers</small></span>
+                  <span class="filtre-compteur" id="compteur-acces">(0)</span>
+                  <input type="checkbox" name="filtre-acces" />
+                  <span class="filtre-switch" aria-hidden="true"></span>
+                </label>
+                <label class="option-filtre">
+                  <span class="filtre-repere filtre-repere-poste" aria-hidden="true"><i></i></span>
+                  <span class="filtre-texte"><strong>Postes</strong><small>Installations et sous-stations</small></span>
+                  <span class="filtre-compteur" id="compteur-postes">(0)</span>
+                  <input type="checkbox" name="filtre-postes" />
+                  <span class="filtre-switch" aria-hidden="true"></span>
+                </label>
+                <label class="option-filtre">
+                  <span class="filtre-repere filtre-repere-sat" aria-hidden="true"><i></i></span>
+                  <span class="filtre-texte"><strong>Satellites</strong><small>SAT des postes et sous-stations</small></span>
+                  <span class="filtre-compteur" id="compteur-sat">(0)</span>
+                  <input type="checkbox" name="filtre-sat" />
+                  <span class="filtre-switch" aria-hidden="true"></span>
+                </label>
+                <label class="option-filtre option-filtre-a-completer">
+                  <span class="filtre-repere filtre-repere-a-completer" aria-hidden="true"><i></i></span>
+                  <span class="filtre-texte"><strong>Données à compléter</strong><small>Postes et satellites sans appareil renseigné</small></span>
+                  <span class="filtre-compteur" id="compteur-donnees-a-completer">(…)</span>
+                  <input type="checkbox" name="filtre-donnees-a-completer" />
+                  <span class="filtre-switch" aria-hidden="true"></span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="filtres-groupe">
+              <legend><span>Installations complémentaires</span><small>Hors équipements EALE</small></legend>
+              <div class="filtres-liste">
+                <label class="option-filtre">
+                  <span class="filtre-repere filtre-repere-autres" aria-hidden="true"><i></i></span>
+                  <span class="filtre-texte"><strong>Autres</strong><small>Équipes, Agent E, Formation…</small></span>
+                  <input type="checkbox" name="filtre-autres" checked />
+                  <span class="filtre-switch" aria-hidden="true"></span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="filtres-groupe">
+              <legend><span>Éléments du réseau</span><small>Repères et infrastructure ferroviaire</small></legend>
+              <div class="filtres-liste">
+                <label class="option-filtre">
+                  <span class="filtre-repere filtre-repere-pn" aria-hidden="true"><i></i></span>
+                  <span class="filtre-texte"><strong>Passages à niveau</strong><small>Selon le tracé ferroviaire actif</small></span>
+                  <span class="filtre-compteur" id="compteur-pn">(0)</span>
+                  <input type="checkbox" name="filtre-pn" />
+                  <span class="filtre-switch" aria-hidden="true"></span>
+                </label>
+                <label class="option-filtre">
+                  <span class="filtre-repere filtre-repere-pk" aria-hidden="true"><i></i></span>
+                  <span class="filtre-texte"><strong>Points kilométriques</strong><small id="filtre-pk-aide">Visibles selon le niveau de zoom</small></span>
+                  <span class="filtre-compteur" id="compteur-pk">(0)</span>
+                  <input type="checkbox" name="filtre-pk" />
+                  <span class="filtre-switch" aria-hidden="true"></span>
+                </label>
+                <div class="reglage-densite-pk" id="reglage-densite-pk" hidden>
+                  <div class="reglage-densite-pk-entete">
+                    <span>Moins</span>
+                    <strong id="densite-pk-valeur">Normal</strong>
+                    <span>Plus</span>
+                  </div>
+                  <div class="reglage-densite-pk-curseur">
+                    <span class="reglage-densite-pk-crans" aria-hidden="true">
+                      <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                    </span>
+                    <input
+                      id="densite-pk"
+                      type="range"
+                      min="-3"
+                      max="3"
+                      step="1"
+                      value="0"
+                      aria-label="Régler la densité des points kilométriques"
+                      aria-valuetext="Densité normale"
+                    />
+                  </div>
+                  <p class="reglage-densite-pk-aide">Réglez le nombre de PK visibles sur la carte.</p>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="filtres-groupe filtres-groupe-lignes">
+              <legend><span>Tracé ferroviaire</span><small>Un seul à la fois</small></legend>
+              <div class="filtres-lignes">
+                <label class="option-filtre-ligne">
+                  <input type="checkbox" name="filtre-lignes-osm" />
+                  <span class="filtre-ligne-apercu filtre-ligne-osm" aria-hidden="true"><b>ACTIF</b></span>
+                  <span class="filtre-ligne-texte">
+                    <strong>LOCAL</strong>
+                    <small><em>Rapide, fiable · Conseillé</em></small>
+                    <span class="filtre-ligne-source">OpenStreetMap</span>
+                  </span>
+                </label>
+                <label class="option-filtre-ligne">
+                  <input type="checkbox" name="filtre-lignes-orm-vectorielles" />
+                  <span class="filtre-ligne-apercu filtre-ligne-vectorielle" aria-hidden="true"><b>ACTIF</b></span>
+                  <span class="filtre-ligne-texte">
+                    <strong>ORM</strong>
+                    <small><em>Alternative OpenRailwayMap</em></small>
+                  </span>
+                </label>
+              </div>
+              <button class="bouton-options-locales" id="bouton-options-locales" type="button" hidden>
+                <span class="bouton-options-locales-icone" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M19.43 12.98c.04-.32.07-.65.07-.98s-.03-.66-.07-.98l2.11-1.65a.5.5 0 0 0 .12-.64l-2-3.46a.5.5 0 0 0-.6-.22l-2.49 1a7.2 7.2 0 0 0-1.69-.98l-.38-2.65A.5.5 0 0 0 14 2h-4a.5.5 0 0 0-.5.42l-.38 2.65c-.61.25-1.18.58-1.69.98l-2.49-1a.5.5 0 0 0-.6.22l-2 3.46a.5.5 0 0 0 .12.64l2.11 1.65a7.3 7.3 0 0 0 0 1.96l-2.11 1.65a.5.5 0 0 0-.12.64l2 3.46c.12.22.37.31.6.22l2.49-1c.51.4 1.08.73 1.69.98l.38 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.38-2.65c.61-.25 1.18-.58 1.69-.98l2.49 1c.23.09.48 0 .6-.22l2-3.46a.5.5 0 0 0-.12-.64l-2.11-1.65ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/>
+                  </svg>
+                </span>
+                <span class="bouton-options-locales-texte"><strong>Réglages</strong><small>Régions, équipements et types de voies</small></span>
+                <i aria-hidden="true">›</i>
+              </button>
+            </fieldset>
+
+            <button class="fonds-defaut filtres-defaut" id="filtres-defaut" type="button">Revenir par défaut</button>
+          </div>
+          <div class="options-locales-contenu" id="options-lignes-locales" hidden>
+            <section><h3>Régions disponibles</h3><div class="options-locales-liste options-locales-regions">
+              <label class="option-locale"><span><strong>Hauts-de-France</strong><small>Région principale</small></span><input type="checkbox" name="local-region-hdf" checked disabled><i></i></label>
+              <label class="option-locale"><span><strong>Normandie</strong></span><input type="checkbox" name="local-region-normandie"><i></i></label>
+              <label class="option-locale"><span><strong>Grand Est</strong></span><input type="checkbox" name="local-region-grand-est"><i></i></label>
+              <label class="option-locale"><span><strong>Île-de-France</strong></span><input type="checkbox" name="local-region-idf"><i></i></label>
+            </div></section>
+            <section><h3>Sélection du réseau</h3><div class="options-locales-liste">
+              <label class="option-locale"><span><strong>Lignes avec équipement EALE</strong><small>Au moins un équipement EALE présent</small></span><input type="checkbox" name="local-lignes-equipees"><i></i></label>
+            </div></section>
+            <section><h3>Types de voies</h3><div class="options-locales-liste options-locales-categories">
+              <label class="option-locale"><b class="apercu-categorie trait-ligne-main"></b><span><strong>Lignes classiques</strong></span><input type="checkbox" name="local-categorie" value="main" checked><i></i></label>
+              <label class="option-locale"><b class="apercu-categorie trait-ligne-lgv"></b><span><strong>LGV</strong></span><input type="checkbox" name="local-categorie" value="lgv" checked><i></i></label>
+              <label class="option-locale"><b class="apercu-categorie trait-ligne-branch"></b><span><strong>Lignes secondaires</strong></span><input type="checkbox" name="local-categorie" value="branch" checked><i></i></label>
+              <label class="option-locale"><b class="apercu-categorie trait-ligne-yard"></b><span><strong>Faisceaux / triages</strong></span><input type="checkbox" name="local-categorie" value="yard" checked><i></i></label>
+              <label class="option-locale"><b class="apercu-categorie trait-ligne-siding"></b><span><strong>Voies de garage</strong></span><input type="checkbox" name="local-categorie" value="siding" checked><i></i></label>
+              <label class="option-locale"><b class="apercu-categorie trait-ligne-spur"></b><span><strong>Voies de service</strong></span><input type="checkbox" name="local-categorie" value="spur" checked><i></i></label>
+              <label class="option-locale"><b class="apercu-categorie trait-ligne-industrial"></b><span><strong>Industrielles</strong></span><input type="checkbox" name="local-categorie" value="industrial" checked><i></i></label>
+              <label class="option-locale"><b class="apercu-categorie trait-ligne-tourism"></b><span><strong>Touristiques</strong></span><input type="checkbox" name="local-categorie" value="tourism" checked><i></i></label>
+              <label class="option-locale"><b class="apercu-categorie trait-ligne-getlink"></b><span><strong>GetLink</strong></span><input type="checkbox" name="local-categorie" value="getlink" checked><i></i></label>
+              <label class="option-locale"><b class="apercu-categorie trait-ligne-autre"></b><span><strong>Autres</strong></span><input type="checkbox" name="local-categorie" value="unknown" checked><i></i></label>
+            </div></section>
+            <section><h3>État des voies</h3><div class="options-locales-liste options-locales-categories options-locales-etats">
+              <label class="option-locale"><b class="apercu-categorie trait-etat-present"></b><span><strong>En service</strong></span><input type="checkbox" name="local-etat" value="present" checked><i></i></label>
+              <label class="option-locale"><b class="apercu-categorie trait-etat-disused"></b><span><strong>Désaffectées</strong></span><input type="checkbox" name="local-etat" value="disused"><i></i></label>
+              <label class="option-locale"><b class="apercu-categorie trait-etat-abandoned"></b><span><strong>Abandonnées</strong></span><input type="checkbox" name="local-etat" value="abandoned"><i></i></label>
+              <label class="option-locale"><b class="apercu-categorie trait-etat-razed"></b><span><strong>Déposées / rasées</strong></span><input type="checkbox" name="local-etat" value="razed"><i></i></label>
+            </div></section>
+          </div>
+        </form>
+    </div>
+
+    <div class="reserve-volet" id="reserve-fonds" hidden>
+        <section class="menu-fonds" id="volet-fonds-contenu" role="dialog" aria-modal="false" aria-label="Choisir le fond de carte">
+          <header class="fonds-entete">
+            <h2 class="fonds-titre">Fond de carte</h2>
+          </header>
+
+          <div class="fonds-contenu">
+            <label class="fonds-auto">
+              <span>
+                <strong>Mode automatique</strong>
+                <small>Plan en vue générale, satellite en vue rapprochée.</small>
+              </span>
+              <input type="checkbox" id="mode-fond-auto" checked />
+              <span class="fonds-switch" aria-hidden="true"></span>
+            </label>
+
+            <div class="fonds-auto-reglages" id="fonds-auto-reglages">
+              <fieldset class="fonds-groupe">
+                <legend>Mon plan classique <span>Vue éloignée</span></legend>
+                <div class="fonds-grille">
+                  <button class="fonds-carte apercu-systeme" type="button" data-fond-auto-base="systeme">
+                    <span><strong>Selon l’appareil</strong><small>Voyager clair · Dark Matter nuit</small></span><i>✓</i>
+                  </button>
+                  <button class="fonds-carte apercu-positron" type="button" data-fond-auto-base="positron">
+                    <span><strong>Positron</strong><small>Très épuré</small></span><i>✓</i>
+                  </button>
+                  <button class="fonds-carte apercu-voyager" type="button" data-fond-auto-base="voyager">
+                    <span><strong>Voyager</strong><small>Clair et détaillé</small></span><i>✓</i>
+                  </button>
+                  <button class="fonds-carte apercu-sombre" type="button" data-fond-auto-base="darkMatter">
+                    <span><strong>Dark Matter</strong><small>Confort de nuit</small></span><i>✓</i>
+                  </button>
+                  <button class="fonds-carte apercu-plan-ign" type="button" data-fond-auto-base="planIgn">
+                    <span><strong>Plan IGN</strong><small>Référence française</small></span><i>✓</i>
+                  </button>
+                  <button class="fonds-carte apercu-osm" type="button" data-fond-auto-base="osm">
+                    <span><strong>OSM Standard</strong><small>Carte ouverte</small></span><i>✓</i>
+                  </button>
+                </div>
+              </fieldset>
+
+              <fieldset class="fonds-groupe">
+                <legend>Mon satellite <span>Vue rapprochée</span></legend>
+                <div class="fonds-grille">
+                  <button class="fonds-carte apercu-satellite-ign" type="button" data-fond-auto-satellite="ignAuto">
+                    <span><strong>Satellite IGN</strong><small>France · précision</small></span><i>✓</i>
+                  </button>
+                  <button class="fonds-carte apercu-satellite-esri" type="button" data-fond-auto-satellite="esriAuto">
+                    <span><strong>Satellite ESRI</strong><small>Couverture mondiale</small></span><i>✓</i>
+                  </button>
+                </div>
+                <label class="fonds-option-villes">
+                  <span><strong>Cadastre</strong><small>Parcelles sur la vue rapprochée.</small></span>
+                  <input class="cadastre-auto" type="checkbox" />
+                  <span class="fonds-switch" aria-hidden="true"></span>
+                </label>
+                <label class="fonds-option-villes">
+                  <span><strong>Noms des villes</strong><small>Uniquement sur la vue satellite.</small></span>
+                  <input class="labels-villes" type="checkbox" />
+                  <span class="fonds-switch" aria-hidden="true"></span>
+                </label>
+              </fieldset>
+            </div>
+
+            <div class="fonds-manuel" id="fonds-manuel" hidden>
+              <div class="fonds-onglets" role="tablist" aria-label="Famille de fonds">
+                <button class="est-selectionne" type="button" role="tab" aria-selected="true" data-fonds-onglet="plans">Plans</button>
+                <button type="button" role="tab" aria-selected="false" data-fonds-onglet="satellites">Satellites</button>
+                <button type="button" role="tab" aria-selected="false" data-fonds-onglet="cadastre">Cadastre</button>
+              </div>
+
+              <div class="fonds-groupe fonds-liste-manuelle" data-fonds-panneau="plans">
+                <div class="fonds-grille">
+                  <button class="fonds-carte apercu-positron" type="button" data-fond="positron"><span><strong>Positron</strong><small>Très épuré</small></span><i>✓</i></button>
+                  <button class="fonds-carte apercu-voyager" type="button" data-fond="voyager"><span><strong>Voyager</strong><small>Clair et détaillé</small></span><i>✓</i></button>
+                  <button class="fonds-carte apercu-sombre" type="button" data-fond="darkMatter"><span><strong>Dark Matter</strong><small>Confort de nuit</small></span><i>✓</i></button>
+                  <button class="fonds-carte apercu-plan-ign" type="button" data-fond="planIgn"><span><strong>Plan IGN</strong><small>Référence française</small></span><i>✓</i></button>
+                  <button class="fonds-carte apercu-osm" type="button" data-fond="osm"><span><strong>OSM Standard</strong><small>Carte ouverte</small></span><i>✓</i></button>
+                </div>
+              </div>
+
+              <div class="fonds-groupe fonds-liste-manuelle" data-fonds-panneau="satellites" hidden>
+                <div class="fonds-grille">
+                  <button class="fonds-carte apercu-satellite-ign" type="button" data-fond="satelliteIgn"><span><strong>Satellite IGN</strong><small>France · précision</small></span><i>✓</i></button>
+                  <button class="fonds-carte apercu-satellite-esri" type="button" data-fond="satelliteEsri"><span><strong>Satellite ESRI</strong><small>Couverture mondiale</small></span><i>✓</i></button>
+                </div>
+                <label class="fonds-option-villes">
+                  <span><strong>Noms des villes</strong><small>Uniquement sur les fonds satellite.</small></span>
+                  <input class="labels-villes" type="checkbox" />
+                  <span class="fonds-switch" aria-hidden="true"></span>
+                </label>
+              </div>
+
+              <div class="fonds-groupe fonds-liste-manuelle" data-fonds-panneau="cadastre" hidden>
+                <div class="fonds-grille">
+                  <button class="fonds-carte apercu-cadastre-plan" type="button" data-fond="cadastreIgn"><span><strong>Plan IGN + cadastre</strong><small>Parcelles sur le plan</small></span><i>✓</i></button>
+                  <button class="fonds-carte apercu-cadastre-satellite" type="button" data-fond="satelliteCadastreIgn"><span><strong>Satellite IGN + cadastre</strong><small>Parcelles sur la photo</small></span><i>✓</i></button>
+                </div>
+                <label class="fonds-option-villes">
+                  <span><strong>Noms des villes</strong><small>Pour « Satellite IGN + cadastre » uniquement.</small></span>
+                  <input class="labels-villes" type="checkbox" />
+                  <span class="fonds-switch" aria-hidden="true"></span>
+                </label>
+              </div>
+            </div>
+
+            <button class="fonds-defaut" id="fonds-defaut" type="button">Revenir par défaut</button>
+          </div>
+        </section>
+    </div>
+
     <div class="reserve-apropos" id="reserve-apropos" hidden>
       <div class="popup-carte popup-carte-poste-acces popup-carte-origine-apropos" id="apropos-contenu">
         <section class="popup-section popup-fiche-entete popup-fiche-entete-apropos">
