@@ -565,6 +565,7 @@ body {
   --metro-largeur-libelle: 152px;
   --metro-hauteur-libelles: 124px;
   --metro-reserve-libelle: 120px;
+  --color-ligne-metro: var(--accent);
 
   position: relative;
   min-width: 0;
@@ -587,8 +588,8 @@ body {
   padding: 3px 9px;
   font-size: 11px;
   font-weight: 700;
-  background: rgba(80, 104, 245, 0.11);
-  color: var(--accent);
+  background: color-mix(in srgb, var(--color-ligne-metro) 12%, transparent);
+  color: var(--color-ligne-metro);
 }
 
 .ligne-nom {
@@ -629,18 +630,18 @@ body {
 }
 
 .ligne-inverser:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--color-ligne-metro);
+  color: var(--color-ligne-metro);
 }
 
 .ligne-inverser[aria-pressed="true"] {
-  border-color: var(--accent);
-  background: rgba(80, 104, 245, 0.12);
-  color: var(--accent);
+  border-color: var(--color-ligne-metro);
+  background: color-mix(in srgb, var(--color-ligne-metro) 12%, transparent);
+  color: var(--color-ligne-metro);
 }
 
 .ligne-inverser:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--color-ligne-metro);
   outline-offset: 2px;
 }
 
@@ -653,7 +654,7 @@ body {
   -webkit-overflow-scrolling: touch;
   padding-bottom: 2px;
   scrollbar-width: thin;
-  scrollbar-color: color-mix(in srgb, var(--accent) 35%, transparent) transparent;
+  scrollbar-color: color-mix(in srgb, var(--color-ligne-metro) 35%, transparent) transparent;
 }
 
 .metro-defilement::-webkit-scrollbar {
@@ -666,7 +667,7 @@ body {
 
 .metro-defilement::-webkit-scrollbar-thumb {
   border-radius: 999px;
-  background: color-mix(in srgb, var(--accent) 30%, transparent);
+  background: color-mix(in srgb, var(--color-ligne-metro) 30%, transparent);
 }
 
 /* Les marqueurs sont en bas, les libelles montent dans le retrait haut.
@@ -697,7 +698,7 @@ body {
   height: 3px;
   margin-bottom: -1.5px;
   border-radius: 2px;
-  background: var(--accent);
+  background: var(--color-ligne-metro);
   opacity: 0.35;
 }
 
@@ -744,7 +745,7 @@ body {
   content: "";
   width: 11px;
   height: 11px;
-  border: 2.5px solid var(--accent);
+  border: 2.5px solid var(--color-ligne-metro);
   border-radius: 50%;
   background: var(--card-bg);
 }
@@ -827,7 +828,7 @@ body {
   position: absolute;
   width: 16px;
   height: 16px;
-  border: 1.5px solid var(--accent);
+  border: 1.5px solid var(--color-ligne-metro);
   border-radius: 50%;
   opacity: 0.6;
 }
@@ -913,12 +914,12 @@ body {
 
 </style>
 
-  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-Ne7e2MIv.js"></script>
+  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-BAr6n2Ou.js"></script>
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
-  <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-C1iKwAH6.js">
+  <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-BtMIm71s.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/utils-DT1X4BcH.js">
-  <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/pk-pmtiles-D-yjiMtN.js">
-  <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-CxjDmlQF.css">
+  <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/styles-lignes-BYj3YVpC.js">
+  <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-C2-iqRuc.css">
 </head>
 <body>
 <div class="board-header">

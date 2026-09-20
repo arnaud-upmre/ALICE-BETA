@@ -330,6 +330,321 @@
       ]
     },
     {
+      "id": "pointModes",
+      "label": "Carte principale : zone de chaleur et clusters",
+      "description": "Règle le passage aux points normaux, le regroupement des points et le rendu de la zone de chaleur.",
+      "options": [
+        {
+          "id": "pointModes.clusterNormalPointsZoom",
+          "label": "Clusters et zone de chaleur — niveau de zoom auquel seuls les points normaux restent affichés",
+          "type": "number",
+          "unit": "niveau",
+          "value": 17,
+          "default": 17,
+          "min": 5,
+          "max": 19,
+          "step": 0.5
+        },
+        {
+          "id": "pointModes.clusterRadiusPx",
+          "label": "Clusters — distance de regroupement autour d’un point",
+          "type": "number",
+          "unit": "px",
+          "value": 58,
+          "default": 58,
+          "min": 10,
+          "max": 160,
+          "step": 2
+        },
+        {
+          "id": "pointModes.clusterExpansionDurationMs",
+          "label": "Clusters — durée du zoom après un clic",
+          "type": "number",
+          "unit": "ms",
+          "value": 420,
+          "default": 420,
+          "min": 0,
+          "max": 2000,
+          "step": 20
+        },
+        {
+          "id": "pointModes.clusterMediumFromCount",
+          "label": "Clusters — nombre de points à partir du niveau moyen",
+          "type": "number",
+          "unit": "points",
+          "value": 10,
+          "default": 10,
+          "min": 2,
+          "max": 500,
+          "step": 1
+        },
+        {
+          "id": "pointModes.clusterHighFromCount",
+          "label": "Clusters — nombre de points à partir du niveau élevé",
+          "type": "number",
+          "unit": "points",
+          "value": 30,
+          "default": 30,
+          "min": 3,
+          "max": 1000,
+          "step": 1
+        },
+        {
+          "id": "pointModes.clusterVeryHighFromCount",
+          "label": "Clusters — nombre de points à partir du niveau très élevé",
+          "type": "number",
+          "unit": "points",
+          "value": 100,
+          "default": 100,
+          "min": 4,
+          "max": 5000,
+          "step": 1
+        },
+        {
+          "id": "pointModes.clusterSmallDiameterPx",
+          "label": "Clusters — diamètre d’un petit regroupement",
+          "type": "number",
+          "unit": "px",
+          "value": 34,
+          "default": 34,
+          "min": 16,
+          "max": 100,
+          "step": 2
+        },
+        {
+          "id": "pointModes.clusterMediumDiameterPx",
+          "label": "Clusters — diamètre d’un regroupement moyen",
+          "type": "number",
+          "unit": "px",
+          "value": 42,
+          "default": 42,
+          "min": 18,
+          "max": 120,
+          "step": 2
+        },
+        {
+          "id": "pointModes.clusterLargeDiameterPx",
+          "label": "Clusters — diamètre d’un grand regroupement",
+          "type": "number",
+          "unit": "px",
+          "value": 52,
+          "default": 52,
+          "min": 20,
+          "max": 140,
+          "step": 2
+        },
+        {
+          "id": "pointModes.clusterVeryLargeDiameterPx",
+          "label": "Clusters — diamètre d’un très grand regroupement",
+          "type": "number",
+          "unit": "px",
+          "value": 64,
+          "default": 64,
+          "min": 22,
+          "max": 180,
+          "step": 2
+        },
+        {
+          "id": "pointModes.clusterOpacityPercent",
+          "label": "Clusters — opacité des regroupements",
+          "type": "number",
+          "unit": "%",
+          "value": 90,
+          "default": 90,
+          "min": 10,
+          "max": 100,
+          "step": 5
+        },
+        {
+          "id": "pointModes.clusterOutlineWidthPx",
+          "label": "Clusters — épaisseur du contour",
+          "type": "number",
+          "unit": "px",
+          "value": 2,
+          "default": 2,
+          "min": 0,
+          "max": 8,
+          "step": 0.5
+        },
+        {
+          "id": "pointModes.clusterCountTextSizePx",
+          "label": "Clusters — taille du nombre de points",
+          "type": "number",
+          "unit": "px",
+          "value": 12,
+          "default": 12,
+          "min": 8,
+          "max": 24,
+          "step": 1
+        },
+        {
+          "id": "pointModes.heatmapLowZoomRadiusPx",
+          "label": "Zone de chaleur — rayon à faible zoom",
+          "type": "number",
+          "unit": "px",
+          "value": 15,
+          "default": 15,
+          "min": 4,
+          "max": 80,
+          "step": 1
+        },
+        {
+          "id": "pointModes.heatmapMediumZoomRadiusPx",
+          "label": "Zone de chaleur — rayon à zoom intermédiaire",
+          "type": "number",
+          "unit": "px",
+          "value": 28,
+          "default": 28,
+          "min": 4,
+          "max": 120,
+          "step": 1
+        },
+        {
+          "id": "pointModes.heatmapHighZoomRadiusPx",
+          "label": "Zone de chaleur — rayon à fort zoom",
+          "type": "number",
+          "unit": "px",
+          "value": 42,
+          "default": 42,
+          "min": 4,
+          "max": 180,
+          "step": 1
+        },
+        {
+          "id": "pointModes.heatmapLowZoomIntensityPercent",
+          "label": "Zone de chaleur — intensité à faible zoom",
+          "type": "number",
+          "unit": "%",
+          "value": 65,
+          "default": 65,
+          "min": 10,
+          "max": 300,
+          "step": 5
+        },
+        {
+          "id": "pointModes.heatmapMediumZoomIntensityPercent",
+          "label": "Zone de chaleur — intensité à zoom intermédiaire",
+          "type": "number",
+          "unit": "%",
+          "value": 125,
+          "default": 125,
+          "min": 10,
+          "max": 400,
+          "step": 5
+        },
+        {
+          "id": "pointModes.heatmapHighZoomIntensityPercent",
+          "label": "Zone de chaleur — intensité à fort zoom",
+          "type": "number",
+          "unit": "%",
+          "value": 170,
+          "default": 170,
+          "min": 10,
+          "max": 500,
+          "step": 5
+        },
+        {
+          "id": "pointModes.heatmapOpacityPercent",
+          "label": "Zone de chaleur — opacité générale",
+          "type": "number",
+          "unit": "%",
+          "value": 88,
+          "default": 88,
+          "min": 5,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "id": "pointModes.heatmapTransitionZoomLevels",
+          "label": "Zone de chaleur — nombre de niveaux de zoom pour faire apparaître progressivement les points normaux",
+          "type": "number",
+          "unit": "niveaux",
+          "value": 2,
+          "default": 2,
+          "min": 0.5,
+          "max": 8,
+          "step": 0.5
+        },
+        {
+          "id": "colors.pointModes.clusterLow",
+          "label": "Clusters — couleur d’un petit regroupement",
+          "type": "color",
+          "value": "#5068f5",
+          "default": "#5068f5"
+        },
+        {
+          "id": "colors.pointModes.clusterMedium",
+          "label": "Clusters — couleur d’un regroupement moyen",
+          "type": "color",
+          "value": "#7a57d1",
+          "default": "#7a57d1"
+        },
+        {
+          "id": "colors.pointModes.clusterHigh",
+          "label": "Clusters — couleur d’un grand regroupement",
+          "type": "color",
+          "value": "#d55e55",
+          "default": "#d55e55"
+        },
+        {
+          "id": "colors.pointModes.clusterVeryHigh",
+          "label": "Clusters — couleur d’un très grand regroupement",
+          "type": "color",
+          "value": "#b42318",
+          "default": "#b42318"
+        },
+        {
+          "id": "colors.pointModes.clusterOutline",
+          "label": "Clusters — couleur du contour",
+          "type": "color",
+          "value": "#ffffff",
+          "default": "#ffffff"
+        },
+        {
+          "id": "colors.pointModes.clusterText",
+          "label": "Clusters — couleur du nombre de points",
+          "type": "color",
+          "value": "#ffffff",
+          "default": "#ffffff"
+        },
+        {
+          "id": "colors.pointModes.heatmapCool",
+          "label": "Zone de chaleur — couleur de faible densité",
+          "type": "color",
+          "value": "#2c7be5",
+          "default": "#2c7be5"
+        },
+        {
+          "id": "colors.pointModes.heatmapMild",
+          "label": "Zone de chaleur — couleur de densité modérée",
+          "type": "color",
+          "value": "#43c4ac",
+          "default": "#43c4ac"
+        },
+        {
+          "id": "colors.pointModes.heatmapWarm",
+          "label": "Zone de chaleur — couleur de densité moyenne",
+          "type": "color",
+          "value": "#fed976",
+          "default": "#fed976"
+        },
+        {
+          "id": "colors.pointModes.heatmapHot",
+          "label": "Zone de chaleur — couleur de forte densité",
+          "type": "color",
+          "value": "#fd8d3c",
+          "default": "#fd8d3c"
+        },
+        {
+          "id": "colors.pointModes.heatmapVeryHot",
+          "label": "Zone de chaleur — couleur de très forte densité",
+          "type": "color",
+          "value": "#d73027",
+          "default": "#d73027"
+        }
+      ]
+    },
+    {
       "id": "interaction",
       "label": "Utilisation de la carte : gestes et délais",
       "description": "Règle les appuis longs, les délais de chargement, le suivi GPS et la durée des mises en évidence.",
@@ -857,8 +1172,29 @@
     {
       "id": "railColors",
       "label": "Carte principale : traits des lignes ferroviaires",
-      "description": "Chaque couleur s’applique au trait de la catégorie correspondante sur la carte et à son exemple dans la légende.",
+      "description": "Règle les couleurs des catégories ferroviaires et celles du tracé territorial par équipe.",
       "options": [
+        {
+          "id": "colors.teams.hazebrouckRail",
+          "label": "Tracé par équipe — Hazebrouck",
+          "type": "color",
+          "value": "#4b76c5",
+          "default": "#4b76c5"
+        },
+        {
+          "id": "colors.teams.valenciennesRail",
+          "label": "Tracé par équipe — Valenciennes",
+          "type": "color",
+          "value": "#ff0000",
+          "default": "#ff0000"
+        },
+        {
+          "id": "colors.teams.amiensRail",
+          "label": "Tracé par équipe — Amiens",
+          "type": "color",
+          "value": "#70b247",
+          "default": "#70b247"
+        },
         {
           "id": "colors.rail.main",
           "label": "Trait d’une ligne ferroviaire classique",

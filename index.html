@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
   <head>
     <meta charset="UTF-8" />
 
@@ -16,12 +16,34 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png" />
-    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-CLvxg85w.js"></script>
+    <script>
+      (() => {
+        const modeSombreSysteme = window.matchMedia?.("(prefers-color-scheme: dark)")?.matches === true;
+        let modeSombreCarte = false;
+        try {
+          const preferences = JSON.parse(localStorage.getItem("alice-fond-carte-v3") || "null");
+          if (preferences && typeof preferences === "object") {
+            modeSombreCarte = preferences.automatique === false
+              ? preferences.fondManuel === "darkMatter"
+              : preferences.baseAutomatique === "darkMatter";
+          }
+        } catch {
+          // Une preference illisible ne doit jamais bloquer le premier rendu.
+        }
+        const themeInitial = modeSombreSysteme || modeSombreCarte ? "dark" : "light";
+        document.documentElement.dataset.theme = themeInitial;
+        document.querySelector('meta[name="theme-color"]')?.setAttribute(
+          "content",
+          themeInitial === "dark" ? "#0b1726" : "#f3f6fb",
+        );
+      })();
+    </script>
+    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-R-QNf84T.js"></script>
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
-    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-C1iKwAH6.js">
+    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-BtMIm71s.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/preload-helper-C5ajgpwC.js">
-    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-s19FfAWu.css">
-    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/main-Bm2Bk2BF.js">
+    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-BwJC7Yz2.css">
+    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/main-CBBnx089.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/maplibre-gFZAzJIF.js">
   </head>
   <body>
@@ -167,9 +189,9 @@
     <!-- Contenus du volet unique : deplaces dans #modal-fiche-contenu a
          l'ouverture, ranges ici a la fermeture. Voir ouvrirVoletContenu()
          dans src/app/modules/fiche-panneau.js. -->
-    <div class="reserve-volet" id="reserve-itineraire" hidden>
-        <div class="modal-itineraire-carte" id="volet-itineraire-contenu">
-          <div class="modal-itineraire-entete panneau-entete-deplacable">
+    <div id="reserve-itineraire" hidden>
+        <div class="modal-itineraire-carte" id="volet-itineraire-contenu" data-panneau-crans>
+          <div class="modal-itineraire-entete panneau-entete-deplacable" data-panneau-cran>
             <h2 class="modal-itineraire-titre">Calculer un trajet</h2>
             <p class="modal-itineraire-sous-titre">Ajoutez, supprimez et réorganisez les étapes</p>
           </div>
@@ -183,7 +205,7 @@
 
           <div class="modal-itineraire-etat" id="itineraire-etat">Choisissez un départ et une arrivée.</div>
 
-          <section class="modal-itineraire-resume" id="itineraire-resume" aria-live="polite">
+          <section class="modal-itineraire-resume" id="itineraire-resume" aria-live="polite" data-panneau-cran>
             <div class="modal-itineraire-resume-tete">
               <strong>Résumé du trajet</strong>
               <span>Temps et distance estimés</span>
@@ -200,7 +222,7 @@
             </div>
           </section>
 
-          <section class="modal-itineraire-variantes" id="itineraire-variantes" hidden aria-label="Itinéraires proposés">
+          <section class="modal-itineraire-variantes" id="itineraire-variantes" hidden aria-label="Itinéraires proposés" data-panneau-cran>
             <div class="modal-itineraire-variantes-entete">
               <strong>Itinéraires possibles</strong>
               <span id="itineraire-variantes-compteur"></span>
@@ -209,7 +231,7 @@
             <small class="modal-itineraire-variantes-note">Péages indiqués selon les données routières disponibles.</small>
           </section>
 
-          <div class="modal-itineraire-actions">
+          <div class="modal-itineraire-actions" data-panneau-cran>
             <a class="popup-bouton-itineraire" id="itineraire-google" href="#" target="_blank" rel="noopener noreferrer">🗺️ Google Maps</a>
             <a class="popup-bouton-itineraire" id="itineraire-apple" href="#" target="_blank" rel="noopener noreferrer">🍎 Plans</a>
             <a class="popup-bouton-itineraire" id="itineraire-waze" href="#" target="_blank" rel="noopener noreferrer">🚗 Waze</a>
@@ -218,9 +240,9 @@
         </div>
     </div>
 
-    <div class="reserve-volet" id="reserve-localisation" hidden>
-        <div class="modal-localisation-carte" id="volet-localisation-contenu">
-          <div class="modal-localisation-entete panneau-entete-deplacable">
+    <div id="reserve-localisation" hidden>
+        <div class="modal-localisation-carte" id="volet-localisation-contenu" data-panneau-crans>
+          <div class="modal-localisation-entete panneau-entete-deplacable" data-panneau-cran>
             <h2 class="modal-localisation-titre">Autour de vous</h2>
             <p class="modal-localisation-sous-titre">Résultats proches de votre position actuelle</p>
             <div class="modal-localisation-etat" id="localisation-etat" aria-live="polite">Appuyez sur "Me localiser".</div>
@@ -229,8 +251,8 @@
         </div>
     </div>
 
-    <div class="reserve-volet" id="reserve-filtres" hidden>
-        <form class="menu-filtres" id="volet-filtres-contenu" role="dialog" aria-modal="false" aria-labelledby="filtres-titre">
+    <div id="reserve-filtres" hidden>
+        <form class="panneau-reglages-defilant" id="volet-filtres-contenu" role="dialog" aria-modal="false" aria-labelledby="filtres-titre">
           <header class="filtres-entete panneau-entete-deplacable">
             <button class="filtres-retour" id="filtres-retour" type="button" aria-label="Retour à l’affichage de la carte" hidden>‹</button>
             <div>
@@ -260,6 +282,30 @@
                   <span class="filtre-texte"><strong>Amiens</strong><small id="compteur-equipe-A">…</small></span>
                   <input type="checkbox" name="filtre-equipe" value="A" checked />
                   <span class="filtre-switch" aria-hidden="true"></span>
+                </label>
+              </div>
+            </section>
+
+            <section class="filtres-groupe" data-panneau-section="affichage" data-panneau-section-repliee="true" aria-labelledby="titre-section-affichage">
+              <div class="panneau-section-entete"><span class="panneau-section-titre" id="titre-section-affichage"><strong>Mode de carte</strong></span></div>
+              <div class="filtres-liste" role="radiogroup" aria-label="Mode d’affichage des points">
+                <label class="option-filtre option-mode-affichage">
+                  <span class="filtre-repere filtre-repere-mode filtre-repere-mode-normal" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="filtre-texte"><strong>Normal</strong><small>Affichage actuel des points</small></span>
+                  <input type="radio" name="mode-affichage-points" value="normal" checked />
+                  <span class="mode-affichage-coche" aria-hidden="true"></span>
+                </label>
+                <label class="option-filtre option-mode-affichage">
+                  <span class="filtre-repere filtre-repere-mode filtre-repere-mode-chaleur" aria-hidden="true"><i></i></span>
+                  <span class="filtre-texte"><strong>Zone de chaleur</strong><small>Visualiser la densité des points</small></span>
+                  <input type="radio" name="mode-affichage-points" value="chaleur" />
+                  <span class="mode-affichage-coche" aria-hidden="true"></span>
+                </label>
+                <label class="option-filtre option-mode-affichage">
+                  <span class="filtre-repere filtre-repere-mode filtre-repere-mode-cluster" aria-hidden="true"><i>12</i><i></i><i></i></span>
+                  <span class="filtre-texte"><strong>Clusters</strong><small>Regrouper les points selon le zoom</small></span>
+                  <input type="radio" name="mode-affichage-points" value="cluster" />
+                  <span class="mode-affichage-coche" aria-hidden="true"></span>
                 </label>
               </div>
             </section>
@@ -376,7 +422,7 @@
               </div>
             </section>
 
-            <section class="filtres-groupe filtres-groupe-lignes" data-panneau-section="trace-ferroviaire" aria-labelledby="titre-section-trace-ferroviaire">
+            <section class="filtres-groupe" data-panneau-section="trace-ferroviaire" aria-labelledby="titre-section-trace-ferroviaire">
               <div class="panneau-section-entete"><span class="panneau-section-titre" id="titre-section-trace-ferroviaire"><strong>Tracé ferroviaire</strong></span></div>
               <div class="filtres-lignes">
                 <label class="option-filtre-ligne">
@@ -403,7 +449,7 @@
                     <path d="M19.43 12.98c.04-.32.07-.65.07-.98s-.03-.66-.07-.98l2.11-1.65a.5.5 0 0 0 .12-.64l-2-3.46a.5.5 0 0 0-.6-.22l-2.49 1a7.2 7.2 0 0 0-1.69-.98l-.38-2.65A.5.5 0 0 0 14 2h-4a.5.5 0 0 0-.5.42l-.38 2.65c-.61.25-1.18.58-1.69.98l-2.49-1a.5.5 0 0 0-.6.22l-2 3.46a.5.5 0 0 0 .12.64l2.11 1.65a7.3 7.3 0 0 0 0 1.96l-2.11 1.65a.5.5 0 0 0-.12.64l2 3.46c.12.22.37.31.6.22l2.49-1c.51.4 1.08.73 1.69.98l.38 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.38-2.65c.61-.25 1.18-.58 1.69-.98l2.49 1c.23.09.48 0 .6-.22l2-3.46a.5.5 0 0 0-.12-.64l-2.11-1.65ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/>
                   </svg>
                 </span>
-                <span class="bouton-options-locales-texte"><strong>Réglages</strong><small>Régions, équipements et types de voies</small></span>
+                <span class="bouton-options-locales-texte"><strong>Réglages</strong><small>Régions, équipes et types de voies</small></span>
                 <i aria-hidden="true">›</i>
               </button>
             </section>
@@ -414,16 +460,19 @@
             </button>
           </div>
           <div class="options-locales-contenu" id="options-lignes-locales" hidden>
-            <section><h3>Régions disponibles</h3><div class="options-locales-liste options-locales-regions">
+            <section data-panneau-section="regions-locales"><div class="panneau-section-entete"><span class="panneau-section-titre"><strong>Régions disponibles</strong></span></div><div class="options-locales-liste options-locales-regions">
               <label class="option-locale"><span><strong>Hauts-de-France</strong><small>Région principale</small></span><input type="checkbox" name="local-region-hdf" checked disabled><i></i></label>
               <label class="option-locale"><span><strong>Normandie</strong></span><input type="checkbox" name="local-region-normandie"><i></i></label>
               <label class="option-locale"><span><strong>Grand Est</strong></span><input type="checkbox" name="local-region-grand-est"><i></i></label>
               <label class="option-locale"><span><strong>Île-de-France</strong></span><input type="checkbox" name="local-region-idf"><i></i></label>
             </div></section>
-            <section><h3>Sélection du réseau</h3><div class="options-locales-liste">
+            <section data-panneau-section="traces-equipes"><div class="panneau-section-entete"><span class="panneau-section-titre"><strong>Tracé par équipe</strong></span></div><div class="options-locales-liste">
+              <label class="option-locale option-locale-activation"><span><strong>Affichage par équipe EALE</strong><small>Colore les zones et masque les lignes sans équipement.</small><span class="legende-traces-equipes" aria-hidden="true"><b class="trace-equipe-h">Hazebrouck</b><b class="trace-equipe-v">Valenciennes</b><b class="trace-equipe-a">Amiens</b></span></span><input type="checkbox" name="local-trace-equipes"><i></i></label>
+            </div></section>
+            <section data-panneau-section="selection-reseau-local"><div class="panneau-section-entete"><span class="panneau-section-titre"><strong>Sélection du réseau</strong></span></div><div class="options-locales-liste">
               <label class="option-locale"><span><strong>Lignes avec équipement EALE</strong><small>Au moins un équipement EALE présent</small></span><input type="checkbox" name="local-lignes-equipees"><i></i></label>
             </div></section>
-            <section><h3>Types de voies</h3><div class="options-locales-liste options-locales-categories">
+            <section data-panneau-section="types-voies-locales"><div class="panneau-section-entete"><span class="panneau-section-titre"><strong>Types de voies</strong></span></div><div class="options-locales-liste options-locales-categories">
               <label class="option-locale"><b class="apercu-categorie trait-ligne-main"></b><span><strong>Lignes classiques</strong></span><input type="checkbox" name="local-categorie" value="main" checked><i></i></label>
               <label class="option-locale"><b class="apercu-categorie trait-ligne-lgv"></b><span><strong>LGV</strong></span><input type="checkbox" name="local-categorie" value="lgv" checked><i></i></label>
               <label class="option-locale"><b class="apercu-categorie trait-ligne-branch"></b><span><strong>Lignes secondaires</strong></span><input type="checkbox" name="local-categorie" value="branch" checked><i></i></label>
@@ -435,7 +484,7 @@
               <label class="option-locale"><b class="apercu-categorie trait-ligne-getlink"></b><span><strong>GetLink</strong></span><input type="checkbox" name="local-categorie" value="getlink" checked><i></i></label>
               <label class="option-locale"><b class="apercu-categorie trait-ligne-autre"></b><span><strong>Autres</strong></span><input type="checkbox" name="local-categorie" value="unknown" checked><i></i></label>
             </div></section>
-            <section><h3>État des voies</h3><div class="options-locales-liste options-locales-categories options-locales-etats">
+            <section data-panneau-section="etats-voies-locales"><div class="panneau-section-entete"><span class="panneau-section-titre"><strong>État des voies</strong></span></div><div class="options-locales-liste options-locales-categories">
               <label class="option-locale"><b class="apercu-categorie trait-etat-present"></b><span><strong>En service</strong></span><input type="checkbox" name="local-etat" value="present" checked><i></i></label>
               <label class="option-locale"><b class="apercu-categorie trait-etat-disused"></b><span><strong>Désaffectées</strong></span><input type="checkbox" name="local-etat" value="disused"><i></i></label>
               <label class="option-locale"><b class="apercu-categorie trait-etat-abandoned"></b><span><strong>Abandonnées</strong></span><input type="checkbox" name="local-etat" value="abandoned"><i></i></label>
@@ -445,8 +494,8 @@
         </form>
     </div>
 
-    <div class="reserve-volet" id="reserve-fonds" hidden>
-        <section class="menu-fonds" id="volet-fonds-contenu" role="dialog" aria-modal="false" aria-label="Choisir le fond de carte">
+    <div id="reserve-fonds" hidden>
+        <section class="panneau-reglages-defilant" id="volet-fonds-contenu" role="dialog" aria-modal="false" aria-label="Choisir le fond de carte">
           <header class="fonds-entete panneau-entete-deplacable">
             <h2 class="fonds-titre">Fond de carte</h2>
           </header>
@@ -579,7 +628,7 @@
           </div>
         </section>
 
-        <section class="popup-section popup-fiche-carte popup-fiche-presentation">
+        <section class="popup-section popup-fiche-carte">
           <div class="popup-section-titre popup-section-titre-gauche">
             <span class="popup-fiche-section-icone"><svg class="popup-icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
             <span class="popup-fiche-section-libelle"><strong>Présentation</strong></span>
@@ -603,7 +652,7 @@
           <p class="fiche-apropos-note">ALICE ne doit pas être utilisé en situation de sécurité ou d'urgence.</p>
         </section>
 
-        <section class="popup-section popup-fiche-carte popup-fiche-sources">
+        <section class="popup-section popup-fiche-carte">
           <div class="popup-section-titre popup-section-titre-gauche">
             <span class="popup-fiche-section-icone"><svg class="popup-icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15M9 3.236v15"/></svg></span>
             <span class="popup-fiche-section-libelle"><strong>Sources de données</strong></span>
@@ -619,7 +668,7 @@
           <p class="fiche-apropos-note">Les données Open Data tierces restent soumises à leurs licences respectives.</p>
         </section>
 
-        <section class="popup-section popup-fiche-carte popup-fiche-confidentialite">
+        <section class="popup-section popup-fiche-carte">
           <div class="popup-section-titre popup-section-titre-gauche">
             <span class="popup-fiche-section-icone"><svg class="popup-icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="16" r="1"/><rect x="3" y="10" width="18" height="12" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg></span>
             <span class="popup-fiche-section-libelle"><strong>Confidentialité</strong><span>Protection des données (RGPD)</span></span>
@@ -657,7 +706,7 @@
           <p class="fiche-apropos-texte">Pour toute question ou pour exercer vos droits, contactez l'auteur d'ALICE. En cas de difficulté non résolue, vous pouvez saisir la CNIL sur <a href="https://www.cnil.fr/" target="_blank" rel="noopener noreferrer">cnil.fr</a>.</p>
         </section>
 
-        <section class="popup-section popup-fiche-carte popup-fiche-installation">
+        <section class="popup-section popup-fiche-carte">
           <div class="popup-section-titre popup-section-titre-gauche">
             <span class="popup-fiche-section-icone"><svg class="popup-icone" viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M9 14h6M12 17v-6"/></svg></span>
             <span class="popup-fiche-section-libelle"><strong>Installation</strong></span>
