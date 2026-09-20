@@ -1172,25 +1172,25 @@
     {
       "id": "railColors",
       "label": "Carte principale : traits des lignes ferroviaires",
-      "description": "Règle les couleurs des catégories ferroviaires et celles du tracé territorial par équipe.",
+      "description": "Règle les couleurs des catégories ferroviaires et des repères d’équipe.",
       "options": [
         {
-          "id": "colors.teams.hazebrouckRail",
-          "label": "Tracé par équipe — Hazebrouck",
+          "id": "colors.teams.hazebrouck",
+          "label": "Équipe — Hazebrouck",
           "type": "color",
           "value": "#4b76c5",
           "default": "#4b76c5"
         },
         {
-          "id": "colors.teams.valenciennesRail",
-          "label": "Tracé par équipe — Valenciennes",
+          "id": "colors.teams.valenciennes",
+          "label": "Équipe — Valenciennes",
           "type": "color",
           "value": "#ff0000",
           "default": "#ff0000"
         },
         {
-          "id": "colors.teams.amiensRail",
-          "label": "Tracé par équipe — Amiens",
+          "id": "colors.teams.amiens",
+          "label": "Équipe — Amiens",
           "type": "color",
           "value": "#70b247",
           "default": "#70b247"
