@@ -16,12 +16,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png" />
-    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-B0h-B_bs.js"></script>
+    <script type="module" crossorigin src="/ALICE-BETA/assets/accueil-CLvxg85w.js"></script>
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-C1iKwAH6.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/preload-helper-C5ajgpwC.js">
-    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-BBDD2OpY.css">
-    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/main-B7Hmx_uy.js">
+    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/accueil-s19FfAWu.css">
+    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/main-Bm2Bk2BF.js">
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/maplibre-gFZAzJIF.js">
   </head>
   <body>
@@ -46,10 +46,10 @@
       <ul class="recherche-resultats" id="recherche-resultats" aria-label="Resultats de recherche"></ul>
     </div>
     <div class="info-chargement-couche" id="info-chargement-couche" aria-live="polite" aria-hidden="true"></div>
-    <div class="bandeau-donnees-a-completer" id="bandeau-donnees-a-completer" role="status" hidden>
-      <span class="bandeau-donnees-a-completer-repere" aria-hidden="true"></span>
-      <strong id="bandeau-donnees-a-completer-texte">Données à compléter</strong>
-      <button id="bandeau-donnees-a-completer-quitter" type="button">Quitter</button>
+    <div class="action-mode-carte" id="action-mode-carte" role="status" hidden>
+      <span class="action-mode-carte-repere" aria-hidden="true"></span>
+      <strong id="action-mode-carte-texte"></strong>
+      <button id="action-mode-carte-quitter" type="button">Quitter</button>
     </div>
 
     <div class="controle-filtres" id="controle-filtres">
@@ -117,9 +117,6 @@
     <div class="panneau-mesure" id="panneau-mesure" aria-live="polite">
       <pre class="panneau-mesure-texte" id="panneau-mesure-texte"></pre>
     </div>
-    <button class="bouton-sortie-mesure" id="bouton-sortie-mesure" type="button">
-      ❌ Quitter le traçage
-    </button>
     <div class="menu-contextuel-carte" id="menu-contextuel-carte" role="menu" aria-hidden="true">
       <button class="menu-contextuel-item menu-contextuel-coord" id="ctx-coord" type="button">📍 0.00000, 0.00000</button>
       <button class="menu-contextuel-item menu-contextuel-adresse" id="ctx-address" type="button" hidden>🏠 Recherche de l'adresse...</button>
@@ -155,7 +152,7 @@
             <path d="M6 10.5v7a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-7" />
           </svg>
         </button>
-        <button class="modal-fiche-fermer" id="modal-fiche-fermer" type="button" aria-label="Fermer la fiche">
+        <button class="modal-fiche-fermer" id="modal-fiche-fermer" type="button" aria-label="Fermer le panneau">
           <svg class="modal-fiche-fermer-icone" viewBox="0 0 24 24" aria-hidden="true">
             <path d="m6 6 12 12" />
             <path d="M18 6 6 18" />
@@ -172,7 +169,7 @@
          dans src/app/modules/fiche-panneau.js. -->
     <div class="reserve-volet" id="reserve-itineraire" hidden>
         <div class="modal-itineraire-carte" id="volet-itineraire-contenu">
-          <div class="modal-itineraire-entete">
+          <div class="modal-itineraire-entete panneau-entete-deplacable">
             <h2 class="modal-itineraire-titre">Calculer un trajet</h2>
             <p class="modal-itineraire-sous-titre">Ajoutez, supprimez et réorganisez les étapes</p>
           </div>
@@ -223,7 +220,7 @@
 
     <div class="reserve-volet" id="reserve-localisation" hidden>
         <div class="modal-localisation-carte" id="volet-localisation-contenu">
-          <div class="modal-localisation-entete">
+          <div class="modal-localisation-entete panneau-entete-deplacable">
             <h2 class="modal-localisation-titre">Autour de vous</h2>
             <p class="modal-localisation-sous-titre">Résultats proches de votre position actuelle</p>
             <div class="modal-localisation-etat" id="localisation-etat" aria-live="polite">Appuyez sur "Me localiser".</div>
@@ -234,7 +231,7 @@
 
     <div class="reserve-volet" id="reserve-filtres" hidden>
         <form class="menu-filtres" id="volet-filtres-contenu" role="dialog" aria-modal="false" aria-labelledby="filtres-titre">
-          <header class="filtres-entete">
+          <header class="filtres-entete panneau-entete-deplacable">
             <button class="filtres-retour" id="filtres-retour" type="button" aria-label="Retour à l’affichage de la carte" hidden>‹</button>
             <div>
               <h2 class="filtres-titre" id="filtres-titre">Affichage de la carte</h2>
@@ -243,8 +240,32 @@
           </header>
 
           <div class="filtres-contenu">
-            <fieldset class="filtres-groupe">
-              <legend><span>Équipements EALE</span><small>À combiner librement</small></legend>
+            <section class="filtres-groupe" data-panneau-section="equipes" data-panneau-section-repliee="true" aria-labelledby="titre-section-equipes">
+              <div class="panneau-section-entete"><span class="panneau-section-titre" id="titre-section-equipes"><strong>Équipe</strong></span></div>
+              <div class="filtres-liste">
+                <label class="option-filtre">
+                  <span class="filtre-repere filtre-repere-equipe" aria-hidden="true">H</span>
+                  <span class="filtre-texte"><strong>Hazebrouck</strong><small id="compteur-equipe-H">…</small></span>
+                  <input type="checkbox" name="filtre-equipe" value="H" checked />
+                  <span class="filtre-switch" aria-hidden="true"></span>
+                </label>
+                <label class="option-filtre">
+                  <span class="filtre-repere filtre-repere-equipe" aria-hidden="true">V</span>
+                  <span class="filtre-texte"><strong>Valenciennes</strong><small id="compteur-equipe-V">…</small></span>
+                  <input type="checkbox" name="filtre-equipe" value="V" checked />
+                  <span class="filtre-switch" aria-hidden="true"></span>
+                </label>
+                <label class="option-filtre">
+                  <span class="filtre-repere filtre-repere-equipe" aria-hidden="true">A</span>
+                  <span class="filtre-texte"><strong>Amiens</strong><small id="compteur-equipe-A">…</small></span>
+                  <input type="checkbox" name="filtre-equipe" value="A" checked />
+                  <span class="filtre-switch" aria-hidden="true"></span>
+                </label>
+              </div>
+            </section>
+
+            <section class="filtres-groupe" data-panneau-section="equipements-eale" aria-labelledby="titre-section-equipements-eale">
+              <div class="panneau-section-entete"><span class="panneau-section-titre" id="titre-section-equipements-eale"><strong>Équipements EALE</strong></span></div>
               <div class="filtres-liste">
                 <label class="option-filtre">
                   <span class="filtre-repere filtre-repere-appareils" aria-hidden="true">
@@ -255,6 +276,20 @@
                   <input type="checkbox" name="filtre-appareils" />
                   <span class="filtre-switch" aria-hidden="true"></span>
                 </label>
+                <div class="filtres-sous-menu-appareils" id="filtres-sous-menu-appareils" aria-label="Types d’appareils">
+                  <button class="filtres-sous-menu-appareils-entete" id="bouton-sous-menu-appareils" type="button" aria-expanded="false" aria-controls="contenu-sous-menu-appareils">
+                    <span>Types d’appareils affichés</span><i aria-hidden="true"></i>
+                  </button>
+                  <div class="filtres-sous-menu-appareils-grille" id="contenu-sous-menu-appareils" hidden>
+                    <label class="option-categorie-appareil"><input type="checkbox" name="filtre-categorie-appareil" value="interrupteurs" checked /><span class="categorie-appareil-coche" aria-hidden="true"></span><span class="categorie-appareil-pastille categorie-appareil-interrupteurs" aria-hidden="true"></span><span>Interrupteurs</span><small id="compteur-categorie-appareil-interrupteurs">0</small></label>
+                    <label class="option-categorie-appareil"><input type="checkbox" name="filtre-categorie-appareil" value="disjoncteurs" checked /><span class="categorie-appareil-coche" aria-hidden="true"></span><span class="categorie-appareil-pastille categorie-appareil-disjoncteurs" aria-hidden="true"></span><span>Disjoncteurs</span><small id="compteur-categorie-appareil-disjoncteurs">0</small></label>
+                    <label class="option-categorie-appareil"><input type="checkbox" name="filtre-categorie-appareil" value="transformateurs" checked /><span class="categorie-appareil-coche" aria-hidden="true"></span><span class="categorie-appareil-pastille categorie-appareil-transformateurs" aria-hidden="true"></span><span>Transfos</span><small id="compteur-categorie-appareil-transformateurs">0</small></label>
+                    <label class="option-categorie-appareil"><input type="checkbox" name="filtre-categorie-appareil" value="sectionneurs" checked /><span class="categorie-appareil-coche" aria-hidden="true"></span><span class="categorie-appareil-pastille categorie-appareil-sectionneurs" aria-hidden="true"></span><span>Sectionneurs</span><small id="compteur-categorie-appareil-sectionneurs">0</small></label>
+                    <label class="option-categorie-appareil"><input type="checkbox" name="filtre-categorie-appareil" value="alimentations" checked /><span class="categorie-appareil-coche" aria-hidden="true"></span><span class="categorie-appareil-pastille categorie-appareil-alimentations" aria-hidden="true"></span><span>Alimentations</span><small id="compteur-categorie-appareil-alimentations">0</small></label>
+                    <label class="option-categorie-appareil"><input type="checkbox" name="filtre-categorie-appareil" value="autres" checked /><span class="categorie-appareil-coche" aria-hidden="true"></span><span class="categorie-appareil-pastille categorie-appareil-autres" aria-hidden="true"></span><span>Autres</span><small id="compteur-categorie-appareil-autres">0</small></label>
+                    <label class="option-categorie-appareil option-categorie-appareil-large"><input type="checkbox" name="filtre-categorie-appareil" value="hp" checked /><span class="categorie-appareil-coche" aria-hidden="true"></span><span class="categorie-appareil-pastille categorie-appareil-hp" aria-hidden="true"></span><span>Hors patrimoine</span><small id="compteur-categorie-appareil-hp">0</small></label>
+                  </div>
+                </div>
                 <label class="option-filtre">
                   <span class="filtre-repere filtre-repere-acces" aria-hidden="true"><i></i></span>
                   <span class="filtre-texte"><strong>Accès voiture</strong><small>Points d’accès routiers</small></span>
@@ -284,22 +319,22 @@
                   <span class="filtre-switch" aria-hidden="true"></span>
                 </label>
               </div>
-            </fieldset>
+            </section>
 
-            <fieldset class="filtres-groupe">
-              <legend><span>Installations complémentaires</span><small>Hors équipements EALE</small></legend>
+            <section class="filtres-groupe" data-panneau-section="installations-complementaires" aria-labelledby="titre-section-installations-complementaires">
+              <div class="panneau-section-entete"><span class="panneau-section-titre" id="titre-section-installations-complementaires"><strong>Installations complémentaires</strong></span></div>
               <div class="filtres-liste">
                 <label class="option-filtre">
                   <span class="filtre-repere filtre-repere-autres" aria-hidden="true"><i></i></span>
                   <span class="filtre-texte"><strong>Autres</strong><small>Équipes, Agent E, Formation…</small></span>
-                  <input type="checkbox" name="filtre-autres" checked />
+                  <input type="checkbox" name="filtre-autres" />
                   <span class="filtre-switch" aria-hidden="true"></span>
                 </label>
               </div>
-            </fieldset>
+            </section>
 
-            <fieldset class="filtres-groupe">
-              <legend><span>Éléments du réseau</span><small>Repères et infrastructure ferroviaire</small></legend>
+            <section class="filtres-groupe" data-panneau-section="elements-reseau" aria-labelledby="titre-section-elements-reseau">
+              <div class="panneau-section-entete"><span class="panneau-section-titre" id="titre-section-elements-reseau"><strong>Éléments du réseau</strong></span></div>
               <div class="filtres-liste">
                 <label class="option-filtre">
                   <span class="filtre-repere filtre-repere-pn" aria-hidden="true"><i></i></span>
@@ -339,10 +374,10 @@
                   <p class="reglage-densite-pk-aide">Réglez le nombre de PK visibles sur la carte.</p>
                 </div>
               </div>
-            </fieldset>
+            </section>
 
-            <fieldset class="filtres-groupe filtres-groupe-lignes">
-              <legend><span>Tracé ferroviaire</span><small>Un seul à la fois</small></legend>
+            <section class="filtres-groupe filtres-groupe-lignes" data-panneau-section="trace-ferroviaire" aria-labelledby="titre-section-trace-ferroviaire">
+              <div class="panneau-section-entete"><span class="panneau-section-titre" id="titre-section-trace-ferroviaire"><strong>Tracé ferroviaire</strong></span></div>
               <div class="filtres-lignes">
                 <label class="option-filtre-ligne">
                   <input type="checkbox" name="filtre-lignes-osm" />
@@ -371,9 +406,12 @@
                 <span class="bouton-options-locales-texte"><strong>Réglages</strong><small>Régions, équipements et types de voies</small></span>
                 <i aria-hidden="true">›</i>
               </button>
-            </fieldset>
+            </section>
 
-            <button class="fonds-defaut filtres-defaut" id="filtres-defaut" type="button">Revenir par défaut</button>
+            <button class="fonds-defaut filtres-defaut panneau-sections-reinitialiser" id="filtres-defaut" type="button">
+              <svg class="popup-icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+              <span>Réinitialiser</span>
+            </button>
           </div>
           <div class="options-locales-contenu" id="options-lignes-locales" hidden>
             <section><h3>Régions disponibles</h3><div class="options-locales-liste options-locales-regions">
@@ -409,23 +447,30 @@
 
     <div class="reserve-volet" id="reserve-fonds" hidden>
         <section class="menu-fonds" id="volet-fonds-contenu" role="dialog" aria-modal="false" aria-label="Choisir le fond de carte">
-          <header class="fonds-entete">
+          <header class="fonds-entete panneau-entete-deplacable">
             <h2 class="fonds-titre">Fond de carte</h2>
           </header>
 
           <div class="fonds-contenu">
-            <label class="fonds-auto">
-              <span>
-                <strong>Mode automatique</strong>
-                <small>Plan en vue générale, satellite en vue rapprochée.</small>
-              </span>
-              <input type="checkbox" id="mode-fond-auto" checked />
-              <span class="fonds-switch" aria-hidden="true"></span>
-            </label>
-
             <div class="fonds-auto-reglages" id="fonds-auto-reglages">
-              <fieldset class="fonds-groupe">
-                <legend>Mon plan classique <span>Vue éloignée</span></legend>
+              <section class="fonds-groupe fonds-mode-automatique" data-panneau-section="mode-automatique" data-panneau-section-repliable="false" aria-labelledby="titre-section-mode-automatique">
+                <div class="panneau-section-entete">
+                  <span class="panneau-section-titre">
+                    <strong id="titre-section-mode-automatique">Mode automatique</strong>
+                    <span class="fonds-mode-aide">
+                      <button class="fonds-mode-aide-bouton" id="fonds-mode-aide-bouton" type="button" aria-describedby="fonds-mode-aide-texte" aria-expanded="false">?</button>
+                      <span class="fonds-mode-aide-texte" id="fonds-mode-aide-texte" role="tooltip">Le mode automatique bascule entre le plan classique et la vue satellite en fonction du niveau de zoom.</span>
+                    </span>
+                  </span>
+                  <label class="fonds-mode-interrupteur" aria-label="Activer le mode automatique">
+                    <input type="checkbox" id="mode-fond-auto" checked />
+                    <span class="fonds-switch" aria-hidden="true"></span>
+                  </label>
+                </div>
+              </section>
+
+              <section class="fonds-groupe" data-panneau-section="plan-classique" aria-labelledby="titre-section-plan-classique">
+                <div class="panneau-section-entete"><span class="panneau-section-titre" id="titre-section-plan-classique"><strong>Plans</strong></span></div>
                 <div class="fonds-grille">
                   <button class="fonds-carte apercu-systeme" type="button" data-fond-auto-base="systeme">
                     <span><strong>Selon l’appareil</strong><small>Voyager clair · Dark Matter nuit</small></span><i>✓</i>
@@ -446,10 +491,10 @@
                     <span><strong>OSM Standard</strong><small>Carte ouverte</small></span><i>✓</i>
                   </button>
                 </div>
-              </fieldset>
+              </section>
 
-              <fieldset class="fonds-groupe">
-                <legend>Mon satellite <span>Vue rapprochée</span></legend>
+              <section class="fonds-groupe" data-panneau-section="satellite" aria-labelledby="titre-section-satellite">
+                <div class="panneau-section-entete"><span class="panneau-section-titre" id="titre-section-satellite"><strong>Satellites</strong></span></div>
                 <div class="fonds-grille">
                   <button class="fonds-carte apercu-satellite-ign" type="button" data-fond-auto-satellite="ignAuto">
                     <span><strong>Satellite IGN</strong><small>France · précision</small></span><i>✓</i>
@@ -468,7 +513,7 @@
                   <input class="labels-villes" type="checkbox" />
                   <span class="fonds-switch" aria-hidden="true"></span>
                 </label>
-              </fieldset>
+              </section>
             </div>
 
             <div class="fonds-manuel" id="fonds-manuel" hidden>
@@ -513,14 +558,17 @@
               </div>
             </div>
 
-            <button class="fonds-defaut" id="fonds-defaut" type="button">Revenir par défaut</button>
+            <button class="fonds-defaut panneau-sections-reinitialiser" id="fonds-defaut" type="button">
+              <svg class="popup-icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+              <span>Réinitialiser</span>
+            </button>
           </div>
         </section>
     </div>
 
     <div class="reserve-apropos" id="reserve-apropos" hidden>
       <div class="popup-carte popup-carte-poste-acces popup-carte-origine-apropos" id="apropos-contenu">
-        <section class="popup-section popup-fiche-entete popup-fiche-entete-apropos">
+        <section class="popup-section popup-fiche-entete popup-fiche-entete-apropos panneau-entete-deplacable">
           <div class="popup-fiche-identite">
             <img src="/ALICE-BETA/alice.webp" alt="" class="popup-fiche-logo-apropos" width="118" height="50" onerror="this.style.display='none';" />
             <p class="popup-poste-entete-principal">À propos d'ALICE</p>
