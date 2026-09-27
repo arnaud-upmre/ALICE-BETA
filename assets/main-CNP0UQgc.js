@@ -12,11 +12,11 @@ import{i as e,n as t,r as n,t as r}from"./maplibre-gFZAzJIF.js";import{n as i,r 
     <header class="jeu-alice-entete panneau-entete-deplacable" data-panneau-cran><small>ALICE · DÉFI</small><h2>Le défi d’ALICE</h2><p>Trouvez les postes et SAT sur la carte.</p></header>
     <div class="jeu-alice-contenu" data-panneau-cran>
       <div data-jeu-config>
-        <p class="jeu-alice-label" id="jeu-alice-mode-label">Mode de jeu</p>
+        <p class="jeu-alice-label" id="jeu-alice-mode-label">Choisir un mode</p>
         <div class="jeu-alice-choix-mode" role="group" aria-labelledby="jeu-alice-mode-label">${Object.entries(W).map(([e,t])=>`<button type="button" data-jeu-mode="${e}" aria-pressed="${e===`decouverte`}">${t.libelle}</button>`).join(``)}</div>
         <p data-jeu-objectif></p>
         <button type="button" class="jeu-alice-bouton primaire" data-jeu-lancer>Lancer la partie</button>
-        <h3>Règles du mode</h3><ul class="jeu-alice-regles" data-jeu-regles></ul>
+        <h3>Règles</h3><ul class="jeu-alice-regles" data-jeu-regles></ul>
       </div>
       <div data-jeu-partie hidden>
         <div class="jeu-alice-infos"><span data-jeu-mode-actif></span><strong data-jeu-manche></strong><span data-jeu-chrono></span><strong data-jeu-score></strong></div>
