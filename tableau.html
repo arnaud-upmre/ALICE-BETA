@@ -1,1 +1,954 @@
-<!DOCTYPE html> <html lang="fr"> <head> <meta charset="UTF-8"> <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex"> <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex"> <title>ALICE - Application de Localisation des Installations de Conduite des EALE.</title> <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"> <meta name="theme-color" content="#0b1726"> <meta name="mobile-web-app-capable" content="yes"> <meta name="apple-mobile-web-app-capable" content="yes"> <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <link rel="manifest" href="/ALICE-BETA/manifest.webmanifest"> <link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png"> <link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png"> <link rel="shortcut icon" href="/ALICE-BETA/icons/icon-32.png" type="image/png"> <link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png"> <style>*,:before,:after{box-sizing:border-box}:root{--bg:var(--alice-panel-soft-light);--card-bg:var(--alice-panel-soft-light);--text:var(--tableau-text-light,#3c3732);--muted:var(--alice-muted-light);--pill-bg:var(--tableau-pill-bg-light,#eaf4fb);--pill-text:var(--tableau-pill-text-light,#264fc4);--sat-bg:var(--tableau-sat-bg-light,#f6e4b5);--sat-text:var(--tableau-sat-text-light,#de511d);--hp-bg:#c80e0e1f;--hp-text:var(--tableau-hp-text-light,#c80e0e);--metro-recherche:var(--metro-tableau-recherche-clair,#5068f5);--accent:var(--tableau-accent-light,#5068f5);--border:var(--tableau-border-light,#b0cc93);--shadow:#0000001a}@media (prefers-color-scheme:dark){:root{--bg:var(--alice-bg-page-deep-dark);--card-bg:#0a121feb;--text:var(--alice-text-dark);--muted:var(--alice-muted-dark);--pill-bg:#97c7ec24;--pill-text:var(--tableau-pill-text-dark,#97c7ec);--sat-bg:#f1d18a24;--sat-text:var(--tableau-sat-text-dark,#f1d18a);--hp-bg:#f0899224;--hp-text:var(--tableau-hp-text-dark,#f08992);--metro-recherche:var(--metro-tableau-recherche-sombre,#97c7ec);--accent:var(--tableau-accent-dark,#97c7ec);--border:var(--alice-line-strong-dark);--shadow:#00000059}.board-header{border:1px solid var(--border);background:#0a121ff5}.type-pill{color:var(--text);border-color:var(--border);background:#94a3b81f}.ville-card{border:1px solid var(--border);background:#94a3b80f!important}.board-close{color:var(--text);background:#94a3b824}.board-close:hover,.board-close:focus-visible{background:#94a3b83d}}.board-title-wrap{flex-direction:column;gap:6px;display:flex}.board-main-row{align-items:center;gap:18px;padding-right:34px;display:flex}.board-close{z-index:2;color:#111827;cursor:pointer;background:#e5e7eb;border:0;border-radius:999px;justify-content:center;align-items:center;width:30px;height:30px;font-size:1.2rem;line-height:1;text-decoration:none;display:inline-flex;position:absolute;top:8px;right:8px}.board-close:hover{background:#d1d5db}.board-close:focus-visible{background:#d1d5db;outline:none}.board-title{letter-spacing:.2px;flex:none;align-items:center;gap:10px;font-size:24px;font-weight:800;display:flex}.board-row{flex:420px;min-width:180px}.board-logo{width:auto;height:28px;display:block}.board-meta{color:var(--muted);flex-wrap:wrap;align-items:center;gap:14px;font-size:13px;display:flex}#counters{opacity:.9}body{padding:calc(20px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-right)) calc(20px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-left));background:var(--bg);color:var(--text);margin:0;font-family:Inter,sans-serif}@media (prefers-color-scheme:dark){body{background:var(--alice-page-glow-dark), var(--bg)}}.board-row{margin-top:0}.section-title,.sat-pill{color:inherit;cursor:pointer;text-decoration:none;transition:all .15s}.pill,.sat-pill,.section-title,.type-pill{display:inline-block}.pill{background:var(--pill-bg);color:var(--pill-text);cursor:pointer;border-radius:10px;margin:4px 6px 4px 0;padding:4px 8px;font-size:12px;text-decoration:none;transition:all .15s}.pill:hover,.sat-pill:hover,.section-title:hover{box-shadow:0 3px 10px var(--shadow);transform:translateY(-2px)scale(1.02)}.type-pill{color:#3c3732;letter-spacing:.3px;background:#e6ecef;border:1px solid #b0cc93;border-radius:8px;margin-left:6px;padding:3px 10px;font-size:11px;font-weight:700}.sat-pill,.section-title{background:var(--sat-bg);color:var(--sat-text);border-radius:10px;margin-bottom:8px;padding:4px 10px;font-size:12px;font-weight:600}.hp .pill{background:var(--hp-bg);color:var(--hp-text)}.post-container{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;display:grid}.card{background:var(--card-bg);box-shadow:0 4px 12px var(--shadow);opacity:0;border:1px solid #ffffff0d;border-radius:14px;padding:14px;animation:.45s forwards fadeIn;transform:translateY(10px)}.card.hp-poste{background:linear-gradient(135deg,#fdf1f2,#fce5e7);border:1px solid #f08992;box-shadow:0 6px 16px #c80e0e2e}@media (prefers-color-scheme:dark){.card.hp-poste{background:linear-gradient(135deg,#78141473,#500a0a59);border:1px solid #ff8a8a8c;box-shadow:0 6px 18px #ff50502e}}.card-title{margin-bottom:8px;font-size:17px;font-weight:700}.rail-meta{min-width:0;color:var(--muted);align-items:center;gap:6px;margin:0 0 12px;font-size:11px;line-height:1.25;display:flex}.rail-meta-sat{margin:-2px 0 8px}.rail-code{color:var(--accent);background:#5068f51c;border-radius:999px;flex:none;padding:2px 6px;font-size:10px;font-weight:700}.rail-name{text-overflow:ellipsis;white-space:nowrap;min-width:0;overflow:hidden}.app-tooltip{z-index:2000;max-width:min(360px,100vw - 24px);color:var(--text);pointer-events:none;background:#fffffff5;border:1px solid #3c37322e;border-radius:8px;padding:8px 10px;font-size:12px;line-height:1.35;position:fixed;box-shadow:0 8px 22px #0000002e}.app-tooltip[hidden]{display:none}.app-tooltip-status{color:var(--muted)}@media (prefers-color-scheme:dark){.app-tooltip{background:#111827f5;border-color:#94a3b859}}.sat-block{border-top:1px dashed var(--border);margin-top:16px;padding-top:12px}@keyframes fadeIn{to{opacity:1;transform:translateY(0)}}#search{border:1px solid var(--border);background:var(--card-bg);width:100%;color:var(--text);border-radius:14px;padding:12px 18px;font-size:15px}#search:focus{border-color:var(--accent);box-shadow:0 0 0 3px #5068f52e}.filters{top:calc(var(--board-header-sticky-offset,0px) + env(safe-area-inset-top));z-index:49;background:color-mix(in srgb, var(--bg) 90%, transparent);backdrop-filter:blur(10px);flex-wrap:wrap;justify-content:center;gap:10px;width:100%;margin-bottom:20px;padding:10px 8px;display:flex;position:sticky}.filters button{border:1px solid var(--border);cursor:pointer;color:var(--text);backdrop-filter:blur(6px);background:#ffffff0f;border-radius:12px;padding:8px 16px;font-weight:600;transition:all .15s}.filters button:hover{border-color:var(--accent);transform:translateY(-1px)}.filters button.activeFilter{color:#fff;background:linear-gradient(135deg,#5068f5,#264fc4);border-color:#5068f5;box-shadow:0 6px 18px #5068f559}.pill:focus-visible,.sat-pill:focus-visible,.section-title:focus-visible,.filters button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.board-header{top:env(safe-area-inset-top);z-index:50;backdrop-filter:blur(8px);box-shadow:0 10px 26px var(--shadow);border-radius:18px;margin-bottom:16px;padding:14px;position:sticky}@media (prefers-color-scheme:dark){#search,.filters button,.card{border-color:var(--border)}#search{background:#94a3b814}.filters button{background:#94a3b81f}}@media (width<=480px){.board-main-row{flex-direction:column;align-items:stretch;gap:10px}.board-row{flex-basis:auto}.card{border-radius:14px;padding:14px}.card-title{font-size:16px}.pill{padding:4px 8px;font-size:12px}.sat-pill,.section-title{padding:4px 10px;font-size:12px}}@media (width>=1200px){.post-container{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}.card{padding:12px}.card-title{margin-bottom:7px;font-size:15px}.pill,.sat-pill,.section-title{font-size:11px}.type-pill{font-size:10px}}.post-container.mode-metro{grid-template-columns:1fr;gap:14px}.ligne-card{--metro-largeur-arret:36px;--metro-largeur-libelle:152px;--metro-hauteur-libelles:124px;--metro-reserve-libelle:120px;--color-ligne-metro:var(--accent);min-width:0;padding:12px 14px;position:relative}.ligne-entete{flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:2px;padding-right:40px;display:flex}.ligne-code{background:color-mix(in srgb, var(--color-ligne-metro) 12%, transparent);color:var(--color-ligne-metro);border-radius:999px;flex:none;padding:3px 9px;font-size:11px;font-weight:700}.ligne-nom{text-overflow:ellipsis;white-space:nowrap;min-width:0;font-size:15px;font-weight:700;overflow:hidden}.ligne-compteur{color:var(--muted);font-size:11px}.ligne-inverser{border:1px solid var(--border);min-width:30px;min-height:26px;color:var(--muted);font:inherit;cursor:pointer;background:#ffffff0f;border-radius:9px;justify-content:center;align-items:center;padding:2px 8px;font-size:13px;line-height:1;transition:all .15s;display:inline-flex;position:absolute;top:11px;right:12px}.ligne-inverser:hover{border-color:var(--color-ligne-metro);color:var(--color-ligne-metro)}.ligne-inverser[aria-pressed=true]{border-color:var(--color-ligne-metro);background:color-mix(in srgb, var(--color-ligne-metro) 12%, transparent);color:var(--color-ligne-metro)}.ligne-inverser:focus-visible{outline:2px solid var(--color-ligne-metro);outline-offset:2px}.metro-defilement{overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:color-mix(in srgb, var(--color-ligne-metro) 35%, transparent) transparent;padding-bottom:2px;overflow-x:auto}.metro-defilement::-webkit-scrollbar{height:6px}.metro-defilement::-webkit-scrollbar-track{background:0 0}.metro-defilement::-webkit-scrollbar-thumb{background:color-mix(in srgb, var(--color-ligne-metro) 30%, transparent);border-radius:999px}.metro-rail{width:max-content;padding:var(--metro-hauteur-libelles) var(--metro-reserve-libelle) 4px 0;align-items:flex-end;margin:0;list-style:none;display:flex;position:relative}.metro-rail:before{content:"";bottom:12px;left:8px;right:calc(var(--metro-reserve-libelle) + 8px);background:var(--color-ligne-metro);opacity:.35;border-radius:2px;height:3px;margin-bottom:-1.5px;position:absolute}.metro-stop{width:var(--metro-largeur-arret);flex:none;justify-content:flex-start;display:flex;position:relative}.metro-stop:last-child{width:16px}.metro-stop:before{content:"";background:var(--muted);opacity:.5;transform-origin:0;width:13px;height:1px;position:absolute;bottom:12px;left:8px;transform:rotate(-45deg)}.metro-stop-marqueur{justify-content:center;align-items:center;width:16px;height:16px;display:inline-flex;position:relative}.metro-stop-marqueur:before{content:"";border:2.5px solid var(--color-ligne-metro);background:var(--card-bg);border-radius:50%;width:11px;height:11px}.metro-stop-texte{max-width:var(--metro-largeur-libelle);text-overflow:ellipsis;white-space:nowrap;transform-origin:0 100%;font-size:calc(var(--metro-tableau-taille-nom,12) * 1px);pointer-events:none;line-height:1.15;position:absolute;bottom:21px;left:17px;overflow:hidden;transform:rotate(-45deg)}.metro-stop-nom{font-weight:650}.metro-stop-type,.metro-stop-parent{font-size:calc(var(--metro-tableau-taille-type,11) * 1px);letter-spacing:.03em;color:var(--muted);margin-left:3px;font-weight:600}.metro-stop[data-arret]{cursor:help}.metro-stop.est-sat .metro-stop-marqueur:before{border-width:2px;border-color:var(--sat-text);width:7px;height:7px}.metro-stop.est-sat .metro-stop-nom{color:var(--sat-text)}.metro-stop.est-hp .metro-stop-marqueur:before{border-color:var(--hp-text)}.metro-stop.est-hp .metro-stop-nom{color:var(--hp-text)}.metro-stop.est-autre .metro-stop-marqueur:before{border-color:var(--muted)}.metro-stop.est-correspondance .metro-stop-marqueur:before{border-width:2px;width:9px;height:9px}.metro-stop.est-correspondance .metro-stop-marqueur:after{content:"";border:1.5px solid var(--color-ligne-metro);opacity:.6;border-radius:50%;width:16px;height:16px;position:absolute}.metro-stop.est-correspondance.est-sat .metro-stop-marqueur:before{width:7px;height:7px}.metro-stop.est-correspondance.est-sat .metro-stop-marqueur:after{border-color:var(--sat-text);width:13px;height:13px}.metro-stop.est-correspondance.est-hp .metro-stop-marqueur:after{border-color:var(--hp-text)}.metro-stop.est-correspondance.est-autre .metro-stop-marqueur:after{border-color:var(--muted)}.metro-stop.est-trouve .metro-stop-marqueur:before{border-color:var(--metro-recherche);background:var(--metro-recherche);width:13px;height:13px;box-shadow:0 0 0 3px color-mix(in srgb, var(--metro-recherche) 28%, transparent);animation:metro-clignote .9s ease-in-out var(--metro-clignotements,4)}.metro-stop.est-trouve.est-sat .metro-stop-marqueur:before{width:9px;height:9px}.metro-stop.est-trouve .metro-stop-marqueur:after{border-color:var(--metro-recherche);opacity:1}.metro-stop.est-trouve:before{background:var(--metro-recherche);opacity:.8}.metro-stop.est-trouve .metro-stop-nom,.metro-stop.est-trouve .metro-stop-type,.metro-stop.est-trouve .metro-stop-parent{color:var(--metro-recherche);font-weight:700}@keyframes metro-clignote{0%,to{box-shadow:0 0 0 3px color-mix(in srgb, var(--metro-recherche) 28%, transparent)}50%{box-shadow:0 0 0 8px color-mix(in srgb, var(--metro-recherche) 34%, transparent)}}@media (prefers-reduced-motion:reduce){.metro-stop.est-trouve .metro-stop-marqueur:before{animation:none}}@media (width<=480px){.ligne-card{--metro-largeur-arret:32px;--metro-largeur-libelle:118px}}</style> <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-CHr8rdb-.js"></script> <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js"> <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-DYPHlPyK.js"> <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/utils-Bsp5QMWj.js"> <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/styles-lignes-Cb9iUqkZ.js"> <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-BE47aISw.css"> </head> <body> <div class="board-header"> <a class="board-close" href="index.html" aria-label="Fermer le tableau blanc et revenir à la page principale" title="Fermer">×</a> <div class="board-title-wrap"> <div class="board-main-row"> <div class="board-title"> <img src="/ALICE-BETA/alice.webp" alt="Logo ALICE" class="board-logo"> <span>Tableau blanc</span> </div> <div class="board-row"> <input id="search" type="text" placeholder="Rechercher..." aria-label="Rechercher un poste, SAT ou appareil" autocomplete="off"> </div> </div> <div class="board-meta"> <span id="counters">Chargement…</span> </div> </div> </div> <div class="filters"> <button type="button" data-tableau-tri-critere="alphabet" aria-pressed="true">A → Z</button> <button type="button" data-tableau-tri-critere="appareils" aria-pressed="false">+ appareils</button> <button type="button" data-tableau-vue="metro" aria-pressed="false" title="Afficher les lignes en vue Métro">MÉTRO</button> <button type="button" data-tableau-filtre="sat" aria-pressed="false" title="Afficher les SAT sur les lignes" hidden>SAT</button> </div> <div id="postesZone" class="post-container"></div> </body> </html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<title>ALICE - Application de Localisation des Installations de Conduite des EALE.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b1726">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="/ALICE-BETA/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="/ALICE-BETA/icons/icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/ALICE-BETA/icons/icon-192.png">
+<link rel="shortcut icon" href="/ALICE-BETA/icons/icon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="/ALICE-BETA/icons/apple-touch-icon.png">
+<style>
+
+/* Reset sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Variables theme clair */
+:root {
+  --bg: var(--alice-panel-soft-light);
+  --card-bg: var(--alice-panel-soft-light);
+
+  /* Texte */
+  --text: var(--tableau-text-light, #3c3732);
+  --muted: var(--alice-muted-light);
+
+  /* Pills */
+  --pill-bg: var(--tableau-pill-bg-light, #eaf4fb);
+  --pill-text: var(--tableau-pill-text-light, #264fc4);
+
+  /* SAT */
+  --sat-bg: var(--tableau-sat-bg-light, #f6e4b5);
+  --sat-text: var(--tableau-sat-text-light, #de511d);
+
+  /* Hors patrimoine */
+  --hp-bg: rgba(200, 14, 14, 0.12);
+  --hp-text: var(--tableau-hp-text-light, #c80e0e);
+
+  /* Vue Metro — reglages du gestionnaire (groupe « Vue Metro du tableau
+     blanc »). Les tailles sont des nombres sans unite : le fichier d'options
+     ne sait ecrire qu'un nombre, le `* 1px` est fait dans la regle. */
+  --metro-recherche: var(--metro-tableau-recherche-clair, #5068f5);
+
+  /* Accent / bordure / ombre */
+  --accent: var(--tableau-accent-light, #5068f5);
+  --border: var(--tableau-border-light, #b0cc93);
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--alice-bg-page-deep-dark);
+    --card-bg: rgba(10, 18, 31, 0.92);
+
+    --text: var(--alice-text-dark);
+    --muted: var(--alice-muted-dark);
+
+    --pill-bg: color-mix(in srgb, #97c7ec 14%, transparent);
+    --pill-text: var(--tableau-pill-text-dark, #97c7ec);
+
+    --sat-bg: color-mix(in srgb, #f1d18a 14%, transparent);
+    --sat-text: var(--tableau-sat-text-dark, #f1d18a);
+
+    --hp-bg: color-mix(in srgb, #f08992 14%, transparent);
+    --hp-text: var(--tableau-hp-text-dark, #f08992);
+
+    --metro-recherche: var(--metro-tableau-recherche-sombre, #97c7ec);
+
+    --accent: var(--tableau-accent-dark, #97c7ec);
+    --border: var(--alice-line-strong-dark);
+    --shadow: rgba(0, 0, 0, 0.35);
+  }
+
+  .board-header {
+    background: rgba(10, 18, 31, 0.96);
+    border: 1px solid var(--border);
+  }
+
+  .type-pill {
+    background: rgba(148, 163, 184, 0.12);
+    color: var(--text);
+    border-color: var(--border);
+  }
+
+  .ville-card {
+    background: rgba(148, 163, 184, 0.06) !important;
+    border: 1px solid var(--border);
+  }
+
+  .board-close {
+    background: rgba(148, 163, 184, 0.14);
+    color: var(--text);
+  }
+
+  .board-close:hover,
+  .board-close:focus-visible {
+    background: rgba(148, 163, 184, 0.24);
+  }
+
+}
+
+/* Header */
+.board-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.board-main-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-right: 34px;
+}
+
+.board-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 0;
+  background: #e5e7eb;
+  color: #111827;
+  text-decoration: none;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.board-close:hover {
+  background: #d1d5db;
+}
+
+.board-close:focus-visible {
+  background: #d1d5db;
+  outline: none;
+}
+
+.board-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.board-row {
+  flex: 1 1 420px;
+  min-width: 180px;
+}
+
+.board-logo {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.board-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+#counters {
+  opacity: 0.9;
+}
+
+/* Layout */
+body {
+  font-family: Inter, sans-serif;
+  margin: 0;
+  padding:
+    calc(20px + env(safe-area-inset-top))
+    calc(20px + env(safe-area-inset-right))
+    calc(20px + env(safe-area-inset-bottom))
+    calc(20px + env(safe-area-inset-left));
+  background: var(--bg);
+  color: var(--text);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: var(--alice-page-glow-dark), var(--bg);
+  }
+}
+
+.board-row {
+  margin-top: 0;
+}
+
+/* Liens cliquables */
+.section-title,
+.sat-pill {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+/* Pills */
+.pill,
+.sat-pill,
+.section-title,
+.type-pill {
+  display: inline-block;
+}
+
+.pill {
+  padding: 4px 8px;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  border-radius: 10px;
+  font-size: 12px;
+  margin: 4px 6px 4px 0;
+  cursor: pointer;
+  transition: 0.15s;
+  text-decoration: none;
+}
+
+.pill:hover,
+.sat-pill:hover,
+.section-title:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 3px 10px var(--shadow);
+}
+
+.type-pill {
+  background: #e6ecef;
+  color: #3c3732;
+  border: 1px solid #b0cc93;
+  padding: 3px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin-left: 6px;
+}
+
+.sat-pill,
+.section-title {
+  background: var(--sat-bg);
+  color: var(--sat-text);
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.hp .pill {
+  background: var(--hp-bg);
+  color: var(--hp-text);
+}
+
+/* Cartes / grille */
+.post-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 14px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.45s ease forwards;
+}
+
+.card.hp-poste{
+  background: linear-gradient(135deg, color-mix(in srgb, #f08992 12%, #ffffff), color-mix(in srgb, #f08992 22%, #ffffff));
+  border: 1px solid #f08992;
+  box-shadow: 0 6px 16px rgba(200, 14, 14, 0.18);
+}
+
+@media (prefers-color-scheme: dark){
+  .card.hp-poste{
+    background: linear-gradient(135deg, rgba(120,20,20,0.45), rgba(80,10,10,0.35));
+    border: 1px solid rgba(255,138,138,0.55);
+    box-shadow: 0 6px 18px rgba(255, 80, 80, 0.18);
+  }
+}
+
+.card-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.rail-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.rail-meta-sat {
+  margin: -2px 0 8px;
+}
+
+.rail-code {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.rail-code {
+  background: rgba(80, 104, 245, 0.11);
+  color: var(--accent);
+}
+
+.rail-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-tooltip {
+  position: fixed;
+  z-index: 2000;
+  max-width: min(360px, calc(100vw - 24px));
+  padding: 8px 10px;
+  border: 1px solid rgba(60, 55, 50, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--text);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+  font-size: 12px;
+  line-height: 1.35;
+  pointer-events: none;
+}
+
+.app-tooltip[hidden] {
+  display: none;
+}
+
+.app-tooltip-status {
+  color: var(--muted);
+}
+
+@media (prefers-color-scheme: dark) {
+  .app-tooltip {
+    background: rgba(17, 24, 39, 0.96);
+    border-color: rgba(148, 163, 184, 0.35);
+  }
+}
+
+.sat-block {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Recherche */
+#search {
+  width: 100%;
+  padding: 12px 18px;
+  font-size: 15px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+}
+
+#search:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(80, 104, 245, 0.18);
+}
+
+/* Filtres */
+.filters {
+  position: sticky;
+  top: calc(var(--board-header-sticky-offset, 0px) + env(safe-area-inset-top));
+  z-index: 49;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 10px 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.filters button {
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text);
+  transition: all 0.15s ease;
+  backdrop-filter: blur(6px);
+}
+
+.filters button:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.filters button.activeFilter {
+  background: linear-gradient(135deg, #5068f5, #264fc4);
+  color: #ffffff;
+  border-color: #5068f5;
+  box-shadow: 0 6px 18px rgba(80, 104, 245, 0.35);
+}
+
+.pill:focus-visible,
+.sat-pill:focus-visible,
+.section-title:focus-visible,
+.filters button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Header container */
+.board-header {
+  position: sticky;
+  top: env(safe-area-inset-top);
+  z-index: 50;
+  margin-bottom: 16px;
+  padding: 14px;
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 26px var(--shadow);
+}
+
+@media (prefers-color-scheme: dark) {
+
+  #search,
+  .filters button,
+  .card {
+    border-color: var(--border);
+  }
+
+  #search {
+    background: rgba(148, 163, 184, 0.08);
+  }
+
+  .filters button {
+    background: rgba(148, 163, 184, 0.12);
+  }
+
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .board-main-row {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .board-row {
+    flex-basis: auto;
+  }
+
+  .card {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .pill {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  .sat-pill,
+  .section-title {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+}
+
+/* Desktop compact: densite proche de l'ancienne capture */
+@media (min-width: 1200px) {
+  .post-container {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .card-title {
+    font-size: 15px;
+    margin-bottom: 7px;
+  }
+
+  .pill,
+  .sat-pill,
+  .section-title {
+    font-size: 11px;
+  }
+
+  .type-pill {
+    font-size: 10px;
+  }
+}
+
+
+/* =========================Vue Metro=========================
+   Une ligne par rangee : le rail est horizontal (l'inverse de la vue
+   Metro du volet de fiche, verticale) et les noms montent a 45° au-dessus
+   du rail, comme sur un plan de metro papier.
+
+   C'est la rotation qui permet des arrets etroits : a l'horizontale il
+   fallait 104 px par arret et presque toutes les lignes defilaient ; a 45°
+   il en faut 36, et le nom se deploie dans la hauteur.
+   ============================================================ */
+
+.post-container.mode-metro {
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.ligne-card {
+  /* Reserves recalculees carte par carte en JS
+     (`ajusterHauteursLibellesMetro`) : ces valeurs ne servent qu'au
+     premier rendu, avant la mesure. */
+  --metro-largeur-arret: 36px;
+  --metro-largeur-libelle: 152px;
+  --metro-hauteur-libelles: 124px;
+  --metro-reserve-libelle: 120px;
+  --color-ligne-metro: var(--accent);
+
+  position: relative;
+  min-width: 0;
+  padding: 12px 14px;
+}
+
+.ligne-entete {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+  /* Place du bouton de sens, qui est hors du flux. */
+  padding-right: 40px;
+}
+
+.ligne-code {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 11px;
+  font-weight: 700;
+  background: color-mix(in srgb, var(--color-ligne-metro) 12%, transparent);
+  color: var(--color-ligne-metro);
+}
+
+.ligne-nom {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.ligne-compteur {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Bascule de sens, une par ligne : le sens de lecture depend du bout de
+   la ligne d'ou part l'agent. Memorise (voir CLE_SENS_METRO_TABLEAU). */
+.ligne-inverser {
+  position: absolute;
+  top: 11px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  min-height: 26px;
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ligne-inverser:hover {
+  border-color: var(--color-ligne-metro);
+  color: var(--color-ligne-metro);
+}
+
+.ligne-inverser[aria-pressed="true"] {
+  border-color: var(--color-ligne-metro);
+  background: color-mix(in srgb, var(--color-ligne-metro) 12%, transparent);
+  color: var(--color-ligne-metro);
+}
+
+.ligne-inverser:focus-visible {
+  outline: 2px solid var(--color-ligne-metro);
+  outline-offset: 2px;
+}
+
+/* Le defilement est porte par un conteneur separe : un rail absolu dans
+   l'element qui defile lui-meme resterait colle au bord visible au lieu
+   de suivre les arrets. */
+.metro-defilement {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 2px;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--color-ligne-metro) 35%, transparent) transparent;
+}
+
+.metro-defilement::-webkit-scrollbar {
+  height: 6px;
+}
+
+.metro-defilement::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.metro-defilement::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-ligne-metro) 30%, transparent);
+}
+
+/* Les marqueurs sont en bas, les libelles montent dans le retrait haut.
+   Le retrait droit accueille le dernier libelle, qui part vers la droite :
+   sans lui il serait coupe par le bord du conteneur de defilement. */
+.metro-rail {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: max-content;
+  margin: 0;
+  padding: var(--metro-hauteur-libelles) var(--metro-reserve-libelle) 4px 0;
+  list-style: none;
+}
+
+/* Le rail court derriere les arrets, du premier marqueur au dernier.
+   `--metro-largeur-arret` est l'ecart entre deux marqueurs, mesure par carte
+   (`ajusterHauteursLibellesMetro`) pour que toutes les lignes occupent la meme
+   largeur. Le marqueur est cale a GAUCHE de sa boite : le premier tombe au
+   bord du rectangle quel que soit l'ecart, sinon chaque ligne demarrait a un
+   retrait different (la moitie de son propre ecart). */
+.metro-rail::before {
+  content: "";
+  position: absolute;
+  bottom: 12px;
+  left: 8px;
+  right: calc(var(--metro-reserve-libelle) + 8px);
+  height: 3px;
+  margin-bottom: -1.5px;
+  border-radius: 2px;
+  background: var(--color-ligne-metro);
+  opacity: 0.35;
+}
+
+.metro-stop {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  width: var(--metro-largeur-arret);
+}
+
+/* Le dernier arret ne porte pas d'ecart : sans ca, le rail se terminerait un
+   ecart entier avant le bord droit. */
+.metro-stop:last-child {
+  width: 16px;
+}
+
+/* Attache du marqueur vers son libelle, 13 px a 45°. */
+.metro-stop::before {
+  content: "";
+  position: absolute;
+  bottom: 12px;
+  left: 8px;
+  width: 13px;
+  height: 1px;
+  background: var(--muted);
+  opacity: 0.5;
+  transform-origin: 0 50%;
+  transform: rotate(-45deg);
+}
+
+/* Boite de taille fixe : les marqueurs de tailles differentes
+   (poste, SAT) restent centres sur le meme rail. */
+.metro-stop-marqueur {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.metro-stop-marqueur::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  border: 2.5px solid var(--color-ligne-metro);
+  border-radius: 50%;
+  background: var(--card-bg);
+}
+
+/* Le libelle pivote autour de son coin bas-gauche, pose au bout de
+   l'attache. Absolu : il ne doit pas elargir l'arret. */
+.metro-stop-texte {
+  position: absolute;
+  bottom: 21px;
+  left: 17px;
+  max-width: var(--metro-largeur-libelle);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transform-origin: 0 100%;
+  transform: rotate(-45deg);
+  font-size: calc(var(--metro-tableau-taille-nom, 12) * 1px);
+  line-height: 1.15;
+  /* Les libelles voisins se chevauchent : sans ca, ils intercepteraient
+     le survol destine au marqueur (qui porte l'infobulle du nom complet). */
+  pointer-events: none;
+}
+
+.metro-stop-nom {
+  font-weight: 650;
+}
+
+.metro-stop-type,
+.metro-stop-parent {
+  margin-left: 3px;
+  font-size: calc(var(--metro-tableau-taille-type, 11) * 1px);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
+
+/* L'arret entier est la cible du survol : la bande qui va d'un marqueur au
+   suivant. Le marqueur seul (16 px) serait trop petit au doigt. */
+.metro-stop[data-arret] {
+  cursor: help;
+}
+
+/* SAT : meme rail, marqueur plus petit */
+.metro-stop.est-sat .metro-stop-marqueur::before {
+  width: 7px;
+  height: 7px;
+  border-width: 2px;
+  border-color: var(--sat-text);
+}
+
+.metro-stop.est-sat .metro-stop-nom {
+  color: var(--sat-text);
+}
+
+/* Hors patrimoine */
+.metro-stop.est-hp .metro-stop-marqueur::before {
+  border-color: var(--hp-text);
+}
+
+.metro-stop.est-hp .metro-stop-nom {
+  color: var(--hp-text);
+}
+
+/* Installations hors EALE (Atelier, Agent E...) */
+.metro-stop.est-autre .metro-stop-marqueur::before {
+  border-color: var(--muted);
+}
+
+/* Correspondance : le poste est desservi par plusieurs lignes. Double anneau,
+   comme sur un plan de metro ; l'infobulle du marqueur liste les autres
+   lignes. Les SAT en sont exclus (ils appartiennent a leur poste parent). */
+.metro-stop.est-correspondance .metro-stop-marqueur::before {
+  width: 9px;
+  height: 9px;
+  border-width: 2px;
+}
+
+.metro-stop.est-correspondance .metro-stop-marqueur::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--color-ligne-metro);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+/* Le marqueur SAT est plus petit : son anneau l'est aussi. */
+.metro-stop.est-correspondance.est-sat .metro-stop-marqueur::before {
+  width: 7px;
+  height: 7px;
+}
+
+.metro-stop.est-correspondance.est-sat .metro-stop-marqueur::after {
+  width: 13px;
+  height: 13px;
+  border-color: var(--sat-text);
+}
+
+.metro-stop.est-correspondance.est-hp .metro-stop-marqueur::after {
+  border-color: var(--hp-text);
+}
+
+.metro-stop.est-correspondance.est-autre .metro-stop-marqueur::after {
+  border-color: var(--muted);
+}
+
+/* Arret retenu par la recherche : marqueur plein et agrandi, halo, libelle en
+   couleur de recherche. La ligne est amenee dessus au rendu
+   (`centrerPremierArretTrouveMetro`). */
+.metro-stop.est-trouve .metro-stop-marqueur::before {
+  width: 13px;
+  height: 13px;
+  border-color: var(--metro-recherche);
+  background: var(--metro-recherche);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--metro-recherche) 28%, transparent);
+  /* Quelques secondes de clignotement au moment de la recherche, puis
+     l'arret reste simplement marque : `--metro-clignotements` est calcule en
+     JS depuis la duree reglee dans le gestionnaire (0 = pas d'animation). */
+  animation: metro-clignote 900ms ease-in-out var(--metro-clignotements, 4);
+}
+
+.metro-stop.est-trouve.est-sat .metro-stop-marqueur::before {
+  width: 9px;
+  height: 9px;
+}
+
+.metro-stop.est-trouve .metro-stop-marqueur::after {
+  border-color: var(--metro-recherche);
+  opacity: 1;
+}
+
+.metro-stop.est-trouve::before {
+  background: var(--metro-recherche);
+  opacity: 0.8;
+}
+
+.metro-stop.est-trouve .metro-stop-nom,
+.metro-stop.est-trouve .metro-stop-type,
+.metro-stop.est-trouve .metro-stop-parent {
+  color: var(--metro-recherche);
+  font-weight: 700;
+}
+
+@keyframes metro-clignote {
+  0%, 100% {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--metro-recherche) 28%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 8px color-mix(in srgb, var(--metro-recherche) 34%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metro-stop.est-trouve .metro-stop-marqueur::before {
+    animation: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .ligne-card {
+    --metro-largeur-arret: 32px;
+    --metro-largeur-libelle: 118px;
+  }
+}
+
+</style>
+
+  <script type="module" crossorigin src="/ALICE-BETA/assets/tableau-CHr8rdb-.js"></script>
+  <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
+  <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-DYPHlPyK.js">
+  <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/utils-Bsp5QMWj.js">
+  <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/styles-lignes-Cb9iUqkZ.js">
+  <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-BE47aISw.css">
+</head>
+<body>
+<div class="board-header">
+  <a class="board-close" href="index.html" aria-label="Fermer le tableau blanc et revenir à la page principale" title="Fermer">×</a>
+  <div class="board-title-wrap">
+    <div class="board-main-row">
+      <div class="board-title">
+        <img src="/ALICE-BETA/alice.webp" alt="Logo ALICE" class="board-logo">
+        <span>Tableau blanc</span>
+      </div>
+      <div class="board-row">
+        <input id="search" type="text" placeholder="Rechercher..." aria-label="Rechercher un poste, SAT ou appareil" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="board-meta">
+      <span id="counters">Chargement…</span>
+    </div>
+  </div>
+</div>
+
+<div class="filters">
+      <button type="button" data-tableau-tri-critere="alphabet" aria-pressed="true">A → Z</button>
+      <button type="button" data-tableau-tri-critere="appareils" aria-pressed="false">+ appareils</button>
+      <button type="button" data-tableau-vue="metro" aria-pressed="false" title="Afficher les lignes en vue Métro">MÉTRO</button>
+      <button type="button" data-tableau-filtre="sat" aria-pressed="false" title="Afficher les SAT sur les lignes" hidden>SAT</button>
+</div>
+
+<div id="postesZone" class="post-container"></div>
+
+</body>
+</html>
