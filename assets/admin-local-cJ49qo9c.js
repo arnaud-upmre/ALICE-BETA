@@ -1,1 +1,0 @@
-async function e(){}document.readyState===`loading`?document.addEventListener(`DOMContentLoaded`,()=>{e()},{once:!0}):e();

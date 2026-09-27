@@ -1,42 +1,5 @@
 {
   "version": 1,
-  "categories": [
-    {
-      "id": "navigation",
-      "label": "Carte et navigation",
-      "description": "Démarrage, repères, mesure, fiche Métro et gestes sur la carte."
-    },
-    {
-      "id": "points",
-      "label": "Points et appareils",
-      "description": "Regroupements, zone de chaleur et couleurs des appareils."
-    },
-    {
-      "id": "rail",
-      "label": "Lignes ferroviaires",
-      "description": "Couleurs des voies et repères des équipes."
-    },
-    {
-      "id": "sheets",
-      "label": "Fiches et itinéraires",
-      "description": "Pastilles des fiches et schéma des trajets."
-    },
-    {
-      "id": "board",
-      "label": "Tableau blanc",
-      "description": "Réglages de la vue Métro du tableau."
-    },
-    {
-      "id": "appearance",
-      "label": "Modes clair et sombre",
-      "description": "Couleurs communes des pages, fiches et filtres."
-    },
-    {
-      "id": "messages",
-      "label": "Notifications",
-      "description": "Durée, animation et couleurs des messages."
-    }
-  ],
   "groups": [
     {
       "id": "notifications",
@@ -152,8 +115,7 @@
           "max": 100,
           "step": 1
         }
-      ],
-      "category": "messages"
+      ]
     },
     {
       "id": "map",
@@ -281,8 +243,7 @@
           "max": 100,
           "step": 5
         }
-      ],
-      "category": "navigation"
+      ]
     },
     {
       "id": "display",
@@ -366,12 +327,11 @@
           "max": 10,
           "step": 1
         }
-      ],
-      "category": "navigation"
+      ]
     },
     {
       "id": "pointModes",
-      "label": "Points : regroupements et zone de chaleur",
+      "label": "Carte principale : zone de chaleur et clusters",
       "description": "Règle le passage aux points normaux, le regroupement des points et le rendu de la zone de chaleur.",
       "options": [
         {
@@ -682,13 +642,12 @@
           "value": "#d73027",
           "default": "#d73027"
         }
-      ],
-      "category": "points"
+      ]
     },
     {
       "id": "interaction",
-      "label": "Utilisation : gestes, délais et contrôles",
-      "description": "Règle l’appui long, le suivi GPS, le repère PN après une recherche, l’état en attente des appareils et les écarts PK.",
+      "label": "Utilisation de la carte : gestes et délais",
+      "description": "Règle les appuis longs, les délais de chargement, le suivi GPS et la durée des mises en évidence.",
       "options": [
         {
           "id": "interaction.longPressDurationMs",
@@ -745,12 +704,11 @@
           "max": 10000,
           "step": 10
         }
-      ],
-      "category": "navigation"
+      ]
     },
     {
       "id": "lightColors",
-      "label": "Couleurs communes en mode clair",
+      "label": "Mode clair : couleurs visibles dans ALICE",
       "description": "Toutes les couleurs de cette rubrique s’appliquent uniquement lorsque le téléphone ou l’ordinateur utilise le mode clair.",
       "options": [
         {
@@ -886,12 +844,11 @@
           "value": "#264fc4",
           "default": "#264fc4"
         }
-      ],
-      "category": "appearance"
+      ]
     },
     {
       "id": "darkColors",
-      "label": "Couleurs communes en mode sombre",
+      "label": "Mode sombre : couleurs visibles dans ALICE",
       "description": "Toutes les couleurs de cette rubrique s’appliquent uniquement lorsque le téléphone ou l’ordinateur utilise le mode sombre.",
       "options": [
         {
@@ -985,8 +942,7 @@
           "value": "#97c7ec",
           "default": "#97c7ec"
         }
-      ],
-      "category": "appearance"
+      ]
     },
     {
       "id": "apparatusColors",
@@ -1056,13 +1012,12 @@
           "value": "#ef7c1f",
           "default": "#ef7c1f"
         }
-      ],
-      "category": "points"
+      ]
     },
     {
       "id": "sheetTitleColors",
-      "label": "Fiches : pastilles « Espace sécurisé » et Poste/SAT",
-      "description": "Règle la couleur et le fond des pastilles « Espace sécurisé » et des noms de Poste/SAT dans la liste des appareils associés.",
+      "label": "Fiches : pastilles « Terrain », « Explorer les équipements » et « Itinéraire… »",
+      "description": "Règle ensemble la couleur et la force du fond des trois pastilles de titre visibles dans les fiches.",
       "options": [
         {
           "id": "colors.map.route",
@@ -1093,12 +1048,11 @@
           "max": 100,
           "step": 1
         }
-      ],
-      "category": "sheets"
+      ]
     },
     {
       "id": "mapColors",
-      "label": "Carte, recherche et filtres : repères",
+      "label": "Carte, recherche et fiches : pastilles et repères",
       "description": "Règle les couleurs des symboles visibles sur la carte, dans les résultats de recherche, le menu Filtres et certaines fiches.",
       "options": [
         {
@@ -1213,13 +1167,12 @@
           "value": "#f08992",
           "default": "#f08992"
         }
-      ],
-      "category": "navigation"
+      ]
     },
     {
       "id": "railColors",
-      "label": "Carte : lignes ferroviaires et équipes",
-      "description": "Règle les couleurs des lignes sur la carte et des repères d’équipe dans le menu Filtres.",
+      "label": "Carte principale : traits des lignes ferroviaires",
+      "description": "Règle les couleurs des catégories ferroviaires et des repères d’équipe.",
       "options": [
         {
           "id": "colors.teams.hazebrouck",
@@ -1333,8 +1286,7 @@
           "value": "#b0cc93",
           "default": "#b0cc93"
         }
-      ],
-      "category": "rail"
+      ]
     },
     {
       "id": "routeColors",
@@ -1369,8 +1321,7 @@
           "value": "#c80e0e",
           "default": "#c80e0e"
         }
-      ],
-      "category": "sheets"
+      ]
     },
     {
       "id": "measureColors",
@@ -1405,8 +1356,7 @@
           "value": "#ffffff",
           "default": "#ffffff"
         }
-      ],
-      "category": "navigation"
+      ]
     },
     {
       "id": "metroBoard",
@@ -1482,12 +1432,11 @@
           "max": 20000,
           "step": 500
         }
-      ],
-      "category": "board"
+      ]
     },
     {
       "id": "metroSheet",
-      "label": "Fiche d’une ligne : vue Métro",
+      "label": "Carte : vue Métro d’une ligne (volet de fiche)",
       "description": "Règle la taille des noms d’arrêts et le rapprochement de la carte dans la vue Métro qui s’ouvre depuis la recherche d’une ligne. Sans rapport avec la vue Métro du tableau blanc, qui a sa propre rubrique.",
       "options": [
         {
@@ -1522,8 +1471,7 @@
           "max": 19,
           "step": 0.1
         }
-      ],
-      "category": "navigation"
+      ]
     }
   ]
 }
