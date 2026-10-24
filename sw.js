@@ -7,7 +7,7 @@
 //
 // __VERSION__ est remplacé à la construction du site (vite.config.js).
 
-const VERSION = "58edde11210b";
+const VERSION = "f03c4b5ea748";
 const PORTEE = new URL(self.registration.scope).pathname;
 const PREFIXE = `alice:${PORTEE}:`;
 const CACHE_APPLI = `${PREFIXE}appli:${VERSION}`;
