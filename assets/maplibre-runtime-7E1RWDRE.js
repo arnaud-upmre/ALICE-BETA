@@ -1,0 +1,1 @@
+import{i as e,n as t,r as n,t as r}from"./maplibre-D0lA0DBD.js";import{t as i}from"./runtime-MAv7J5AF.js";import{n as a}from"./esm-fD4mxcOd.js";t(r),n(`pmtiles`,new a().tile),i.maplibregl=e;
