@@ -29,12 +29,12 @@
       @media (prefers-color-scheme: dark) {
         :root {
           --bg: var(--alice-bg-page-dark);
-          --card: linear-gradient(180deg, rgba(12, 19, 32, 0.97), rgba(15, 23, 42, 0.95));
+          --card: linear-gradient(180deg, color-mix(in srgb, var(--alice-fiord-800) 97%, transparent), color-mix(in srgb, var(--alice-fiord-800) 95%, transparent));
           --line: var(--alice-line-dark);
           --text: var(--alice-text-dark);
           --muted: var(--alice-muted-dark);
           --accent: var(--alice-accent-blue-dark);
-          --head-bg: rgba(15, 23, 42, 0.76);
+          --head-bg: color-mix(in srgb, var(--alice-fiord-800) 76%, transparent);
           --item-bg: var(--alice-panel-soft-dark);
           --btn-bg: rgba(148, 163, 184, 0.14);
           --btn-bg-hover: rgba(148, 163, 184, 0.24);
@@ -218,10 +218,10 @@
         .footer { padding: 0 14px 14px; }
       }
     </style>
-    <script type="module" crossorigin src="/ALICE-BETA/assets/versions-BcxrvW0G.js"></script>
+    <script type="module" crossorigin src="/ALICE-BETA/assets/versions-DSNm3C7q.js"></script>
     <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
-    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-DnHTwbd_.js">
-    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-BE47aISw.css">
+    <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-BxjK8IFl.js">
+    <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-DrqXryAM.css">
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
   </head>
   <body>
@@ -240,22 +240,26 @@
         </header>
         
         <ol class="timeline">
-          <li class="item" data-date="2026-10-24">
+          <li class="item" data-date="2026-10-27">
             <div class="item-head">
-              <span class="date">24 octobre 2026</span>
+              <span class="date">27 octobre 2026</span>
               <span class="commit">V2.2.3</span>
               <button class="toggle" type="button" aria-label="Replier ou déplier">Replier</button>
             </div>
             <ul>
-              <li>🔗 <strong>Fiches et partage fiabilisés :</strong> ajout d’un identifiant unique à chaque fiche pour mieux relier les postes, leurs appareils et leurs accès. Les liens partagés continuent de fonctionner lorsqu’un point est renommé ou déplacé.</li>
-              <li>📏 <strong>PK améliorés :</strong> affichage immédiat dans les fiches, informations plus cohérentes et correction de plusieurs cas où le PK était indisponible.</li>
-              <li>🔎 <strong>Recherche et Tableau blanc :</strong> résultats plus rapides et plus complets, notamment pour les lignes et les PN. L’ouverture des fiches depuis les résultats est fiabilisée, y compris pour les SAT, et le Tableau blanc évite les rafraîchissements inutiles pendant la saisie.</li>
-              <li>⚡ <strong>Rapidité et confort :</strong> démarrage allégé, filtres plus réactifs et améliorations du survol des lignes, de l’affichage des PK et de l’ouverture des fiches sur mobile. Le Défi d’ALICE et l’historique des versions se chargent uniquement à leur ouverture.</li>
-              <li>➕ <strong>Ajout d’appareils :</strong> formulaire plus léger et chargement des cartes au fil des étapes. Plusieurs corrections améliorent l’affichage des cartes et la prise en compte du poste et de l’accès choisis.</li>
-              <li>🗺️ <strong>Moteur de carte :</strong> mise à jour de MapLibre en version 6.15.0. <a href="https://github.com/maplibre/maplibre-gl-js/releases/tag/v6.15.0" target="_blank" rel="noopener noreferrer">Voir les corrections</a>.</li>
-              <li>🚆 <strong>Données ferroviaires :</strong> mise à jour de la base des passages à niveau (PN) et des lignes ferroviaires.</li>
-              <li>📴 <strong>Utilisation sans réseau :</strong> meilleure réouverture d’ALICE pour retrouver les fiches, la recherche et les fonds de carte déjà chargés. La BETA et le site public sont également mieux séparés pour éviter les conflits de version.</li>
-              <li>🛠️ <strong>Optimisations générales et corrections :</strong> nettoyage du code et divers ajustements pour améliorer les performances, la stabilité et le confort d’utilisation.</li>
+              <li>🗺️ <strong>Nouveaux fonds de carte :</strong> les anciens fonds demandant désormais une clé d’accès, ALICE passe à OpenFreeMap, gratuit. Voyager devient Liberty, Dark Matter devient Fiord, et les routes se font plus discrètes pour laisser ressortir les lignes.</li>
+              <li>🌙 <strong>Mode sombre :</strong> un bleu-gris plus doux, le même sur toutes les pages. En mode « Selon l’appareil », la carte passe seule de Liberty le jour à Fiord la nuit.</li>
+              <li>🏙️ <strong>Vue 3D :</strong> le bouton « 3D » incline la carte et fait apparaître les bâtiments en relief en ville. Un second appui la remet à plat.</li>
+              <li>🛤️ <strong>Carte plus lisible :</strong> des lignes plus nettes, sans taches aux croisements, des lignes secondaires d’un bleu plus clair et des regroupements de points plus compacts.</li>
+              <li>📏 <strong>PK :</strong> affichés tout de suite dans les fiches, plus cohérents, et chargés seulement pour la zone visible sur la carte.</li>
+              <li>🔗 <strong>Fiches et partage :</strong> chaque fiche a désormais son identifiant unique. Un lien partagé reste valable même si le point est renommé ou déplacé.</li>
+              <li>🔎 <strong>Recherche et Tableau blanc :</strong> des résultats plus rapides et plus complets, notamment pour les lignes et les PN, et des fiches qui s’ouvrent mieux depuis la recherche, SAT compris.</li>
+              <li>⚡ <strong>Plus rapide :</strong> ALICE démarre plus vite, le passage au satellite est plus fluide en zoomant, et le clic sur un point est plus fiable, même à côté d’un PK.</li>
+              <li>➕ <strong>Ajout d’appareils :</strong> un formulaire plus léger, qui tient mieux compte du poste et de l’accès choisis.</li>
+              <li>🎮 <strong>Défi d’ALICE :</strong> les lignes ferroviaires sont affichées en mode Découverte.</li>
+              <li>🎛️ <strong>Menus de la carte :</strong> « Affichage de la carte » et « Fond de carte » adoptent le même style, plus compact. Le mode de carte se choisit d’un geste (Chaleur, Clusters, Points), les équipes s’activent d’un appui, et chaque fond de carte a sa miniature.</li>
+              <li>📴 <strong>Sans réseau :</strong> ALICE se rouvre mieux hors connexion, avec les fiches, la recherche et les fonds déjà chargés.</li>
+              <li>🚆 <strong>Données et moteur :</strong> PN et lignes ferroviaires mis à jour, MapLibre en version 6.15.0 (<a href="https://github.com/maplibre/maplibre-gl-js/releases/tag/v6.15.0" target="_blank" rel="noopener noreferrer">nouveautés</a>).</li>
             </ul>
           </li>
 

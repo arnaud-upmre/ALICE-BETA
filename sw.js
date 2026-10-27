@@ -7,7 +7,7 @@
 //
 // __VERSION__ est remplacé à la construction du site (vite.config.js).
 
-const VERSION = "82893138eeb7";
+const VERSION = "601d03451dfe";
 const PORTEE = new URL(self.registration.scope).pathname;
 const PREFIXE = `alice:${PORTEE}:`;
 const CACHE_APPLI = `${PREFIXE}appli:${VERSION}`;
@@ -18,7 +18,7 @@ const MAX_ENTREES_FONDS = 4000;
 
 // Fonds de carte et tracés extérieurs gardés pour un usage sans réseau, dans la
 // limite des zones déjà consultées.
-const HOTES_FONDS = [/(^|\.)cartocdn\.com$/, /^data\.geopf\.fr$/, /^services\.arcgisonline\.com$/, /^tile\.openstreetmap\.org$/, /(^|\.)openrailwaymap\.app$/];
+const HOTES_FONDS = [/^tiles\.openfreemap\.org$/, /^data\.geopf\.fr$/, /^services\.arcgisonline\.com$/, /^tile\.openstreetmap\.org$/, /(^|\.)openrailwaymap\.app$/];
 
 self.addEventListener("install", () => {
   self.skipWaiting();
