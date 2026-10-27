@@ -1,13 +1,5 @@
-// Service worker d'ALICE : ouverture rapide et usage sans réseau.
-//
-// Règle générale : quand le réseau répond, c'est toujours lui qui fait foi
-// (données et pages toujours à jour) ; la copie locale ne sert qu'en son absence.
-// Seuls les fichiers de code (assets/, nommés par leur contenu) sont servis
-// directement depuis la copie locale, puisqu'ils ne changent jamais.
-//
-// __VERSION__ est remplacé à la construction du site (vite.config.js).
 
-const VERSION = "601d03451dfe";
+const VERSION = "03edb721e38f";
 const PORTEE = new URL(self.registration.scope).pathname;
 const PREFIXE = `alice:${PORTEE}:`;
 const CACHE_APPLI = `${PREFIXE}appli:${VERSION}`;
@@ -16,8 +8,6 @@ const CACHE_FONDS = `${PREFIXE}fonds`;
 const MAX_ENTREES_PLAGES = 6000;
 const MAX_ENTREES_FONDS = 4000;
 
-// Fonds de carte et tracés extérieurs gardés pour un usage sans réseau, dans la
-// limite des zones déjà consultées.
 const HOTES_FONDS = [/^tiles\.openfreemap\.org$/, /^data\.geopf\.fr$/, /^services\.arcgisonline\.com$/, /^tile\.openstreetmap\.org$/, /(^|\.)openrailwaymap\.app$/];
 
 self.addEventListener("install", () => {
@@ -71,8 +61,6 @@ async function reseauDAbord(evenement, requete, nomCache, options = {}) {
   }
 }
 
-// Une page ouverte avec des paramètres (?id=…) est la même page : sa copie
-// locale est enregistrée et retrouvée sans eux.
 function cleSansParametres(requete, options) {
   if (!options.pageSansParametres) return requete;
   const url = new URL(requete.url);
@@ -104,10 +92,6 @@ async function garder(nomCache, cle, reponse, maxEntrees = 0) {
   }
 }
 
-// Archives PMTiles (tracés, PK, PN) : la carte en lit des morceaux (« plages »).
-// Chaque morceau lu est gardé, étiqueté avec la version (ETag) du fichier, pour
-// qu'une zone déjà consultée reste lisible sans réseau. Une nouvelle version du
-// fichier remplace les morceaux de l'ancienne : jamais de mélange entre versions.
 async function servirPlage(evenement, requete) {
   const plage = requete.headers.get("range");
   try {
