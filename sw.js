@@ -1,5 +1,5 @@
 
-const VERSION = "fca1c9855f62";
+const VERSION = "41f6f44e0d09";
 const PORTEE = new URL(self.registration.scope).pathname;
 const PREFIXE = `alice:${PORTEE}:`;
 const CACHE_APPLI = `${PREFIXE}appli:${VERSION}`;
