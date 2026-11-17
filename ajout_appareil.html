@@ -336,10 +336,26 @@
       list-style: none;
       border: 1px solid var(--border);
       border-radius: 20px;
-      background: var(--panel);
+      /* Fond opaque : la liste passe au-dessus des boutons de l'étape, rien ne doit se voir à travers. */
+      background: var(--fond-opaque);
       box-shadow: var(--shadow);
       max-height: 280px;
       overflow: auto;
+    }
+
+    /* Fond plein des éléments posés au-dessus du reste (liste de recherche, fenêtre « Voir sur ALICE »). */
+    :root {
+      --fond-opaque: #ffffff;
+    }
+
+    :root[data-theme="dark"] {
+      --fond-opaque: #1f2838;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) {
+        --fond-opaque: #1f2838;
+      }
     }
 
     .search-result-btn {
@@ -521,7 +537,7 @@
       width: min(760px, 100%);
       max-height: min(88vh, 900px);
       overflow: hidden;
-      background: var(--panel);
+      background: var(--fond-opaque);
       border: 1px solid var(--border);
       border-radius: 24px;
       box-shadow: var(--shadow);
@@ -762,7 +778,6 @@
           <div class="step-kicker">Position appareil</div>
           <h2 class="step-title">Localiser l'appareil</h2>
           <p class="inline-note">Cliquez sur la carte pour placer le point, puis ajustez-le si besoin.</p>
-          <p class="inline-note">La géolocalisation est facultative. Seules les coordonnées du point validé sont envoyées avec la demande.</p>
           <div id="device-gps-panel">
             <div class="map-box" id="device-map"></div>
             <div class="toolbar">
@@ -807,7 +822,6 @@
           <button class="toolbar-btn access-last-btn hidden" id="acces-dernier" type="button">Reprendre le dernier accès ajouté à ce poste</button>
           <p class="access-or">ou placer un point sur la carte</p>
           <p class="inline-note">Cliquez sur la carte pour placer le point, puis ajustez-le si besoin.</p>
-          <p class="inline-note">La géolocalisation est facultative. Seules les coordonnées du point validé sont envoyées avec la demande.</p>
           <div id="access-gps-panel">
             <div class="map-box" id="access-map"></div>
             <div class="toolbar">
