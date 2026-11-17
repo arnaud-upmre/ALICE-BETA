@@ -459,6 +459,10 @@
       grid-column: 1 / -1;
     }
 
+    .choice-row-modif {
+      flex-wrap: wrap;
+    }
+
     .hidden {
       display: none !important;
     }
@@ -673,13 +677,13 @@
       }
     }
   </style>
-  <script type="module" crossorigin src="/ALICE-BETA/assets/ajoutAppareil-C9lNdg0m.js"></script>
+  <script type="module" crossorigin src="/ALICE-BETA/assets/ajoutAppareil-n03f9EBZ.js"></script>
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modulepreload-polyfill-Dezn_h7o.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/options-DuShF8o3.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/preload-helper-C5ajgpwC.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/runtime-MAv7J5AF.js">
   <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/utils-CqXYLB8A.js">
-  <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/appareils-en-attente-CFjlhAPd.js">
+  <link rel="modulepreload" crossorigin href="/ALICE-BETA/assets/modifications-en-attente-CiL5biKm.js">
   <link rel="stylesheet" crossorigin href="/ALICE-BETA/assets/theme-5jWKNeq_.css">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 </head>
@@ -689,7 +693,7 @@
       <a class="close-button bouton-fermer" href="./index.html" aria-label="Fermer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></a>
       <h1 class="header-title">
         <img class="alice-logo header-logo" src="/ALICE-BETA/alice.webp" alt="ALICE" onerror="this.style.display='none';" />
-        Ajout d'appareil
+        <span id="header-title-text">Ajout d'appareil</span>
       </h1>
       <div class="progress-wrap">
         <div class="progress-top">
@@ -718,18 +722,34 @@
           </div>
         </section>
 
+        <section class="step" id="step-modif-choix">
+          <div class="step-kicker">Modification</div>
+          <h2 class="step-title">Que voulez-vous modifier ?</h2>
+          <div class="meta-box" id="modif-appareil-box"></div>
+          <p class="inline-note">Sélectionnez les éléments à corriger.</p>
+          <div class="choice-row choice-row-modif">
+            <button class="choice-btn" type="button" data-modif-choix="nom" aria-pressed="false">Nom</button>
+            <button class="choice-btn" type="button" data-modif-choix="position" aria-pressed="false">Position</button>
+            <button class="choice-btn" type="button" data-modif-choix="description" aria-pressed="false">Description</button>
+          </div>
+          <div class="nav-row">
+            <button class="nav-btn secondary" type="button" data-prev>Retour</button>
+            <button class="nav-btn primary" type="button" data-next>Suivant</button>
+          </div>
+        </section>
+
         <section class="step" id="step-appareil">
           <div class="step-kicker">Appareil</div>
-          <h2 class="step-title">Quels appareils faut-il ajouter ?</h2>
-          <p class="inline-note">Ajoute ici tous les appareils présents sur le même support.</p>
-          <p class="inline-note">Cochez <strong>HP</strong> pour un appareil hors patrimoine UP MRE.</p>
+          <h2 class="step-title" id="appareil-step-title">Quels appareils faut-il ajouter ?</h2>
+          <p class="inline-note" data-ajout-seulement>Ajoute ici tous les appareils présents sur le même support.</p>
+          <p class="inline-note" data-ajout-seulement>Cochez <strong>HP</strong> pour un appareil hors patrimoine UP MRE.</p>
           <div class="field-stack" id="appareil-list">
             <div class="appareil-row" data-appareil-row>
               <input class="field-input" type="text" placeholder="Ex : I7112" data-appareil-input />
               <button class="hp-toggle" type="button" data-hp-toggle aria-pressed="false">HP</button>
             </div>
           </div>
-          <div class="toolbar">
+          <div class="toolbar" data-ajout-seulement>
             <button class="toolbar-btn" id="add-appareil-btn" type="button">Ajouter un autre appareil</button>
           </div>
           <div class="nav-row">
@@ -750,6 +770,13 @@
               <button class="toolbar-btn" id="device-layer" type="button">Basculer plan / satellite</button>
             </div>
             <div class="coords-box" id="device-coords">Aucun point défini.</div>
+          </div>
+          <div class="hidden" id="groupe-deplacement">
+            <p class="inline-note" id="groupe-deplacement-texte"></p>
+            <div class="choice-row">
+              <button class="choice-btn active" type="button" data-deplacer-groupe="tous">Tous les appareils de ce point</button>
+              <button class="choice-btn" type="button" data-deplacer-groupe="seul" id="deplacer-seul-btn">Uniquement cet appareil</button>
+            </div>
           </div>
           <div class="nav-row">
             <button class="nav-btn secondary" type="button" data-prev>Retour</button>
